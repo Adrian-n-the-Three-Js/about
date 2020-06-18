@@ -7,9 +7,10 @@
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
