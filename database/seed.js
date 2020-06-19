@@ -1,5 +1,5 @@
 const db  = require('./index.js');
-const faker = require('faker');
+// const faker = require('faker');
 const axios = require('axios');
 // const getImages = require('./unsplash.js')
 
@@ -30,8 +30,6 @@ const getImages = (searchTerm) => {
   .catch(error => console.log('ERROR: ', error))
 }
 
-// getImages()
-
 // extract photo details that we want to use
 const extractPhotoData = (arr) => {
   // console.log('array', arr)
@@ -51,37 +49,37 @@ const extractPhotoData = (arr) => {
   return photoAlbumSelection;
 }
 
-// add category property to each photo in each album
-const addCategory = (searchTerm, album) => {
-  const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym'];
-  if (searchTerm === "hotel-room") {
-    album.forEach(element => element.category = photoCategory[0]);
-  }
-  if (searchTerm === "hotel-dining") {
-    album.forEach(element => element.category = photoCategory[1]);
-  }
-  if (searchTerm === "hotel-pool") {
-    album.forEach(element => element.category = photoCategory[2]);
-  }
-  if (searchTerm === "gym") {
-    album.forEach(element => element.category = photoCategory[3]);
-  }
-}
+// // add category property to each photo in each album
+// const addCategory = (searchTerm, album) => {
+//   const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym'];
+//   if (searchTerm === "hotel-room") {
+//     album.forEach(element => element.category = photoCategory[0]);
+//   }
+//   if (searchTerm === "hotel-dining") {
+//     album.forEach(element => element.category = photoCategory[1]);
+//   }
+//   if (searchTerm === "hotel-pool") {
+//     album.forEach(element => element.category = photoCategory[2]);
+//   }
+//   if (searchTerm === "gym") {
+//     album.forEach(element => element.category = photoCategory[3]);
+//   }
+// }
 
-// photo album options
-var roomPhotoAlbum = getImages('hotel-room');
-roomPhotoAlbum = addCategory(roomPhotoAlbum);
-// console.log('line 62 room photos:', roomPhotoAlbum);
+// // photo album options
+// var roomPhotoAlbum = getImages('hotel-room');
+// roomPhotoAlbum = addCategory(roomPhotoAlbum);
+// // console.log('line 62 room photos:', roomPhotoAlbum);
 
-var diningPhotoAlbum = getImages('hotel-dining');
-diningPhotoAlbum = addCategory(diningPhotoAlbum);
-// console.log('line 66 dining photos:', diningPhotoAlbum);
+// var diningPhotoAlbum = getImages('hotel-dining');
+// diningPhotoAlbum = addCategory(diningPhotoAlbum);
+// // console.log('line 66 dining photos:', diningPhotoAlbum);
 
-var poolPhotoAlbum = getImages('hotel-pool');
-poolPhotoAlbum = addCategory(poolPhotoAlbum);
+// var poolPhotoAlbum = getImages('hotel-pool');
+// poolPhotoAlbum = addCategory(poolPhotoAlbum);
 
-var gymPhotoAlbum = getImages('gym');
-gymPhotoAlbum = addCategory(gymPhotoAlbum);
+// var gymPhotoAlbum = getImages('gym');
+// gymPhotoAlbum = addCategory(gymPhotoAlbum);
 
 // generates random selection of photos for an album
 // const generateRandomPhotoAlbum = (photoAlbum) => {
@@ -203,9 +201,6 @@ gymPhotoAlbum = addCategory(gymPhotoAlbum);
   //   helpfulVotes: Number
   // }
 // ];
-
-
-
 
 
 
