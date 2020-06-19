@@ -21,13 +21,14 @@ const getImages = (searchTerm) => {
     }
   })
   .then(response => {
-    // console.log('RESPONSE', response.data.results);
+    // console.log('RESPONSE:', response.data.results);
     var extractedData = extractPhotoData(response.data.results);
     // console.log(searchTerm)
+    console.log('extractedData:', extractedData);
     var data = addCategory(searchTerm, extractedData);
     console.log('data:', data);
   })
-  .catch(error => console.log('ERROR: ', error))
+  .catch(error => console.log('ERROR:', error))
 }
 
 // extract photo details that we want to use
@@ -50,21 +51,21 @@ const extractPhotoData = (arr) => {
 }
 
 // // add category property to each photo in each album
-// const addCategory = (searchTerm, album) => {
-//   const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym'];
-//   if (searchTerm === "hotel-room") {
-//     album.forEach(element => element.category = photoCategory[0]);
-//   }
-//   if (searchTerm === "hotel-dining") {
-//     album.forEach(element => element.category = photoCategory[1]);
-//   }
-//   if (searchTerm === "hotel-pool") {
-//     album.forEach(element => element.category = photoCategory[2]);
-//   }
-//   if (searchTerm === "gym") {
-//     album.forEach(element => element.category = photoCategory[3]);
-//   }
-// }
+const addCategory = (searchTerm, album) => {
+  const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym'];
+  if (searchTerm === "hotel-room") {
+    album.forEach(element => element.category = photoCategory[0]);
+  }
+  if (searchTerm === "hotel-dining") {
+    album.forEach(element => element.category = photoCategory[1]);
+  }
+  if (searchTerm === "hotel-pool") {
+    album.forEach(element => element.category = photoCategory[2]);
+  }
+  if (searchTerm === "gym") {
+    album.forEach(element => element.category = photoCategory[3]);
+  }
+}
 
 // // photo album options
 // var roomPhotoAlbum = getImages('hotel-room');
