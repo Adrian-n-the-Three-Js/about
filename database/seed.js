@@ -1,12 +1,9 @@
 const db  = require('./index.js');
-// const faker = require('faker');
 const axios = require('axios');
-// const getImages = require('./unsplash.js')
 
 
-// this contains 100 hotel records
+// this will contain 100 hotel records
 const hotelPhotos = [];
-// console.log('hotel data:', hotelPhotos);
 
 // grab array of photo options by search term
 const getImages = () => {

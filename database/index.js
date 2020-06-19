@@ -9,7 +9,7 @@ db.once('open', function() {
 });
 
 // create schema
-// native mongo id will represent hotel ID
+// native mongo object id will represent hotel id
 const photoSchema = new mongoose.Schema({
   roomAlbum: [
     {
