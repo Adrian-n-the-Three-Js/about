@@ -20,7 +20,7 @@ const getImages = () => {
   })
   .then(response => {
     // console.log('RESPONSE:', response.data.results);
-    var roomData = extractPhotoData(response.data.results, 'hotel-room');
+    const roomData = extractPhotoData(response.data.results, 'hotel-room');
     // console.log('roomData:', roomData);
 
     return axios({
@@ -34,7 +34,7 @@ const getImages = () => {
       }
     })
     .then(response => {
-      var diningData = extractPhotoData(response.data.results, 'restaurant');
+      const diningData = extractPhotoData(response.data.results, 'restaurant');
       // console.log(diningData)
 
       return axios({
@@ -48,7 +48,7 @@ const getImages = () => {
         }
       })
       .then(response => {
-        var poolData = extractPhotoData(response.data.results, 'pool');
+        const poolData = extractPhotoData(response.data.results, 'pool');
         // console.log(poolData)
 
         return axios({
@@ -82,9 +82,9 @@ const getImages = () => {
 // input arr is the results array from the axios call
 const extractPhotoData = (arr, searchTerm) => {
   // console.log('input array:', arr)
-  var photoAlbumSelection = [];
+  const photoAlbumSelection = [];
   for (var i = 0; i < 10; i++) {
-    var photoDetails = {};
+    const photoDetails = {};
     photoDetails.id = arr[i].id;
     photoDetails.user = arr[i].user.name;
     photoDetails.userAvatar = arr[i].user['profile_image']['large'];
@@ -125,12 +125,12 @@ var roomPhotoAlbum = getImages();
 const generateRandomPhotoAlbum = (photoAlbum) => {
   // generates random number of photos that should be in a hotel album
   const randomNumOfPhotos = Math.floor(Math.random() * 15);
-  var result = [];
-  var indexes = [];
+  const result = [];
+  const indexes = [];
   // var counter = 0;
   for (var i = 0; i < randomNumOfPhotos; i++) {
     // generates random indexes
-    var num = Math.floor(Math.random() * photoAlbum.length);
+    const num = Math.floor(Math.random() * photoAlbum.length);
     // avoid duplicate indexes (photos)
     if (indexes.indexOf(num) === -1) {
       indexes.push(num);
@@ -145,7 +145,7 @@ const generateRandomPhotoAlbum = (photoAlbum) => {
 
 // // generate one hotel object
 const generateHotelData = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum)  => {
-  var hotelObj = {};
+  const hotelObj = {};
   hotelObj.roomPhotos = generateRandomPhotoAlbum(roomPhotoAlbum);
   hotelObj.diningPhotos = generateRandomPhotoAlbum(diningPhotoAlbum);
   hotelObj.poolPhotos = generateRandomPhotoAlbum(poolPhotoAlbum);
@@ -157,7 +157,7 @@ const generateHotelData = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gym
 // // generate 100 hotels
 const generateDataSet = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum) => {
   for(var i = 0; i < 100; i++) {
-    var data = generateHotelData(roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum);
+    const data = generateHotelData(roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum);
     hotelPhotos.push(data);
   }
   return hotelPhotos;
