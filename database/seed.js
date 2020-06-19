@@ -9,12 +9,13 @@ const hotelPhotos = [];
 // console.log('hotel data:', hotelPhotos);
 
 // grab array of photo options by search term
-const getImages = (searchTerm) => {
+const getImages = () => {
+
   axios({
     method: 'get',
     url: `https://api.unsplash.com/search/photos`,
     params: {
-      query: searchTerm
+      query: 'hotel-room'
     },
     headers: {
       'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
@@ -22,18 +23,68 @@ const getImages = (searchTerm) => {
   })
   .then(response => {
     // console.log('RESPONSE:', response.data.results);
-    var extractedData = extractPhotoData(response.data.results);
-    // console.log(searchTerm)
-    console.log('extractedData:', extractedData);
-    var data = addCategory(searchTerm, extractedData);
-    console.log('data:', data);
+    var roomData = extractPhotoData(response.data.results, 'hotel-room');
+    // console.log('roomData:', roomData);
+
+    return axios({
+      method: 'get',
+      url: `https://api.unsplash.com/search/photos`,
+      params: {
+        query: 'restaurant'
+      },
+      headers: {
+        'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
+      }
+    })
+    .then(response => {
+      var diningData = extractPhotoData(response.data.results, 'restaurant');
+      // console.log(diningData)
+
+      return axios({
+        method: 'get',
+        url: `https://api.unsplash.com/search/photos`,
+        params: {
+          query: 'pool'
+        },
+        headers: {
+          'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
+        }
+      })
+      .then(response => {
+        var poolData = extractPhotoData(response.data.results, 'pool');
+        // console.log(poolData)
+
+        return axios({
+          method: 'get',
+          url: `https://api.unsplash.com/search/photos`,
+          params: {
+            query: 'gym'
+          },
+          headers: {
+            'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
+          }
+        })
+        .then(response => {
+          const gymData = extractPhotoData(response.data.results, 'gym');
+          // console.log(gymData)
+
+          const oneHotel = generateHotelData(roomData, diningData, poolData, gymData);
+          // console.log('one', oneHotel)
+          const allHotels = generateDataSet(roomData, diningData, poolData, gymData);
+          // console.log('hotelPhotos', allHotels)
+
+          insertphotoData(allHotels);
+          })
+        })
+      .catch(error => console.log('ERROR:', error))
+    })
   })
-  .catch(error => console.log('ERROR:', error))
 }
 
 // extract photo details that we want to use
-const extractPhotoData = (arr) => {
-  // console.log('array', arr)
+// input arr is the results array from the axios call
+const extractPhotoData = (arr, searchTerm) => {
+  // console.log('input array:', arr)
   var photoAlbumSelection = [];
   for (var i = 0; i < 10; i++) {
     var photoDetails = {};
@@ -43,92 +94,89 @@ const extractPhotoData = (arr) => {
     photoDetails.imageUrl = arr[i].urls.regular;
     photoDetails.caption = arr[i].description;
     photoDetails.datePosted = arr[i]['created_at'];
-    // photoDetails.category = addCategory(arr);
+    photoDetails.category = addCategory(arr[i], searchTerm);
     photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
     photoAlbumSelection.push(photoDetails);
   }
   return photoAlbumSelection;
 }
 
-// // add category property to each photo in each album
-const addCategory = (searchTerm, album) => {
+// add corresponding category property to each photo
+const addCategory = (photo, searchTerm) => {
   const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym'];
   if (searchTerm === "hotel-room") {
-    album.forEach(element => element.category = photoCategory[0]);
+    return photoCategory[0];
   }
-  if (searchTerm === "hotel-dining") {
-    album.forEach(element => element.category = photoCategory[1]);
+  if (searchTerm === "restaurant") {
+    return photoCategory[1];
   }
-  if (searchTerm === "hotel-pool") {
-    album.forEach(element => element.category = photoCategory[2]);
+  if (searchTerm === "pool") {
+    return photoCategory[2];
   }
   if (searchTerm === "gym") {
-    album.forEach(element => element.category = photoCategory[3]);
+    return photoCategory[3];
   }
 }
 
 // // photo album options
-// var roomPhotoAlbum = getImages('hotel-room');
-// roomPhotoAlbum = addCategory(roomPhotoAlbum);
-// // console.log('line 62 room photos:', roomPhotoAlbum);
-
+var roomPhotoAlbum = getImages();
 // var diningPhotoAlbum = getImages('hotel-dining');
-// diningPhotoAlbum = addCategory(diningPhotoAlbum);
-// // console.log('line 66 dining photos:', diningPhotoAlbum);
-
 // var poolPhotoAlbum = getImages('hotel-pool');
-// poolPhotoAlbum = addCategory(poolPhotoAlbum);
-
 // var gymPhotoAlbum = getImages('gym');
-// gymPhotoAlbum = addCategory(gymPhotoAlbum);
 
 // generates random selection of photos for an album
-// const generateRandomPhotoAlbum = (photoAlbum) => {
-//   // generates random number of photos that should be in a hotel album
-//   const randomNumOfPhotos = Math.floor(Math.random() * 10);
-//   var result = [];
-//   var indexes = [];
-//   var counter = 0;
-//   for (var i = 0; i < randomNumOfPhotos; i++) {
-//     var num = Math.floor(Math.random() * photoAlbum.length);
-//     // avoid duplicate indexes
-//     if (indexes.indexOf(num) === -1) {
-//       indexes.push(num);
-//     // add cards from the deck into the result based on unique indexes
-//     result[num] = photoAlbum[counter];
-//     counter++;
-//     }
-//   }
-//   return result;
-// }
+const generateRandomPhotoAlbum = (photoAlbum) => {
+  // generates random number of photos that should be in a hotel album
+  const randomNumOfPhotos = Math.floor(Math.random() * 15);
+  var result = [];
+  var indexes = [];
+  // var counter = 0;
+  for (var i = 0; i < randomNumOfPhotos; i++) {
+    // generates random indexes
+    var num = Math.floor(Math.random() * photoAlbum.length);
+    // avoid duplicate indexes (photos)
+    if (indexes.indexOf(num) === -1) {
+      indexes.push(num);
+      result.push(photoAlbum[num])
+    // add into the result based on unique indexes
+    // result[num] = photoAlbum[counter];
+    // counter++;
+    }
+  }
+  return result;
+}
 
 // // generate one hotel object
-// const generateHotelData = () => {
-//   var hotelObj = {};
-//   hotelObj.roomPhotos = generateRandomPhotoAlbum(roomPhotoAlbum);
-//   hotelObj.diningPhotos = generateRandomPhotoAlbum(diningPhotoAlbum);
-//   hotelObj.poolPhotos = generateRandomPhotoAlbum(poolPhotoAlbum);
-//   hotelObj.gymPhotos = generateRandomPhotoAlbum(gymPhotoAlbum);
-//   return hotelObj;
-// }
+const generateHotelData = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum)  => {
+  var hotelObj = {};
+  hotelObj.roomPhotos = generateRandomPhotoAlbum(roomPhotoAlbum);
+  hotelObj.diningPhotos = generateRandomPhotoAlbum(diningPhotoAlbum);
+  hotelObj.poolPhotos = generateRandomPhotoAlbum(poolPhotoAlbum);
+  hotelObj.gymPhotos = generateRandomPhotoAlbum(gymPhotoAlbum);
+  // console.log('HOTELOBJECT:', hotelObj)
+  return hotelObj;
+}
 
 // // generate 100 hotels
-// for(var i = 0; i < 100; i++) {
-//   var data = generateHotelData();
-//   hotelData.push(data);
-// }
+const generateDataSet = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum) => {
+  for(var i = 0; i < 100; i++) {
+    var data = generateHotelData(roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum);
+    hotelPhotos.push(data);
+  }
+  return hotelPhotos;
+}
 
 
-// // create instances by inserting data
-// const insertphotoData = function() {
-//   Photo.create(hotelPhotos)
-//     .then(() => {
-//       console.log('inserted photo data');
-//       db.close()
-//     });
-// };
+// create instances by inserting data
+const insertphotoData = function(allHotels) {
+  db.Photo.create(allHotels)
+    .then(() => {
+      console.log('Inserted photo data');
+      db.db.close();
+    })
+    .catch(error => console.log(error));
+};
 
-// insertphotoData();
 
 
 
