@@ -1,10 +1,6 @@
 const db  = require('./index.js');
 const axios = require('axios');
 
-
-// this will contain 100 hotel records
-const hotelPhotos = [];
-
 // grab array of photo options by search term
 const getImages = () => {
 
@@ -66,7 +62,7 @@ const getImages = () => {
           // console.log(gymData)
 
           const oneHotel = generateHotelData(roomData, diningData, poolData, gymData);
-          // console.log('one', oneHotel)
+          // console.log('one hotel', oneHotel)
           const allHotels = generateDataSet(roomData, diningData, poolData, gymData);
           // console.log('hotelPhotos', allHotels)
 
@@ -85,13 +81,13 @@ const extractPhotoData = (arr, searchTerm) => {
   const photoAlbumSelection = [];
   for (var i = 0; i < 10; i++) {
     const photoDetails = {};
-    photoDetails.id = arr[i].id;
+    // photoDetails.id = arr[i].id;
     photoDetails.user = arr[i].user.name;
-    photoDetails.userAvatar = arr[i].user['profile_image']['large'];
+    photoDetails.userAvatarURL = arr[i].user['profile_image']['large'];
     photoDetails.imageUrl = arr[i].urls.regular;
     photoDetails.caption = arr[i].description;
-    photoDetails.datePosted = arr[i]['created_at'];
     photoDetails.category = addCategory(arr[i], searchTerm);
+    photoDetails.datePosted = arr[i]['created_at'];
     photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
     photoAlbumSelection.push(photoDetails);
   }
@@ -117,9 +113,7 @@ const addCategory = (photo, searchTerm) => {
 
 // // photo album options
 var roomPhotoAlbum = getImages();
-// var diningPhotoAlbum = getImages('hotel-dining');
-// var poolPhotoAlbum = getImages('hotel-pool');
-// var gymPhotoAlbum = getImages('gym');
+
 
 // generates random selection of photos for an album
 const generateRandomPhotoAlbum = (photoAlbum) => {
@@ -146,27 +140,32 @@ const generateRandomPhotoAlbum = (photoAlbum) => {
 // // generate one hotel object
 const generateHotelData = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum)  => {
   const hotelObj = {};
-  hotelObj.roomPhotos = generateRandomPhotoAlbum(roomPhotoAlbum);
-  hotelObj.diningPhotos = generateRandomPhotoAlbum(diningPhotoAlbum);
-  hotelObj.poolPhotos = generateRandomPhotoAlbum(poolPhotoAlbum);
-  hotelObj.gymPhotos = generateRandomPhotoAlbum(gymPhotoAlbum);
+  hotelObj.roomAlbum = generateRandomPhotoAlbum(roomPhotoAlbum);
+  hotelObj.diningAlbum = generateRandomPhotoAlbum(diningPhotoAlbum);
+  hotelObj.poolAlbum = generateRandomPhotoAlbum(poolPhotoAlbum);
+  hotelObj.gymAlbum = generateRandomPhotoAlbum(gymPhotoAlbum);
   // console.log('HOTELOBJECT:', hotelObj)
   return hotelObj;
 }
 
+
 // // generate 100 hotels
 const generateDataSet = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum) => {
+  // this will contain 100 hotel records
+  const hotelPhotos = [];
   for(var i = 0; i < 100; i++) {
-    const data = generateHotelData(roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum);
+    var data = generateHotelData(roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum);
     hotelPhotos.push(data);
   }
+  // console.log('data', hotelPhotos[90])
+  // console.log('hotelPhotos:', hotelPhotos.poolPhotos)
   return hotelPhotos;
 }
 
 
 // create instances by inserting data
 const insertphotoData = function(allHotels) {
-  db.Photo.create(allHotels)
+  db.Photo.insertMany(allHotels)
     .then(() => {
       console.log('Inserted photo data');
       db.db.close();
