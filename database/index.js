@@ -13,7 +13,6 @@ db.once('open', function() {
 const photoSchema = new mongoose.Schema({
   roomAlbum: [
     {
-      photo_id: Number,
       user: String,
       userAvatarURL: String,
       imageUrl: String,
@@ -25,7 +24,6 @@ const photoSchema = new mongoose.Schema({
   ],
   diningAlbum: [
     {
-      photo_id: Number,
       user: String,
       userAvatarURL: String,
       imageUrl: String,
@@ -37,7 +35,6 @@ const photoSchema = new mongoose.Schema({
   ],
   poolAlbum: [
     {
-      photo_id: Number,
       user: String,
       userAvatarURL: String,
       imageUrl: String,
@@ -49,7 +46,6 @@ const photoSchema = new mongoose.Schema({
   ],
   gymAlbum: [
     {
-      photo_id: Number,
       user: String,
       userAvatarURL: String,
       imageUrl: String,
