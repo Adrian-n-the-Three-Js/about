@@ -19,7 +19,7 @@ class App extends React.Component {
     const hotels = [...this.state.hotels];
     axios.get('/api/photos')
     .then(response => {
-      console.log('res data:', response.data);
+      console.log('response data:', response.data);
       this.setState({hotels: response.data});
     })
     .catch(err => console.log(err));
