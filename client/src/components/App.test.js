@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import App from './App.jsx';
 
 describe('App', () => {
-  it('should render correctly', () => {
+  it('should display Hello App', () => {
     const wrapper = shallow(<App />);
 
     expect(wrapper.find('div').text()).toBe('Hello App');
