@@ -1,7 +1,7 @@
 const Model = require('./model.js')
 
 const getPhotos = (req, res) => {
-  console.log('controller getting.../')
+  console.log('controller getting.../');
 
   Model.getPhotos((err, data) => {
     if (err) {

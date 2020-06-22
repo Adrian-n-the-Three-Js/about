@@ -1,11 +1,10 @@
-const db = require('../database')
+const db = require('../database');
 
 const getPhotos = (callback) => {
-  console.log('model getting.../')
+  console.log('model getting.../');
 
   // query to grab all data
-  db.Photo.find({}, callback)
-  console.log('test')
+  db.Photo.find({}, callback);
 }
 
 module.exports = {
