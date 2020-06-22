@@ -1,5 +1,6 @@
 const db  = require('./index.js');
 const axios = require('axios');
+const moment = require('moment');
 
 // grab array of photo options by search term
 const getImages = () => {
@@ -87,10 +88,11 @@ const extractPhotoData = (arr, searchTerm) => {
     photoDetails.imageUrl = arr[i].urls.regular;
     photoDetails.caption = arr[i].description;
     photoDetails.category = addCategory(arr[i], searchTerm);
-    photoDetails.datePosted = arr[i]['created_at'];
+    photoDetails.datePosted = moment(arr[i]['created_at']).format("MMM YY");
     photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
     photoAlbumSelection.push(photoDetails);
   }
+  console.log('test: ',photoAlbumSelection[0])
   return photoAlbumSelection;
 }
 
