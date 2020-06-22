@@ -11,19 +11,19 @@ class App extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.getData();
-  // }
+  componentDidMount() {
+    this.getData();
+  }
 
-  // getData() {
-  //   const hotels = [...this.state.hotels];
-  //   axios.get('/api/photos')
-  //   .then(response => {
-  //     console.log('res data:', response.data);
-  //     this.setState({hotels: response.data});
-  //   })
-  //   .catch(err => console.log(err));
-  // }
+  getData() {
+    const hotels = [...this.state.hotels];
+    axios.get('/api/photos')
+    .then(response => {
+      console.log('res data:', response.data);
+      this.setState({hotels: response.data});
+    })
+    .catch(err => console.log(err));
+  }
 
   render() {
     return (
