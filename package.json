@@ -11,10 +11,13 @@
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "db-setup": "node database/seed.js",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "setupFilesAfterEnv": [
+      "<rootDir>client/src/enzyme.config.js"
+    ]
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -27,11 +30,9 @@
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
-    "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.5.0",
     "eslint": "^7.3.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.21.2",

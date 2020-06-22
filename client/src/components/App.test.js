@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import App from './App.jsx';
 
 describe('App', () => {
-  it('should render correctly in "debug" mode', () => {
-    const component = shallow(<App debug />);
+  it('should render correctly', () => {
+    const wrapper = shallow(<App />);
 
-    expect(component).toMatchSnapshot();
+    expect(wrapper.find('div').text()).toBe('Hello App');
   });
 });
