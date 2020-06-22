@@ -9,3 +9,4 @@ describe('App', () => {
     expect(wrapper.find('div').text()).toBe('Hello App');
   });
 });
+
