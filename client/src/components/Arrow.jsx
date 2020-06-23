@@ -1,18 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
+// import leftArrow from '../../dist/left-arrow.png';
 
 console.log('arrow');
 
-const ArrowContainer = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: solid;
+// const clipart = 'https://www.pinclipart.com/picdir/big/173-1732997_clipart-free-library-left-svg-png-icon-free.png';
+
+const Arrow = (props) => {
+  return (
+    <ArrowImage
+      onClick={props.onClick}
+      src={props.direction === 'right' ? 'right-arrow.png' : 'left-arrow.png'}
+    />
+  );
+};
+
+// const ArrowContainer = styled.div`
+//   background-color: grey;
+// `;
+
+const ArrowImage = styled.img`
   display: block;
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  background: light-grey;
+  border: solid;
   cursor: pointer;
-  opacity: .75;
-  background-color: light-grey;
-  right: 1rem;
+  ${(props) => (props.direction === 'right' ? 'right:25px' : 'left: 25px')};
   // &: focus {
   //   outline: 1;
   // }
@@ -21,15 +39,36 @@ const ArrowContainer = styled.div`
   }
 `;
 
-const Arrow = (props) => {
-  return (
-    <ArrowContainer>
-      <div className="arrow" onClick={props.onClick} >
-        {props.symbol}
-      </div>
+// const ArrowContainer = styled.img`
+//   display: block;
+//   position: absolute;
+//   z-index: 1;
+//   top: 50%;
+//   width: 60px;
+//   height: 60px;
+//   margin-top: -30px;
+//   border-radius: 3px 0 0 3px;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: light-grey;
+//   border: solid;
+//   // boder-radius: 50%;
+//   cursor: pointer;
+//   opacity: .75;
+//   ${(props) => (props.direction === 'right' ? 'right:25px' : 'left: 25px')};
+//   // &: focus {
+//   //   outline: 1;
+//   // }
+//   &:hover {
+//     background-color: yellow;
+//   }
+// `;
 
-    </ArrowContainer>
-  )
-}
+// const Image = styled.img`
+//   height: 20vh;
+//   width: 20wh;
+// `;
 
 export default Arrow;
+
+{/* {props.symbol} */}

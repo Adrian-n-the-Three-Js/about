@@ -1,19 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-console.log('photo');
+console.log('album toggle');
 
-const Photo = (props) => {
+const CarouselPhotostrip = (props) => {
   return (
-    <Image src={props.url} />
+    <Image alt={props.caption} src={props.photo} />
   );
 };
 
 const Image = styled.img`
-  height: 270px;
-  width: 370px;
-  // padding: 5px;
-  // flex: 1;
+  flex: 1;
+  max-height: 100px
   // position: relative;
   // margin: 1px;
   // flex-shrink: 1;
@@ -23,4 +21,4 @@ const Image = styled.img`
   // display: block;
 `;
 
-export default Photo;
+export default CarouselPhotostrip;
