@@ -1,4 +1,6 @@
 import React from 'react';
+import CarouselContent from './CarouselContent.jsx';
+import Photo from './Photo.jsx';
 import Arrow from './Arrow.jsx';
 import styled from 'styled-components';
 
@@ -58,10 +60,12 @@ class Carousel extends React.Component {
           onClick={this.previousPhoto}
           />}
 
-        {
+        {<Photo url={this.props.preview[this.state.currentPhotoIndex]['imageUrl']} />}
+
+        {/* {
           this.props.preview.length &&
           <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
-        }
+        } */}
 
         {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) &&
         <Arrow
