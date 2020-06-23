@@ -1,5 +1,6 @@
 import React from 'react';
 import Arrow from './Arrow.jsx';
+import styled from 'styled-components';
 
 console.log('carousel');
 
@@ -34,10 +35,21 @@ class Carousel extends React.Component {
   }
 
   render() {
-    this.props.preview.length && console.log('image', this.props.hotel[0]);
+    // this.props.preview.length && console.log('image', this.props.hotel[0]);
+
+    const CarouselWrapper = styled.div`
+      display: flex;
+      cursor: pointer;
+      height: 30vh;
+      width: 30wh;
+      margin: 0 auto;
+      overflow: hidden;
+    `;
 
     return (
       <div>
+
+        <CarouselWrapper>
 
         {(this.state.currentPhotoIndex - 1 >= 0) &&
         <Arrow
@@ -58,48 +70,11 @@ class Carousel extends React.Component {
           onClick={this.nextPhoto}
         />}
 
+        </CarouselWrapper>
 
       </div>
     )
   }
-
 }
 
 export default Carousel;
-
-
-
-
-// import React from 'react';
-// // import ReactDOM from 'react-dom';
-
-// console.log('carousel');
-
-// class Carousel extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       currentPhotoIndex: 0
-//     }
-//   }
-
-//   // previousPhoto() {
-
-//   // }
-
-//   render () {
-//     {console.log('image1', this.props.photos[0])['diningAlbum'][0]['imageUrl']}
-//     // console.log('image2', this.props.photos[0]['userAvatarURL']);
-
-//     return (
-//       <div>
-//         <span>Carousel</span>
-//         <div>test</div>
-//         <img src={"https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjE0Mjk4NH0"} />
-//       </div>
-//     );
-//   }
-// }
-
-
-// export default Carousel;
