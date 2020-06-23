@@ -31,9 +31,9 @@ class App extends React.Component {
         preview: [data[0]['roomAlbum'][0], data[0]['diningAlbum'][0], data[0]['poolAlbum'][0], data[0]['gymAlbum'][0]],
         isLoaded: true
       });
-      console.log('res data', this.state.hotel);
+      console.log('hotel data', this.state.hotel);
       console.log('preview data', this.state.preview);
-      console.log('image', this.state.preview[0]['imageUrl']);
+
       error => {
         this.setState({isLoaded: true});
         console.log(error)
