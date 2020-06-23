@@ -5,14 +5,22 @@ console.log('carousel');
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   currentPhotoIndex: 0
+    // }
   }
 
   render() {
+    console.log('image', this.props.hotel[0]);
+
     // console.log('image', this.props.photos[0]['diningAlbum'][0]['imageUrl']);
 
     return (
       <div>
-        <img src={this.props.photos[0]['diningAlbum'][0]['imageUrl']}/>
+      {
+        this.props.preview.length &&
+         <img src={this.props.preview[0]['imageUrl']}/>
+      }
       </div>
     )
   }
