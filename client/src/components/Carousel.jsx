@@ -1,5 +1,4 @@
 import React from 'react';
-// import CarouselContent from './CarouselContent.jsx';
 import Photo from './Photo.jsx';
 import CarouselPhotostrip from './CarouselPhotostrip.jsx';
 import Arrow from './Arrow.jsx';
@@ -48,13 +47,25 @@ class Carousel extends React.Component {
     return (
       <div>
 
-        {(this.state.currentPhotoIndex - 1 >= 0) && (
-          <Arrow
-            direction="left"
-            symbol="&#9664;"
-            onClick={this.previousPhoto}
-          />
-        )}
+        {/* <ArrowContainer> */}
+          {(this.state.currentPhotoIndex - 1 >= 0) && (
+            <Arrow
+              direction="left"
+              symbol="&#60;"
+              onClick={this.previousPhoto}
+            />
+          )}
+        {/* </ArrowContainer> */}
+
+        {/* <ArrowContainer> */}
+          {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
+            <Arrow
+              direction="right"
+              symbol="&#62;"
+              onClick={this.nextPhoto}
+            />
+          )}
+        {/* </ArrowContainer> */}
 
         {/* {
           this.props.preview.length &&
@@ -64,14 +75,6 @@ class Carousel extends React.Component {
         <PhotoContainer>
           <Photo url={this.props.preview[this.state.currentPhotoIndex].imageUrl} />
         </PhotoContainer>
-
-        {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
-          <Arrow
-            direction="right"
-            symbol="&#62;"
-            onClick={this.nextPhoto}
-          />
-        )}
 
         <PhotostripWrapper>
           {this.props.preview.map((one, index) => (
@@ -90,6 +93,21 @@ class Carousel extends React.Component {
   }
 }
 
+const AlbumPhotoCount = () => {
+
+};
+
+// const ArrowContainer = styled.div`
+//   position: absolute;
+//   background: rgba(0,0,0,.32);
+//   width: 60px;
+//   height: 60px;
+//   text-align: center:
+//   cursor: pointer;
+//   // margin-top: -30px;
+//   // justify-content: center;
+// `;
+
 const PhotoContainer = styled.div`
   height: 270px;
   width: 370px;
@@ -101,7 +119,6 @@ const PhotostripWrapper = styled.div`
   height: 50px;
   width: 370px;
 
-  // display: flex;
   // flex-wrap: wrap;
   // border: 1px solid blue;
   // max-width: 50px;
@@ -123,8 +140,6 @@ const PhotoStrip = styled(PhotostripWrapper)`
   // &:after {
   //   content: '';
   //   display: block;
-  //   width: 100%;
-  //   height: 265px;
   //   outline: 5px solid #fc2003;
   //   position: absolute;
   //   top: 0;

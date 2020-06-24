@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
   @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
   body {
     font-family: 'Open Sans', sans-serif;
-    font-color: #4a4a4a;
+    color: #4a4a4a;
   }
 `;
 
@@ -53,6 +53,7 @@ class App extends React.Component {
   }
 
   render() {
+
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
@@ -104,12 +105,12 @@ class App extends React.Component {
         <hr />
         <p>{Description}</p>
 
-      <CarouselWrapper>
-        <Carousel
-          hotel={this.state.hotel}
-          preview={this.state.preview}
-        />
-      </CarouselWrapper>
+        <CarouselWrapper>
+          <Carousel
+            hotel={this.state.hotel}
+            preview={this.state.preview}
+          />
+        </CarouselWrapper>
 
       </AppWrapper>
     );
@@ -130,6 +131,11 @@ const TestTitle = styled.h1`
 `;
 
 const CarouselWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  // position:: relative;
   background-color: #f5dcdc;
   cursor: pointer;
   height: 340px;
