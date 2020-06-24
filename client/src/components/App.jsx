@@ -27,14 +27,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData();
+    return(
+      this.getData()
+    )
   }
 
   // GET
   // testing with 1 hotel
   getData() {
+    // return (
     // const hotel = [...this.state.hotel];
-    axios.get('/api/photos')
+     axios.get('/api/photos')
       .then((response) => {
         const data = response.data;
         this.setState({
@@ -48,7 +51,8 @@ class App extends React.Component {
         };
         console.log('hotel data', this.state.hotel);
         console.log('preview data', this.state.preview);
-      });
+      })
+    // );
   }
 
   render() {
