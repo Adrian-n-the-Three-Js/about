@@ -10,16 +10,14 @@ describe('App', () => {
     expect(wrapper.find('div').text()).toBe('Hello App');
   });
 
-  it('should fetch data from the API', async () => {
-    mockAxios.get.mockImplementationOnce( () =>
-      Promise.resolve({
-        data: {results: []}
-      })
-    );
+  // it('should fetch data from the API', async () => {
+  //   mockAxios.get.mockImplementationOnce( () =>
+  //     Promise.resolve({
+  //       data: {results: []}
+  //     })
+  //   );
 
-    const images = await
-    await expect()
-  })
-
+  //   const images = await
+  //   await expect()
+  // })
 });
-
