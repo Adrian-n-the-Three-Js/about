@@ -42,13 +42,12 @@ class App extends React.Component {
           preview: [data[0].roomAlbum[0], data[0].diningAlbum[0], data[0].poolAlbum[0], data[0].gymAlbum[0]],
           isLoaded: true,
         });
+        (error) => {
+          this.setState({ isLoaded: true});
+          console.log(error);
+        };
         console.log('hotel data', this.state.hotel);
         console.log('preview data', this.state.preview);
-
-        error => {
-          this.setState({isLoaded: true});
-          console.log(error)
-        };
       });
   }
 
@@ -119,7 +118,8 @@ class App extends React.Component {
 
 const AppWrapper = styled.div`
   background-color: papayawhip;
-  height: 100%;
+  height: 1030px;
+  width: 765px;
   padding: 24px;
   margin: 12px;
 `;
