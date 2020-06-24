@@ -74,6 +74,7 @@ class Carousel extends React.Component {
 
         <PhotoContainer>
           <Photo url={this.props.preview[this.state.currentPhotoIndex].imageUrl} />
+          <AlbumPhotoCount />
         </PhotoContainer>
 
         <PhotostripWrapper>
@@ -94,7 +95,12 @@ class Carousel extends React.Component {
 }
 
 const AlbumPhotoCount = () => {
-
+  console.log('album photo count');
+  return (
+    <div>
+      Room & Suite
+    </div>
+  )
 };
 
 // const ArrowContainer = styled.div`
@@ -111,6 +117,12 @@ const AlbumPhotoCount = () => {
 const PhotoContainer = styled.div`
   height: 270px;
   width: 370px;
+  display: flex;
+  // align-items: left;
+`;
+
+const AlbumPhotoCountContainer = styled.div`
+  align-self: center;
 `;
 
 const PhotostripWrapper = styled.div`
