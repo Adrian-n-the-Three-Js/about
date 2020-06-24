@@ -15,6 +15,7 @@ class Carousel extends React.Component {
     };
     this.previousPhoto = this.previousPhoto.bind(this);
     this.nextPhoto = this.nextPhoto.bind(this);
+    this.photostripClick = this.photostripClick.bind(this);
   }
 
   previousPhoto() {
@@ -23,7 +24,7 @@ class Carousel extends React.Component {
     const currentPhotoIndex = this.state.currentPhotoIndex;
     const index = currentPhotoIndex !== 0 ? currentPhotoIndex - 1 : null;
     this.setState({
-      currentPhotoIndex: index
+      currentPhotoIndex: index,
     });
   }
 
@@ -37,10 +38,16 @@ class Carousel extends React.Component {
     });
   }
 
+  photostripClick(index) {
+    console.log('photostrip click');
+    this.setState({ currentPhotoIndex: index });
+  }
+
+
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
     return (
-      <Wrapper>
+      <CarouselWrapper>
 
         {(this.state.currentPhotoIndex - 1 >= 0) && (
         <Arrow
@@ -55,17 +62,17 @@ class Carousel extends React.Component {
           <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
         } */}
 
-        {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
-        <Arrow
-          direction="right"
-          symbol="&#9654;"
-          onClick={this.nextPhoto}
-        />
-        )}
-
         <PhotoContainer>
           <Photo url={this.props.preview[this.state.currentPhotoIndex].imageUrl} />
         </PhotoContainer>
+
+        {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
+        <Arrow
+          direction="right"
+          symbol="&#62;"
+          onClick={this.nextPhoto}
+        />
+        )}
 
         <PhotostripWrapper>
           {
@@ -75,23 +82,24 @@ class Carousel extends React.Component {
               index={index}
               photo={one.imageUrl}
               caption={one.caption}
+              onClick={this.photostripClick}
             />
           ))
           }
         </PhotostripWrapper>
 
-      </Wrapper>
+      </CarouselWrapper>
     );
   }
 }
 
-const Wrapper = styled.div`
+const CarouselWrapper = styled.div`
   background-color: #f5dcdc;
-  // display: block;
-  // flex-direction: column;
   cursor: pointer;
   height: 330px;
   width: 330px;
+  // display: block;
+  // flex-direction: column;
   // padding-top: 50px;
   // padding-right: 80px;
   // padding-bottom: 50px;
@@ -107,6 +115,7 @@ const PhotoContainer = styled.div`
 
 const PhotostripWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   height: 50px;
   width: 370px;
 

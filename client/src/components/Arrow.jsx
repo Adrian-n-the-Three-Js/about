@@ -20,15 +20,15 @@ const Arrow = (props) => {
 // `;
 
 const ArrowImage = styled.img`
-  display: block;
   position: absolute;
-  top: 50%;
+  background-color: #2c2c2c;
+  // opacity: 50%;
+  border-radius: 3px 0px 0px 3px;
   width: 60px;
   height: 60px;
-  justify-content: center;
-  align-items: center;
-  background: light-grey;
-  border: solid;
+  top: 50%;
+  // justify-content: center;
+  // align-items: center;
   cursor: pointer;
   ${(props) => (props.direction === 'right' ? 'right:25px' : 'left: 25px')};
   // &: focus {
