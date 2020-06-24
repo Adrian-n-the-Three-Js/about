@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 console.log('arrow');
 
-// const clipart = 'https://www.pinclipart.com/picdir/big/173-1732997_clipart-free-library-left-svg-png-icon-free.png';
-
 const Arrow = (props) => {
   return (
     <ArrowImage
@@ -14,10 +12,6 @@ const Arrow = (props) => {
     />
   );
 };
-
-// const ArrowContainer = styled.div`
-//   background-color: grey;
-// `;
 
 const ArrowImage = styled.img`
   position: absolute;
@@ -38,6 +32,8 @@ const ArrowImage = styled.img`
     background-color: yellow;
   }
 `;
+
+export default Arrow;
 
 // const ArrowContainer = styled.img`
 //   display: block;
@@ -63,12 +59,5 @@ const ArrowImage = styled.img`
 //     background-color: yellow;
 //   }
 // `;
-
-// const Image = styled.img`
-//   height: 20vh;
-//   width: 20wh;
-// `;
-
-export default Arrow;
 
 {/* {props.symbol} */}

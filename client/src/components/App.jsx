@@ -8,7 +8,7 @@ import styled from 'styled-components';
 console.log('hello app');
 
 class App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       hotel: [],
@@ -48,15 +48,57 @@ class App extends React.Component {
       return <div>Loading...</div>;
     }
     return (
+
       <AppWrapper>
 
         <TestTitle>Hello App!</TestTitle>
+        <h2>About</h2>
+        <hr />
+        <p>This property matches all of your filters.</p>
+        <p>Matches: &#10004; Hotels</p>
+        <hr />
+
+        <table>
+          <tr>
+            <th rowSpan="2">4.5</th>
+            <th>Excellent</th>
+          </tr>
+          <tr>
+            <th>...dots...</th>
+            <th>2,929 reviews</th>
+          </tr>
+        </table>
+
+        <p>#10 of 174 hotels in Denver</p>
+
+        <table>
+          <tr>
+            <td>...dots...</td>
+            <td>Location</td>
+          </tr>
+          <tr>
+            <td>...dots...</td>
+            <td>Cleanliness</td>
+          </tr>
+          <tr>
+            <td>...dots...</td>
+            <td>Service</td>
+          </tr>
+          <tr>
+            <td>...dots...</td>
+            <td>Value</td>
+          </tr>
+        </table>
+
+        <hr />
         <p>{Description}</p>
 
+      <CarouselWrapper>
         <Carousel
           hotel={this.state.hotel}
           preview={this.state.preview}
         />
+      </CarouselWrapper>
 
       </AppWrapper>
     );
@@ -66,12 +108,29 @@ class App extends React.Component {
 const AppWrapper = styled.div`
   background-color: papayawhip;
   height: 100%;
+  padding: 24px;
+  margin: 12px;
 `;
 
 const TestTitle = styled.h1`
   font-size: 2em;
-  text-alight: center;
+  text-align: center;
   color: palevioletred;
+`;
+
+const CarouselWrapper = styled.div`
+  background-color: #f5dcdc;
+  cursor: pointer;
+  height: 340px;
+  width: 370px;
+  // display: block;
+  // flex-direction: column;
+  // padding-top: 50px;
+  // padding-right: 80px;
+  // padding-bottom: 50px;
+  // padding-left: 80px;
+  // margin: 0 auto;
+  // overflow: hidden;
 `;
 
 export default App;

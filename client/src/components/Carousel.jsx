@@ -43,18 +43,17 @@ class Carousel extends React.Component {
     this.setState({ currentPhotoIndex: index });
   }
 
-
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
     return (
-      <CarouselWrapper>
+      <div>
 
         {(this.state.currentPhotoIndex - 1 >= 0) && (
-        <Arrow
-          direction="left"
-          symbol="&#9664;"
-          onClick={this.previousPhoto}
-        />
+          <Arrow
+            direction="left"
+            symbol="&#9664;"
+            onClick={this.previousPhoto}
+          />
         )}
 
         {/* {
@@ -67,16 +66,15 @@ class Carousel extends React.Component {
         </PhotoContainer>
 
         {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
-        <Arrow
-          direction="right"
-          symbol="&#62;"
-          onClick={this.nextPhoto}
-        />
+          <Arrow
+            direction="right"
+            symbol="&#62;"
+            onClick={this.nextPhoto}
+          />
         )}
 
         <PhotostripWrapper>
-          {
-          this.props.preview.map((one, index) => (
+          {this.props.preview.map((one, index) => (
             <CarouselPhotostrip
               // key={one._id}
               index={index}
@@ -84,29 +82,13 @@ class Carousel extends React.Component {
               caption={one.caption}
               onClick={this.photostripClick}
             />
-          ))
-          }
+          ))}
         </PhotostripWrapper>
 
-      </CarouselWrapper>
+      </div>
     );
   }
 }
-
-const CarouselWrapper = styled.div`
-  background-color: #f5dcdc;
-  cursor: pointer;
-  height: 330px;
-  width: 330px;
-  // display: block;
-  // flex-direction: column;
-  // padding-top: 50px;
-  // padding-right: 80px;
-  // padding-bottom: 50px;
-  // padding-left: 80px;
-  // margin: 0 auto;
-  // overflow: hidden;
-`;
 
 const PhotoContainer = styled.div`
   height: 270px;
