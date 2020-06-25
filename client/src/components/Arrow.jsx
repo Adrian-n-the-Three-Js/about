@@ -5,7 +5,7 @@ console.log('arrow');
 
 const Arrow = (props) => {
   return (
-    <ArrowImage
+    <ArrowImage className="arrow"
       onClick={props.onClick}
       // alt="navigation-arrow"
       // src={props.direction === 'right' ? 'right-arrow.png' : 'left-arrow.png'}

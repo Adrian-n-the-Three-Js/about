@@ -16,12 +16,14 @@ describe('App', () => {
     expect(AppComponent).toMatchSnapshot();
   });
 
-  it('should test axios call', async () => {
+  xit('should test axios call', async () => {
     const res = {data: sampleData};
     axios.get.mockImplementationOnce( () => Promise.resolve(res));
     const AppComponent = shallow(<App />);
     expect(axios.get).toHaveBeenCalledTimes(1);
   });
+
+});
 
 //  it('returns first hotel', async () => {
 //    const hotel = App.getData();
@@ -52,4 +54,4 @@ describe('App', () => {
     // const images = await
     // await expect()
   // });
-});
+
