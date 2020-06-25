@@ -29,9 +29,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    return(
+    console.log('state', this.state);
+    return (
       this.getData()
-    )
+    );
   }
 
   // GET
@@ -59,9 +60,8 @@ class App extends React.Component {
 
   toggleModal() {
     console.log('toggle modal');
-    this.setState({
-      showModal: !this.state.showModal,
-    });
+    this.setState({showModal: !this.state.showModal});
+    console.log(this.state.showModal);
   }
 
   render() {
@@ -83,35 +83,39 @@ class App extends React.Component {
         <hr />
 
         <table>
-          <tr>
-            <th rowSpan="2">4.5</th>
-            <th>Excellent</th>
-          </tr>
-          <tr>
-            <th>...dots...</th>
-            <th>2,929 reviews</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th rowSpan="2">4.5</th>
+              <th>Excellent</th>
+            </tr>
+            <tr>
+              <th>...dots...</th>
+              <th>2,929 reviews</th>
+            </tr>
+          </tbody>
         </table>
 
         <p>#10 of 174 hotels in Denver</p>
 
         <table>
-          <tr>
-            <td>...dots...</td>
-            <td>Location</td>
-          </tr>
-          <tr>
-            <td>...dots...</td>
-            <td>Cleanliness</td>
-          </tr>
-          <tr>
-            <td>...dots...</td>
-            <td>Service</td>
-          </tr>
-          <tr>
-            <td>...dots...</td>
-            <td>Value</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>...dots...</td>
+              <td>Location</td>
+            </tr>
+            <tr>
+              <td>...dots...</td>
+              <td>Cleanliness</td>
+            </tr>
+            <tr>
+              <td>...dots...</td>
+              <td>Service</td>
+            </tr>
+            <tr>
+              <td>...dots...</td>
+              <td>Value</td>
+            </tr>
+          </tbody>
         </table>
 
         <hr />
@@ -121,15 +125,19 @@ class App extends React.Component {
           <Carousel
             hotel={this.state.hotel}
             preview={this.state.preview}
-            onClick={this.toggleModal}
+            toggleModal={this.toggleModal}
           />
         </CarouselWrapper>
 
         <div className="modal">
-          <Modal
+          {
+          this.state.showModal &&
+            <Modal
             hotel={this.state.hotel}
-            onClick={this.toggleModal}
-          />
+            toggleModal={this.toggleModal}
+            showModal={this.state.showModal}
+            />
+          }
         </div>
 
       </AppWrapper>

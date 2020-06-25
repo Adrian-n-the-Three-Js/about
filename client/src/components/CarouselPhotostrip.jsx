@@ -8,7 +8,7 @@ const CarouselPhotostrip = (props) => {
     <Image className="photostrip"
       alt={props.caption}
       src={props.photo}
-      onClick={ () => props.onClick(props.index) }
+      onClick={() => props.onClick(props.index)}
     />
   );
 };

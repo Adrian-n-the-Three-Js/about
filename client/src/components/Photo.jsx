@@ -8,7 +8,7 @@ const Photo = (props) => {
     <Image
       className="photo"
       src={props.url}
-      onClick={ () => {props.onClick} }
+      onClick={() => { props.toggleModal() }}
     />
   );
 };
