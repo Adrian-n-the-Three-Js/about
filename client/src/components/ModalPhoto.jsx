@@ -4,11 +4,19 @@ import styled from 'styled-components';
 console.log('modal photo');
 
 const ModalPhoto = (props) => {
+  console.log('props', props);
+  console.log('props', props.caption);
+  console.log('props', props.helpfulVotes);
   return (
-    <Image
-      className="photo"
-      src={props.url}
-    />
+    <div>
+      <Image
+        className="photo"
+        src={props.url}
+      />
+      <img src={props.userAvatar}/>
+      <div>{props.caption}</div>
+      <div>{props.helpfulVotes}</div>
+    </div>
 
   );
 };

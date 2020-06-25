@@ -4,6 +4,7 @@ import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx';
 import Description from './HotelDescription.jsx';
 import styled from 'styled-components';
+import circleFill from '../icons.js';
 import { createGlobalStyle } from "styled-components";
 
 console.log('hello app');
@@ -95,23 +96,22 @@ class App extends React.Component {
             </tr>
             <tr>
               <th>
-
+                {/* {circleFill} */}
                 <svg class="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="8" cy="8" r="8"/>
+                  <circle cx="8" cy="8" r="8"/>
                 </svg>
                 <svg class="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="8" cy="8" r="8"/>
+                  <circle cx="8" cy="8" r="8"/>
                 </svg>
                 <svg class="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="8" cy="8" r="8"/>
+                  <circle cx="8" cy="8" r="8"/>
                 </svg>
                 <svg class="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="8" cy="8" r="8"/>
+                  <circle cx="8" cy="8" r="8"/>
                 </svg>
                 <svg class="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
                 </svg>
-
               </th>
               <th>2,929 reviews</th>
             </tr>
