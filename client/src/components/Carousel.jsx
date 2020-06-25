@@ -49,7 +49,7 @@ class Carousel extends React.Component {
 
         {/* <ArrowContainer> */}
           {(this.state.currentPhotoIndex - 1 >= 0) && (
-            <Arrow
+            <Arrow className="arrow"
               direction="left"
               symbol="&#60;"
               onClick={this.previousPhoto}
@@ -59,7 +59,7 @@ class Carousel extends React.Component {
 
         {/* <ArrowContainer> */}
           {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
-            <Arrow
+            <Arrow className="arrow"
               direction="right"
               symbol="&#62;"
               onClick={this.nextPhoto}
@@ -73,13 +73,17 @@ class Carousel extends React.Component {
         } */}
 
         <PhotoContainer>
-          <Photo url={this.props.preview[this.state.currentPhotoIndex].imageUrl} />
+          <Photo
+            url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
+            onClick={this.props.onClick}
+          />
           <AlbumPhotoCount />
         </PhotoContainer>
 
         <PhotostripWrapper>
           {this.props.preview.map((one, index) => (
             <CarouselPhotostrip
+              className="photostrip"
               // key={one._id}
               index={index}
               photo={one.imageUrl}

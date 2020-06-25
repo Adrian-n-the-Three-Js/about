@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.jsx';
-// import sampleData from '../sampleData.js';
+import Modal from './Modal.jsx';
 import Description from './HotelDescription.jsx';
 import styled from 'styled-components';
 import { createGlobalStyle } from "styled-components";
@@ -23,18 +23,23 @@ class App extends React.Component {
       hotel: [],
       preview: [],
       isLoaded: false,
+      showModal: false,
     };
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
-    this.getData();
+    return(
+      this.getData()
+    )
   }
 
   // GET
   // testing with 1 hotel
   getData() {
+    // return (
     // const hotel = [...this.state.hotel];
-    axios.get('/api/photos')
+     axios.get('/api/photos')
       .then((response) => {
         const data = response.data;
         this.setState({
@@ -42,14 +47,21 @@ class App extends React.Component {
           preview: [data[0].roomAlbum[0], data[0].diningAlbum[0], data[0].poolAlbum[0], data[0].gymAlbum[0]],
           isLoaded: true,
         });
+        (error) => {
+          this.setState({ isLoaded: true});
+          console.log(error);
+        };
         console.log('hotel data', this.state.hotel);
         console.log('preview data', this.state.preview);
+      })
+    // );
+  }
 
-        error => {
-          this.setState({isLoaded: true});
-          console.log(error)
-        };
-      });
+  toggleModal() {
+    console.log('toggle modal');
+    this.setState({
+      showModal: !this.state.showModal,
+    });
   }
 
   render() {
@@ -109,8 +121,16 @@ class App extends React.Component {
           <Carousel
             hotel={this.state.hotel}
             preview={this.state.preview}
+            onClick={this.toggleModal}
           />
         </CarouselWrapper>
+
+        <div className="modal">
+          <Modal
+            hotel={this.state.hotel}
+            onClick={this.toggleModal}
+          />
+        </div>
 
       </AppWrapper>
     );
@@ -119,7 +139,8 @@ class App extends React.Component {
 
 const AppWrapper = styled.div`
   background-color: papayawhip;
-  height: 100%;
+  height: 1030px;
+  width: 765px;
   padding: 24px;
   margin: 12px;
 `;

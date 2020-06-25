@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Photo should render correctly 1`] = `
+<Photo__Image
+  className="photo"
+/>
+`;

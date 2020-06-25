@@ -5,7 +5,11 @@ console.log('photo');
 
 const Photo = (props) => {
   return (
-    <Image src={props.url} />
+    <Image
+      className="photo"
+      src={props.url}
+      onClick={ () => {props.onClick} }
+    />
   );
 };
 
