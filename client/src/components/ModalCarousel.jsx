@@ -1,5 +1,6 @@
 import React from 'react';
 import ModalPhoto from './ModalPhoto.jsx';
+import ModalArrow from './ModalArrow.jsx';
 import styled from 'styled-components';
 
 console.log('modal carousel');
@@ -16,7 +17,7 @@ class ModalCarousel extends React.Component {
 
   previousPhoto() {
     console.log('previous photo');
-    const lastIndex = this.props.hotel.length - 1;
+    const lastIndex = this.props.album.length - 1;
     const currentPhotoIndex = this.state.currentPhotoIndex;
     const index = currentPhotoIndex !== 0 ? currentPhotoIndex - 1 : null;
     this.setState({
@@ -40,6 +41,22 @@ class ModalCarousel extends React.Component {
 
     return (
       <div>
+        {(this.state.currentPhotoIndex - 1 >= 0) && (
+        <ModalArrow className="arrow"
+          direction="left"
+          symbol="&#60;"
+          onClick={this.previousPhoto}
+        />
+        )}
+
+        {(this.state.currentPhotoIndex + 1 <= this.props.album.length - 1) && (
+          <ModalArrow className="arrow"
+            direction="right"
+            symbol="&#62;"
+            onClick={this.nextPhoto}
+          />
+        )}
+
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
           userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
@@ -48,6 +65,7 @@ class ModalCarousel extends React.Component {
           helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
           date={this.props.album[this.state.currentPhotoIndex].datePosted}
         />
+
       </div>
     );
   }
