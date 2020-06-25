@@ -187,8 +187,8 @@ const TestTitle = styled.h1`
 const CarouselWrapper = styled.div`
   display: flex;
   flex-flow: column;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
   // position:: relative;
   background-color: #f5dcdc;
   cursor: pointer;

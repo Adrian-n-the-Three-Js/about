@@ -14,7 +14,7 @@ const Arrow = (props) => {
     height: 60px;
     background-color: #2c2c2c;
     text-align: center;
-    top: 110%;
+    top: 50%;
     cursor: pointer;
     ${props.direction === 'right' ? 'right: 999px' : 'left: 43px'};
     &:hover {
