@@ -17,9 +17,8 @@ class ModalCarousel extends React.Component {
 
   previousPhoto() {
     console.log('previous photo');
-    const lastIndex = this.props.album.length - 1;
     const currentPhotoIndex = this.state.currentPhotoIndex;
-    const index = currentPhotoIndex !== 0 ? currentPhotoIndex - 1 : null;
+    const index = currentPhotoIndex !== 0 ? currentPhotoIndex - 1 : currentPhotoIndex;
     this.setState({
       currentPhotoIndex: index,
     });
@@ -27,11 +26,11 @@ class ModalCarousel extends React.Component {
 
   nextPhoto() {
     console.log('next photo');
-    const lastIndex = this.props.hotel.length - 1;
+    const lastIndex = this.props.album.length - 1;
     const currentPhotoIndex = this.state.currentPhotoIndex;
-    const index = currentPhotoIndex !== lastIndex ? currentPhotoIndex + 1 : null;
+    const index = currentPhotoIndex !== lastIndex ? currentPhotoIndex + 1 : currentPhotoIndex;
     this.setState({
-      currentPhotoIndex: index
+      currentPhotoIndex: index,
     });
   }
 
@@ -41,21 +40,25 @@ class ModalCarousel extends React.Component {
 
     return (
       <div>
-        {(this.state.currentPhotoIndex - 1 >= 0) && (
-        <ModalArrow className="arrow"
+        {/* <ModalArrowWrapper> */}
+
+        <ModalArrow
+          className="arrow"
           direction="left"
           symbol="&#60;"
           onClick={this.previousPhoto}
         />
-        )}
+        {/* </ModalArrowWrapper> */}
 
-        {(this.state.currentPhotoIndex + 1 <= this.props.album.length - 1) && (
-          <ModalArrow className="arrow"
-            direction="right"
-            symbol="&#62;"
-            onClick={this.nextPhoto}
-          />
-        )}
+        {/* <ModalArrowWrapper> */}
+
+        <ModalArrow
+          className="arrow"
+          direction="right"
+          symbol="&#62;"
+          onClick={this.nextPhoto}
+        />
+        {/* </ModalArrowWrapper> */}
 
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
@@ -70,5 +73,25 @@ class ModalCarousel extends React.Component {
     );
   }
 };
+
+// const ModalArrowWrapper = styled.div`
+//   position: absolute;
+//   width: 60px;
+//   height: 60px;
+//   // background: yellow;
+//   ${props => props.direction === 'right' ? 'background: yellow' : 'background: blue'}
+//   // ${props => props.direction === 'right' ? 'right: 25px' : 'left: 25px'}
+// `;
+
+// const ModalArrowContainer = styled.div`
+//   flex: 1;
+//   background: rgba(0,0,0,.32);
+//   width: 60px;
+//   height: 60px;
+//   text-align: right:
+//   cursor: pointer;
+//   // margin-top: -30px;
+//   // justify-content: start-end;
+// `;
 
 export default ModalCarousel;

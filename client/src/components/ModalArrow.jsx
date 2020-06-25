@@ -4,17 +4,26 @@ import styled from 'styled-components';
 console.log('modal arrow');
 
 const ModalArrow = (props) => {
+
+  const ModalArrowWrapper = styled.div`
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: yellow;
+  ${props.direction === 'right' ? 'right: 25px' : 'left: 25px'}
+`;
+
+  console.log(props.direction);
+
   return (
-    <ArrowImage className="arrow"
+    <ModalArrowWrapper className="arrow"
       onClick={props.onClick}
     >
     {props.symbol}
-    </ArrowImage>
+    </ModalArrowWrapper>
   );
 };
 
-export default ModalArrow;
 
-const ArrowImage = styled.div`
-  position: absolute;
-`;
+
+export default ModalArrow;
