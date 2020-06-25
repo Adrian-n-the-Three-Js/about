@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow, render } from 'enzyme';
-import Arrow from './Arrow.jsx';
+import Arrow from '../Arrow.jsx';
 
 describe ('Arrow', () => {
   xit('should render correctly', () => {

@@ -1,9 +1,8 @@
 import React from 'react';
 import { mount, shallow, render } from 'enzyme';
-import App from './App';
+import App from '../App';
 import axios from 'axios';
-// import mockAxios from "axios";
-import sampleData from '../sampleData.js';
+import sampleData from '../../sampleData.js';
 
 jest.mock('axios');
 
@@ -22,7 +21,6 @@ describe('App', () => {
     const AppComponent = shallow(<App />);
     expect(axios.get).toHaveBeenCalledTimes(1);
   });
-
 });
 
 //  it('returns first hotel', async () => {
@@ -54,4 +52,3 @@ describe('App', () => {
     // const images = await
     // await expect()
   // });
-
