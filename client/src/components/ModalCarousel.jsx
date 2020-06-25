@@ -1,4 +1,5 @@
 import React from 'react';
+import ModalPhoto from './ModalPhoto.jsx';
 import styled from 'styled-components';
 
 console.log('modal carousel');
@@ -38,7 +39,16 @@ class ModalCarousel extends React.Component {
     console.log('props', this.props);
 
     return (
-      <div></div>
+      <div>
+        <ModalPhoto
+          user={this.props.album[this.state.currentPhotoIndex].user}
+          userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
+          caption={this.props.album[this.state.currentPhotoIndex].caption}
+          url={this.props.album[this.state.currentPhotoIndex].imageUrl}
+          helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
+          date={this.props.album[this.state.currentPhotoIndex].datePosted}
+        />
+      </div>
     );
   }
 };

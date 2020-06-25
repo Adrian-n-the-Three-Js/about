@@ -65,7 +65,6 @@ class App extends React.Component {
       showModal: !this.state.showModal,
       modalAlbum: modalAlbum
     });
-    console.log(this.state.showModal);
   }
 
   render() {

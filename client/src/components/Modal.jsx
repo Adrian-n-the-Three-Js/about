@@ -1,7 +1,8 @@
 import React from 'react';
+import ModalCarousel from './ModalCarousel.jsx';
 import ReactDOM from 'react-dom';
 import { createPortal } from 'react-dom';
-import ModalCarousel from './ModalCarousel.jsx';
+import styled from 'styled-components';
 
 console.log('modal');
 
@@ -14,17 +15,25 @@ class Modal extends React.Component {
 
   render () {
     return (ReactDOM.createPortal(
-      <div>
+      <ModalWrapper>
         <span>Photos of Grand Hyatt Downtown</span>
         <button onClick={ () => this.props.toggleModal() } >
           X
         </button>
-        <ModalCarousel
-          album={this.props.album}
-        />
-      </div>
-    , modalRoot));
+        <div>
+          <ModalCarousel
+            album={this.props.album}
+          />
+        </div>
+      </ModalWrapper>,
+      modalRoot,
+    ));
   }
-};
+}
 
 export default Modal;
+
+const ModalWrapper = styled.div`
+  position: absolute;
+  // box-sizing: border-box;
+`;
