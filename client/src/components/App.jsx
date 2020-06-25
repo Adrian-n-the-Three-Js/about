@@ -24,6 +24,7 @@ class App extends React.Component {
       preview: [],
       isLoaded: false,
       showModal: false,
+      modalAlbum: '',
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -58,9 +59,12 @@ class App extends React.Component {
     // );
   }
 
-  toggleModal() {
-    console.log('toggle modal');
-    this.setState({showModal: !this.state.showModal});
+  toggleModal(modalAlbum) {
+    console.log('toggle modal', modalAlbum);
+    this.setState({
+      showModal: !this.state.showModal,
+      modalAlbum: modalAlbum
+    });
     console.log(this.state.showModal);
   }
 
@@ -131,12 +135,13 @@ class App extends React.Component {
 
         <div className="modal">
           {
-          this.state.showModal &&
+          this.state.showModal && (
             <Modal
-            hotel={this.state.hotel}
-            toggleModal={this.toggleModal}
-            showModal={this.state.showModal}
+              hotel={this.state.hotel[0]}
+              toggleModal={this.toggleModal}
+              showModal={this.state.showModal}
             />
+          )
           }
         </div>
 

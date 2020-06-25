@@ -74,7 +74,9 @@ class Carousel extends React.Component {
 
         <PhotoContainer>
           <Photo
+            index={this.state.currentPhotoIndex}
             url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
+            album={this.props.preview[this.state.currentPhotoIndex].category}
             toggleModal={this.props.toggleModal}
           />
           <AlbumPhotoCount />

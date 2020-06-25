@@ -1,28 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
+import ModalCarousel from './ModalCarousel.jsx';
 
 console.log('modal');
+
+const modalRoot = document.getElementById( 'modal' );
 
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    // this.handleClose = this.handleClose.bind(this);
   }
 
   render () {
-    if (!this.props.showModal) {
-      return null;
-    }
-    return (
+    return (ReactDOM.createPortal(
       <div>
+        <span>Photos of Grand Hyatt Downtown</span>
         <button onClick={ () => this.props.toggleModal() } >
           X
         </button>
+        <ModalCarousel
+          hotel={this.props.hotel}
+        />
       </div>
-    );
+    , modalRoot));
   }
 };
-
-// ReactDOM.render(<Modal />, document.getElementById('modal'));
 
 export default Modal;

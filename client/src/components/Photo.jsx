@@ -8,7 +8,7 @@ const Photo = (props) => {
     <Image
       className="photo"
       src={props.url}
-      onClick={() => { props.toggleModal() }}
+      onClick={() => { props.toggleModal(props.album) }}
     />
   );
 };
