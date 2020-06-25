@@ -70,6 +70,8 @@ class App extends React.Component {
 
   render() {
 
+    const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : 'gymAlbum';
+
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
@@ -134,10 +136,11 @@ class App extends React.Component {
         </CarouselWrapper>
 
         <div className="modal">
+
           {
           this.state.showModal && (
             <Modal
-              hotel={this.state.hotel[0]}
+              album={this.state.hotel[0][modalAlbum]}
               toggleModal={this.toggleModal}
               showModal={this.state.showModal}
             />

@@ -20,7 +20,7 @@ class Modal extends React.Component {
           X
         </button>
         <ModalCarousel
-          hotel={this.props.hotel}
+          album={this.props.album}
         />
       </div>
     , modalRoot));
