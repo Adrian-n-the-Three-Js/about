@@ -73,7 +73,10 @@ class Carousel extends React.Component {
         } */}
 
         <PhotoContainer>
-          <Photo url={this.props.preview[this.state.currentPhotoIndex].imageUrl} />
+          <Photo
+            url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
+            onClick={this.props.onClick}
+          />
           <AlbumPhotoCount />
         </PhotoContainer>
 

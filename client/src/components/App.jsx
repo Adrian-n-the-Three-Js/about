@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.jsx';
-// import sampleData from '../sampleData.js';
+import Modal from './Modal.jsx';
 import Description from './HotelDescription.jsx';
 import styled from 'styled-components';
 import { createGlobalStyle } from "styled-components";
@@ -23,7 +23,9 @@ class App extends React.Component {
       hotel: [],
       preview: [],
       isLoaded: false,
+      showModal: false,
     };
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +55,13 @@ class App extends React.Component {
         console.log('preview data', this.state.preview);
       })
     // );
+  }
+
+  toggleModal() {
+    console.log('toggle modal');
+    this.setState({
+      showModal: !this.state.showModal,
+    });
   }
 
   render() {
@@ -112,8 +121,16 @@ class App extends React.Component {
           <Carousel
             hotel={this.state.hotel}
             preview={this.state.preview}
+            onClick={this.toggleModal}
           />
         </CarouselWrapper>
+
+        <div className="modal">
+          <Modal
+            hotel={this.state.hotel}
+            onClick={this.toggleModal}
+          />
+        </div>
 
       </AppWrapper>
     );
