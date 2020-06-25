@@ -31,10 +31,17 @@ describe ('Carousel', () => {
   })
 
   xit('should update state', () => {
-    const CarouselComponent = mount(<Carousel />);
-    const startState = {currentPhotoIndex: 0}
-    const newState = Carousel.nextPhoto();
-    expect(newState.currentPhotoIndex).toEqual(1);
+    const CarouselComponent = shallow(<Carousel
+      preview={
+        {preview: [{_id: 1, imageUrl: 'www.google.com'}] }
+      }
+      currentPhotoIndex={ {test: 0} }
+    />);
+    expect(CarouselComponent.state('currentPhotoIndex')).toBe(0);
+    // const CarouselComponent = mount(<Carousel />);
+    // const startState = {currentPhotoIndex: 0}
+    // const newState = Carousel.nextPhoto();
+    // expect(newState.currentPhotoIndex).toEqual(1);
   });
 
 });

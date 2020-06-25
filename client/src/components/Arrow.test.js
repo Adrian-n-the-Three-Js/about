@@ -7,7 +7,8 @@ describe ('Arrow', () => {
     const ArrowComponent = shallow(<Arrow />);
     expect(ArrowComponent).toMatchSnapshot();
   });
-  it('should trigger onClick prop when clicked', () => {
+
+  xit('should trigger onClick prop when clicked', () => {
     const mock = jest.fn();
     const ArrowComponent = shallow(<Arrow onClick={mock} />);
     ArrowComponent.find('.arrow').simulate('click');
