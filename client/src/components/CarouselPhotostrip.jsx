@@ -5,7 +5,7 @@ console.log('album toggle');
 
 const CarouselPhotostrip = (props) => {
   return (
-    <Image
+    <Image className="photostrip"
       alt={props.caption}
       src={props.photo}
       onClick={ () => props.onClick(props.index) }

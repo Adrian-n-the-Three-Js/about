@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarouselPhotostrip should render correctly 1`] = `
+<CarouselPhotostrip__Image
+  className="photostrip"
+  onClick={[Function]}
+/>
+`;
