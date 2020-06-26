@@ -1,7 +1,7 @@
 const moment = require('moment');
 const axios = require('axios');
-const db = require('./index.js');
 const faker = require('faker');
+const db = require('./index.js');
 
 // grab array of photo options by search term
 const getImages = () => {

@@ -5,17 +5,8 @@ import Modal from './Modal.jsx';
 import Description from './HotelDescription.jsx';
 import styled from 'styled-components';
 import circleFill from '../icons.js';
-import { createGlobalStyle } from "styled-components";
 
 console.log('hello app');
-
-const GlobalStyles = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-  body {
-    font-family: 'Open Sans', sans-serif;
-    color: #4a4a4a;
-  }
-`;
 
 class App extends React.Component {
   constructor(props) {
@@ -78,8 +69,6 @@ class App extends React.Component {
     return (
 
       <AppWrapper>
-
-        <GlobalStyles />
 
         {/* <TestTitle>Hello App!</TestTitle> */}
         <h2>About</h2>

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/hotel', {useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connect('mongodb://localhost/hotel', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // test connection
 const db = mongoose.connection;
@@ -123,6 +124,6 @@ const photoSchema = new mongoose.Schema({
 const Photo = mongoose.model('Photo', photoSchema);
 
 module.exports = {
-  db: db,
-  Photo: Photo
+  db,
+  Photo,
 };
