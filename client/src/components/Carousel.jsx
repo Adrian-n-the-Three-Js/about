@@ -11,9 +11,28 @@ const PhotoContainer = styled.div`
   display: flex;
   // flex-direction: row
   height: 270px;
-  // width: 50%;
   justify-content: space-between;
   width: 370px;
+`;
+
+const PhotostripWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  height: 50px;
+  width: 370px;
+
+  // flex-wrap: wrap;
+  // border: 1px solid blue;
+  // max-width: 50px;
+  // max-height: 50px;
+  // margin: 1px -1px -1px;
+  // padding: 0;
+  // cursor: pointer;
+  // // height: 5px;
+  // // width: 5px
+  // overflow: hidden;
 `;
 
 // const AlbumPhotoCountContainer = styled.div`
@@ -62,8 +81,8 @@ class Carousel extends React.Component {
     console.log('props0', this.props.preview[0][0]);
 
     return (
-<div>
-      <PhotoContainer>
+      <div>
+        <PhotoContainer>
 
           {(this.state.currentPhotoIndex - 1 >= 0) && (
             <Arrow className="arrow"
@@ -73,8 +92,6 @@ class Carousel extends React.Component {
             />
           )}
 
-
-
           {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
             <Arrow className="arrow"
               direction="right"
@@ -83,12 +100,10 @@ class Carousel extends React.Component {
             />
           )}
 
-
-        {/* {
-          this.props.preview.length &&
-          <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
-        } */}
-
+          {/* {
+            this.props.preview.length &&
+            <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
+          } */}
 
           <Photo
             index={this.state.currentPhotoIndex}
@@ -102,25 +117,23 @@ class Carousel extends React.Component {
             currentAlbumIndex={this.state.currentPhotoIndex}
           />
 
-
-
         </PhotoContainer>
-<div>
-{this.props.preview.map((one, index) => (
-  <CarouselPhotostrip
-    className="photostrip"
-    key={one._id}
-    index={index}
-    photo={one.imageUrl}
-    caption={one.caption}
-    onClick={this.photostripClick}
-    toggleModal={this.props.toggleModal}
-  />
-))}
 
-</div>
 
-</div>
+        <PhotostripWrapper>
+          {this.props.preview.map((one, index) => (
+            <CarouselPhotostrip
+              className="photostrip"
+              key={one[0]._id}
+              index={index}
+              photo={one[0].imageUrl}
+              caption={one[0].caption}
+              onClick={this.photostripClick}
+              toggleModal={this.props.toggleModal}
+            />
+          ))}
+        </PhotostripWrapper>
+      </div>
     );
   }
 }

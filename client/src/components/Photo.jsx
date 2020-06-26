@@ -4,13 +4,13 @@ import styled from 'styled-components';
 console.log('photo');
 
 const Image = styled.img`
-  display:block;
+  display: block;
   max-width: 100%;
   object-fit: cover;
 `;
 
 const Photo = (props) => {
-  console.log('photo', props.url)
+  console.log('photo url', props.url)
   return (
     <Image
       className="photo"
