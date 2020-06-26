@@ -7,10 +7,11 @@ const Image = styled.img`
   display: block;
   max-width: 100%;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 const Photo = (props) => {
-  console.log('photo url', props.url)
+  // console.log('photo url', props.url)
   return (
     <Image
       className="photo"

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-console.log('album toggle')
+console.log('album toggle');
 
 // const PhotoStrip = styled(PhotostripWrapper)`
 //   position: relataive:
@@ -26,15 +26,21 @@ const Image = styled.img`
   height: auto;
   overflow: hidden;
   object-fit: cover;
+  cursor: pointer;
+  opacity: ${(props) => (props.index === props.onDisplayPhotoIndex ? '1.0' : '50%')};
+  &:hover {
+    opacity: 1.0;
+  }
   // position: relative;
-  // display: block;
 `;
 
 const CarouselPhotostrip = (props) => {
-  console.log('photostrip url', props.photo)
+  // console.log('photostrip url', props.photo)
   return (
     <Image
       className="photostrip"
+      index={props.index}
+      onDisplayPhotoIndex={props.onDisplayPhotoIndex}
       alt={props.caption}
       src={props.photo}
       onClick={() => props.onClick(props.index)}

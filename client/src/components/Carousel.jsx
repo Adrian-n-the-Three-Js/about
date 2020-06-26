@@ -126,6 +126,7 @@ class Carousel extends React.Component {
               className="photostrip"
               key={one[0]._id}
               index={index}
+              onDisplayPhotoIndex={this.state.currentPhotoIndex}
               photo={one[0].imageUrl}
               caption={one[0].caption}
               onClick={this.photostripClick}

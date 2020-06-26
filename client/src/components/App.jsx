@@ -71,7 +71,8 @@ class App extends React.Component {
     // return (
     axios.get('/api/photos')
       .then((response) => {
-        const hotel = response.data[0];
+        // test which hotel we are looking at here
+        const hotel = response.data[1];
         const preview = [
           hotel.roomAlbum,
           hotel.diningAlbum,
