@@ -11,7 +11,8 @@ db.once('open', () => {
 // create schema
 // native mongo object id will represent hotel id
 const photoSchema = new mongoose.Schema({
-  hotelPrice: Number,
+  hotelName: String,
+  hotelPrice: String,
   roomAlbum: [
     {
       user: String,
@@ -124,4 +125,4 @@ const Photo = mongoose.model('Photo', photoSchema);
 module.exports = {
   db: db,
   Photo: Photo
-}
+};

@@ -1,6 +1,7 @@
 const moment = require('moment');
 const axios = require('axios');
 const db = require('./index.js');
+const faker = require('faker');
 
 // grab array of photo options by search term
 const getImages = () => {
@@ -148,29 +149,6 @@ const getImages = () => {
   });
 };
 
-// extract photo details that we want to use
-// input arr is the results array from the axios call
-const extractPhotoData = (arr, searchTerm) => {
-  // console.log('input array:', arr)
-  const photoAlbumSelection = [];
-  for (var i = 0; i < 10; i++) {
-    const photoDetails = {};
-    // photoDetails.id = arr[i].id;
-    photoDetails.user = arr[i].user.name;
-    photoDetails.userAvatarURL = arr[i].user['profile_image']['large'];
-    photoDetails.location = arr[i].user.location;
-    photoDetails.contributions = arr[i].user.total_photos;
-    photoDetails.imageUrl = arr[i].urls.regular;
-    photoDetails.caption = arr[i].description;
-    photoDetails.category = addCategory(arr[i], searchTerm);
-    photoDetails.datePosted = moment(arr[i].created_at).format('MMM YY');
-    photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
-    photoAlbumSelection.push(photoDetails);
-  }
-  // console.log('test: ',photoAlbumSelection[0])
-  return photoAlbumSelection;
-};
-
 // add corresponding category property to each photo
 const addCategory = (photo, searchTerm) => {
   const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym', 'Hotel & Amenities', 'Bathroom', 'Business Center & Event Rooms', 'View from Room'];
@@ -200,6 +178,29 @@ const addCategory = (photo, searchTerm) => {
   }
 };
 
+// extract photo details that we want to use
+// input arr is the results array from the axios call
+const extractPhotoData = (arr, searchTerm) => {
+  // console.log('input array:', arr)
+  const photoAlbumSelection = [];
+  for (var i = 0; i < 10; i++) {
+    const photoDetails = {};
+    // photoDetails.id = arr[i].id;
+    photoDetails.user = arr[i].user.name;
+    photoDetails.userAvatarURL = arr[i].user['profile_image']['large'];
+    photoDetails.location = arr[i].user.location;
+    photoDetails.contributions = arr[i].user.total_photos;
+    photoDetails.imageUrl = arr[i].urls.regular;
+    photoDetails.caption = arr[i].description;
+    photoDetails.category = addCategory(arr[i], searchTerm);
+    photoDetails.datePosted = moment(arr[i].created_at).format('MMM YY');
+    photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
+    photoAlbumSelection.push(photoDetails);
+  }
+  // console.log('test: ',photoAlbumSelection[0])
+  return photoAlbumSelection;
+};
+
 // photo album options through axios call
 var albums = getImages();
 
@@ -222,10 +223,16 @@ const generateRandomPhotoAlbum = (photoAlbum) => {
   return result;
 };
 
-// // generate one hotel object
+const generateHotelName = () => {
+  const randomCity = faker.address.city();
+  return `${randomCity} Hotel`;
+};
+
+// generate one hotel object
 const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
   const hotelObj = {};
-  hotelPrice = Math.floor(Math.random() * (350 - 100) + 100);
+  hotelObj.hotelName = generateHotelName();
+  hotelObj.hotelPrice = `$${Math.floor(Math.random() * (350 - 100) + 100)}`;
   hotelObj.roomAlbum = generateRandomPhotoAlbum(roomAlbum);
   hotelObj.diningAlbum = generateRandomPhotoAlbum(diningAlbum);
   hotelObj.poolAlbum = generateRandomPhotoAlbum(poolAlbum);
@@ -238,7 +245,7 @@ const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitie
   return hotelObj;
 };
 
-// // generate 100 hotels
+// generate 100 hotels
 const generateDataSet = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
   // this will contain 100 hotel records
   const hotelPhotos = [];
@@ -246,8 +253,6 @@ const generateDataSet = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesA
     var data = generateHotelData(roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum);
     hotelPhotos.push(data);
   }
-  // console.log('data', hotelPhotos[90])
-  // console.log('hotelPhotos:', hotelPhotos.poolPhotos)
   return hotelPhotos;
 };
 
