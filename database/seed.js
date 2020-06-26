@@ -1,79 +1,182 @@
-const db  = require('./index.js');
-const axios = require('axios');
 const moment = require('moment');
+const axios = require('axios');
+const db = require('./index.js');
+const faker = require('faker');
 
 // grab array of photo options by search term
 const getImages = () => {
+  const YOUR_ACCESS_KEY = 'SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE';
 
   axios({
     method: 'get',
-    url: `https://api.unsplash.com/search/photos`,
+    url: 'https://api.unsplash.com/search/photos',
     params: {
-      query: 'hotel-room'
+      query: 'hotel-room',
+      order_by: 'popular',
+      per_page: 20,
     },
     headers: {
-      'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
-    }
+      Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
+    },
   })
-  .then(response => {
+  .then((response) => {
     // console.log('RESPONSE:', response.data.results);
     const roomData = extractPhotoData(response.data.results, 'hotel-room');
     // console.log('roomData:', roomData);
 
     return axios({
       method: 'get',
-      url: `https://api.unsplash.com/search/photos`,
+      url: 'https://api.unsplash.com/search/photos',
       params: {
-        query: 'restaurant'
+        query: 'restaurant',
+        order_by: 'popular',
+        per_page: 20,
       },
       headers: {
-        'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
+        Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
       }
     })
-    .then(response => {
+    .then((response) => {
       const diningData = extractPhotoData(response.data.results, 'restaurant');
       // console.log(diningData)
 
       return axios({
         method: 'get',
-        url: `https://api.unsplash.com/search/photos`,
+        url: 'https://api.unsplash.com/search/photos',
         params: {
-          query: 'pool'
+          query: 'pool',
+          order_by: 'popular',
+          per_page: 20,
         },
         headers: {
-          'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
+          Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
         }
       })
-      .then(response => {
-        const poolData = extractPhotoData(response.data.results, 'pool');
-        // console.log(poolData)
+    .then((response) => {
+      const poolData = extractPhotoData(response.data.results, 'pool');
+      // console.log(poolData)
+
+      return axios({
+        method: 'get',
+        url: 'https://api.unsplash.com/search/photos',
+        params: {
+          query: 'gym',
+          order_by: 'popular',
+          per_page: 20,
+        },
+        headers: {
+          Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
+        }
+      })
+      .then((response) => {
+        const gymData = extractPhotoData(response.data.results, 'gym');
+        // console.log(gymData)
 
         return axios({
           method: 'get',
-          url: `https://api.unsplash.com/search/photos`,
+          url: 'https://api.unsplash.com/search/photos',
           params: {
-            query: 'gym'
+            query: 'room-service',
+            order_by: 'popular',
+            per_page: 20,
           },
           headers: {
-            'Authorization': `Client-ID SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE`
+            Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
           }
         })
-        .then(response => {
-          const gymData = extractPhotoData(response.data.results, 'gym');
-          // console.log(gymData)
+        .then((response) => {
+          const amenitiesData = extractPhotoData(response.data.results, 'room-service');
 
-          const oneHotel = generateHotelData(roomData, diningData, poolData, gymData);
-          // console.log('one hotel', oneHotel)
-          const allHotels = generateDataSet(roomData, diningData, poolData, gymData);
-          // console.log('hotelPhotos', allHotels)
-
-          insertphotoData(allHotels);
+          return axios({
+            method: 'get',
+            url: 'https://api.unsplash.com/search/photos',
+            params: {
+              query: 'bathroom',
+              order_by: 'popular',
+              per_page: 20,
+            },
+            headers: {
+              Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
+            }
           })
+          .then((response) => {
+            const bathroomData = extractPhotoData(response.data.results, 'bathroom');
+
+            return axios({
+              method: 'get',
+              url: 'https://api.unsplash.com/search/photos',
+              params: {
+                query: 'event-room',
+                order_by: 'popular',
+                per_page: 20,
+              },
+              headers: {
+                Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
+              }
+            })
+          .then((response) => {
+            const eventRoomData = extractPhotoData(response.data.results, 'event-room');
+
+            return axios({
+              method: 'get',
+              url: 'https://api.unsplash.com/search/photos',
+              params: {
+                query: 'hotel-view',
+                order_by: 'popular',
+                per_page: 20,
+              },
+              headers: {
+                Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
+              }
+            })
+          .then((response) => {
+            const roomViewData = extractPhotoData(response.data.results, 'hotel-view');
+
+            const oneHotel = generateHotelData(roomData, diningData, poolData, gymData, amenitiesData, bathroomData, eventRoomData, roomViewData);
+            // console.log('one hotel', oneHotel)
+            const allHotels = generateDataSet(roomData, diningData, poolData, gymData, amenitiesData, bathroomData, eventRoomData, roomViewData);
+            // console.log('hotelPhotos', allHotels)
+
+            insertphotoData(allHotels);
+          });
         })
-      .catch(error => console.log('ERROR:', error))
-    })
-  })
-}
+        .catch(error => console.log('ERROR:', error));
+          });
+        });
+      });
+    });
+  });
+  });
+};
+
+// add corresponding category property to each photo
+const addCategory = (photo, searchTerm) => {
+  const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym', 'Hotel & Amenities', 'Bathroom', 'Business Center & Event Rooms', 'View from Room'];
+  if (searchTerm === 'hotel-room') {
+    return photoCategory[0];
+  }
+  if (searchTerm === 'restaurant') {
+    return photoCategory[1];
+  }
+  if (searchTerm === 'pool') {
+    return photoCategory[2];
+  }
+  if (searchTerm === 'gym') {
+    return photoCategory[3];
+  }
+  if (searchTerm === 'room-service') {
+    return photoCategory[4];
+  }
+  if (searchTerm === 'bathroom') {
+    return photoCategory[5];
+  }
+  if (searchTerm === 'event-room') {
+    return photoCategory[6];
+  }
+  if (searchTerm === 'hotel-view') {
+    return photoCategory[7];
+  }
+};
 
 // extract photo details that we want to use
 // input arr is the results array from the axios call
@@ -85,42 +188,26 @@ const extractPhotoData = (arr, searchTerm) => {
     // photoDetails.id = arr[i].id;
     photoDetails.user = arr[i].user.name;
     photoDetails.userAvatarURL = arr[i].user['profile_image']['large'];
+    photoDetails.location = arr[i].user.location;
+    photoDetails.contributions = arr[i].user.total_photos;
     photoDetails.imageUrl = arr[i].urls.regular;
     photoDetails.caption = arr[i].description;
     photoDetails.category = addCategory(arr[i], searchTerm);
-    photoDetails.datePosted = moment(arr[i]['created_at']).format("MMM YY");
+    photoDetails.datePosted = moment(arr[i].created_at).format('MMM YY');
     photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
     photoAlbumSelection.push(photoDetails);
   }
-  console.log('test: ',photoAlbumSelection[0])
+  // console.log('test: ',photoAlbumSelection[0])
   return photoAlbumSelection;
-}
+};
 
-// add corresponding category property to each photo
-const addCategory = (photo, searchTerm) => {
-  const photoCategory = ['Room & Suite', 'Dining', 'Pool & Beach', 'Gym'];
-  if (searchTerm === "hotel-room") {
-    return photoCategory[0];
-  }
-  if (searchTerm === "restaurant") {
-    return photoCategory[1];
-  }
-  if (searchTerm === "pool") {
-    return photoCategory[2];
-  }
-  if (searchTerm === "gym") {
-    return photoCategory[3];
-  }
-}
-
-// // photo album options
-var roomPhotoAlbum = getImages();
-
+// photo album options through axios call
+var albums = getImages();
 
 // generates random selection of photos for an album
 const generateRandomPhotoAlbum = (photoAlbum) => {
-  // generates random number of photos that should be in a hotel album
-  const randomNumOfPhotos = Math.floor(Math.random() * 15);
+  // generates random number of photos that should be in a hotel album - minimum 4, max 15 photos
+  const randomNumOfPhotos = Math.floor(Math.random() * (15 - 4) + 4);
   const result = [];
   const indexes = [];
   // var counter = 0;
@@ -130,153 +217,51 @@ const generateRandomPhotoAlbum = (photoAlbum) => {
     // avoid duplicate indexes (photos)
     if (indexes.indexOf(num) === -1) {
       indexes.push(num);
-      result.push(photoAlbum[num])
-    // add into the result based on unique indexes
-    // result[num] = photoAlbum[counter];
-    // counter++;
+      result.push(photoAlbum[num]);
     }
   }
   return result;
-}
+};
 
-// // generate one hotel object
-const generateHotelData = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum)  => {
+const generateHotelName = () => {
+  const randomCity = faker.address.city();
+  return `${randomCity} Hotel`;
+};
+
+// generate one hotel object
+const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
   const hotelObj = {};
-  hotelObj.roomAlbum = generateRandomPhotoAlbum(roomPhotoAlbum);
-  hotelObj.diningAlbum = generateRandomPhotoAlbum(diningPhotoAlbum);
-  hotelObj.poolAlbum = generateRandomPhotoAlbum(poolPhotoAlbum);
-  hotelObj.gymAlbum = generateRandomPhotoAlbum(gymPhotoAlbum);
-  // console.log('HOTELOBJECT:', hotelObj)
+  hotelObj.hotelName = generateHotelName();
+  hotelObj.hotelPrice = `$${Math.floor(Math.random() * (350 - 100) + 100)}`;
+  hotelObj.roomAlbum = generateRandomPhotoAlbum(roomAlbum);
+  hotelObj.diningAlbum = generateRandomPhotoAlbum(diningAlbum);
+  hotelObj.poolAlbum = generateRandomPhotoAlbum(poolAlbum);
+  hotelObj.gymAlbum = generateRandomPhotoAlbum(gymAlbum);
+  hotelObj.amenitiesAlbum = generateRandomPhotoAlbum(amenitiesAlbum);
+  hotelObj.bathroomAlbum = generateRandomPhotoAlbum(bathroomAlbum);
+  hotelObj.eventRoomAlbum = generateRandomPhotoAlbum(eventRoomAlbum);
+  hotelObj.roomViewAlbum = generateRandomPhotoAlbum(roomViewAlbum);
+  // console.log('HOTELOBJECT:', hotelObj);
   return hotelObj;
-}
+};
 
-
-// // generate 100 hotels
-const generateDataSet = (roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum) => {
+// generate 100 hotels
+const generateDataSet = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
   // this will contain 100 hotel records
   const hotelPhotos = [];
   for(var i = 0; i < 100; i++) {
-    var data = generateHotelData(roomPhotoAlbum, diningPhotoAlbum, poolPhotoAlbum, gymPhotoAlbum);
+    var data = generateHotelData(roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum);
     hotelPhotos.push(data);
   }
-  // console.log('data', hotelPhotos[90])
-  // console.log('hotelPhotos:', hotelPhotos.poolPhotos)
   return hotelPhotos;
-}
-
+};
 
 // create instances by inserting data
-const insertphotoData = function(allHotels) {
+const insertphotoData = (allHotels) => {
   db.Photo.insertMany(allHotels)
     .then(() => {
       console.log('Inserted photo data');
       db.db.close();
     })
-    .catch(error => console.log(error));
+    .catch((error) => console.log(error));
 };
-
-
-
-
-
-// Archive ----------------------------------
-
-// // utility function to generate random element
-// var randomElement = function(array){
-//   var randomIndex = Math.floor(Math.random() * array.length);
-//   return array[randomIndex];
-// };
-
-
-// create instances by inserting data
-// const photoData = function() {
-//   Photo.create(photoData)
-//     .then(() => {
-//       console.log('inserted photo data');
-//       db.disconnect()
-//     });
-// };
-
-// insertphotoData();
-
-
-// // generate random photo category
-// const getSearchQuery = (generateRandomPhotoCategory) => {
-//   var searchTerm = '';
-//   if (generateRandomPhotoCategory === 'Room & Suite') {
-//     searchTerm = 'hotel-room';
-//   } else if (generateRandomPhotoCategory === 'Dining') {
-//     searchTerm = 'hotel-dining';
-//   } else if (generateRandomPhotoCategory === 'Pool & Beach') {
-//     searchTerm = 'hotel-pool';
-//   } else if (generateRandomPhotoCategory === 'Gym') {
-//     searchTerm = 'gym'
-//   }
-//   return searchTerm;
-// }
-
-
-// const generateRandomPhotoCategory = randomElement(photoCategory);
-
-// const imageUrlCollection = [
-//   'https://media-cdn.tripadvisor.com/media/photo-w/0b/b5/87/01/fairmont-banff-springs.jpg',
-//   'https://media-cdn.tripadvisor.com/media/photo-w/0b/b5/76/8e/fairmont-gold-one-bedroom.jpg',
-//   'https://media-cdn.tripadvisor.com/media/photo-w/0b/b5/79/23/fairmont-gold-two-bedroom.jpg',
-//   'https://media-cdn.tripadvisor.com/media/photo-w/0b/b5/79/26/fairmont-gold-two-bedroom.jpg',
-// ]
-
-
-  // newPhoto.user = faker.fake("{{name.firstName}}, {{name.lastame}}");
-  // newPhoto.userAvatar = faker.internet.avatar();
-//   newPhoto.imageUrl;
-//   newPhoto.datePosted
-//   newPhoto.helpfulVotes = Math.floor(Math.random() * Math.floor(10))
-// }
-
-
-// to be inserted into db
-// const photoData = [
-  // {
-  //   hotel_id: Number, // (0, 100)
-  //   photo_id:
-  //   user: String,
-  //   userAvatar: String,
-  //   imageUrl: String,
-  //   caption: String,
-  //   category: String,
-  //   datePosted: String,
-  //   helpfulVotes: Number
-  // }
-// ];
-
-
-
-  // images: [
-    //     {
-    //       user: string,
-    //       userAvatar: string url,
-    //       imageUrl: string,
-    //       datePosted: string,
-    //       category: function - generates random category
-    //     }
-    //   ]
-    // ]
-
-
-    // roomPhotos: generateRandomPhotoAlbum(hotelRoomPhotoAlbum),
-    // diningPhotos: generateRandomPhotoAlbum(diningPhotoAlbum),
-    // poolPhotos: generateRandomPhotoAlbum(poolPhotoAlbum),
-    // gymPhotos: generateRandomPhotoAlbum(gymPhotoAlbum)
-
-
-    // // random photo generator
-// const generatePhoto = () => {
-//   var randomPhoto = randomElement(photoCollection);
-//   const newPhoto = {
-//     photo_id: randomPhoto.id,
-//     user: randomPhoto.user,
-//     userAvatar: randomPhoto.userAvatar,
-//     imageUrl: randomPhoto.imageUrl,
-//     caption: randomPhoto.caption,
-//     category:
-//   };
