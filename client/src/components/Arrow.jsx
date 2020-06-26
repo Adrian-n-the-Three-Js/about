@@ -5,7 +5,7 @@ console.log('arrow');
 
 const Arrow = (props) => {
 
-  const ArrowImage = styled.div`
+  const ArrowButton = styled.button`
     position: absolute;
     // display: flex;
     margin: 0;
@@ -23,13 +23,13 @@ const Arrow = (props) => {
 `;
 
   return (
-    <ArrowImage className="arrow"
+    <ArrowButton className="arrow"
       onClick={props.onClick}
       // alt="navigation-arrow"
       // src={props.direction === 'right' ? 'right-arrow.png' : 'left-arrow.png'}
     >
     {props.symbol}
-    </ArrowImage>
+    </ArrowButton>
   );
 };
 

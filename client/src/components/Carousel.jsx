@@ -1,10 +1,24 @@
 import React from 'react';
 import Photo from './Photo.jsx';
+import AlbumPhotoCount from './AlbumPhotoCount.jsx';
 import CarouselPhotostrip from './CarouselPhotostrip.jsx';
 import Arrow from './Arrow.jsx';
 import styled from 'styled-components';
 
 console.log('carousel');
+
+const PhotoContainer = styled.div`
+  display: flex;
+  // flex-direction: row
+  height: 270px;
+  // width: 50%;
+  justify-content: space-between;
+  width: 370px;
+`;
+
+// const AlbumPhotoCountContainer = styled.div`
+
+// `;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -44,10 +58,13 @@ class Carousel extends React.Component {
 
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
-    return (
-      <div>
+    console.log('props', this.props.preview);
+    console.log('props0', this.props.preview[0][0]);
 
-        {/* <ArrowContainer> */}
+    return (
+<div>
+      <PhotoContainer>
+
           {(this.state.currentPhotoIndex - 1 >= 0) && (
             <Arrow className="arrow"
               direction="left"
@@ -55,9 +72,9 @@ class Carousel extends React.Component {
               onClick={this.previousPhoto}
             />
           )}
-        {/* </ArrowContainer> */}
 
-        {/* <ArrowContainer> */}
+
+
           {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
             <Arrow className="arrow"
               direction="right"
@@ -65,50 +82,48 @@ class Carousel extends React.Component {
               onClick={this.nextPhoto}
             />
           )}
-        {/* </ArrowContainer> */}
+
 
         {/* {
           this.props.preview.length &&
           <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
         } */}
 
-        <PhotoContainer>
+
           <Photo
             index={this.state.currentPhotoIndex}
-            url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
+            url={this.props.preview[this.state.currentPhotoIndex][0].imageUrl}
             album={this.props.preview[this.state.currentPhotoIndex].category}
             toggleModal={this.props.toggleModal}
           />
-          <AlbumPhotoCount />
+
+          <AlbumPhotoCount
+            hotel={this.props.hotel}
+            currentAlbumIndex={this.state.currentPhotoIndex}
+          />
+
+
+
         </PhotoContainer>
+<div>
+{this.props.preview.map((one, index) => (
+  <CarouselPhotostrip
+    className="photostrip"
+    key={one._id}
+    index={index}
+    photo={one.imageUrl}
+    caption={one.caption}
+    onClick={this.photostripClick}
+    toggleModal={this.props.toggleModal}
+  />
+))}
 
-        <PhotostripWrapper>
-          {this.props.preview.map((one, index) => (
-            <CarouselPhotostrip
-              className="photostrip"
-              // key={one._id}
-              index={index}
-              photo={one.imageUrl}
-              caption={one.caption}
-              onClick={this.photostripClick}
-              toggleModal={this.props.toggleModal}
-            />
-          ))}
-        </PhotostripWrapper>
+</div>
 
-      </div>
+</div>
     );
   }
 }
-
-const AlbumPhotoCount = () => {
-  console.log('album photo count');
-  return (
-    <div>
-      Room & Suite
-    </div>
-  );
-};
 
 // const ArrowContainer = styled.div`
 //   position: absolute;
@@ -120,50 +135,5 @@ const AlbumPhotoCount = () => {
 //   // margin-top: -30px;
 //   // justify-content: center;
 // `;
-
-const PhotoContainer = styled.div`
-  height: 270px;
-  width: 370px;
-  display: flex;
-  // align-items: left;
-`;
-
-const AlbumPhotoCountContainer = styled.div`
-  align-self: center;
-`;
-
-const PhotostripWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 50px;
-  width: 370px;
-
-  // flex-wrap: wrap;
-  // border: 1px solid blue;
-  // max-width: 50px;
-  // max-height: 50px;
-  // margin: 1px -1px -1px;
-  // padding: 0;
-  // cursor: pointer;
-  // // height: 5px;
-  // // width: 5px
-  // overflow: hidden;
-`;
-
-const PhotoStrip = styled(PhotostripWrapper)`
-  position: relataive:
-  width: 100px;
-  height: 100px;
-
-  // margin: 0 auto;
-  // &:after {
-  //   content: '';
-  //   display: block;
-  //   outline: 5px solid #fc2003;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  }
-`;
 
 export default Carousel;
