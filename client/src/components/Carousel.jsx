@@ -9,30 +9,46 @@ console.log('carousel');
 
 const PhotoContainer = styled.div`
   display: flex;
-  // flex-direction: row
   height: 270px;
-  justify-content: space-between;
   width: 370px;
+  // justify-content: space-evenly;
+  // align-items: center;
+  // flex-direction: column;
 `;
 
 const PhotostripWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
   height: 50px;
   width: 370px;
 
-  // flex-wrap: wrap;
-  // border: 1px solid blue;
-  // max-width: 50px;
-  // max-height: 50px;
   // margin: 1px -1px -1px;
   // padding: 0;
-  // cursor: pointer;
-  // // height: 5px;
-  // // width: 5px
   // overflow: hidden;
+`;
+
+const ArrowButton = styled.button`
+  // display: flex;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  background-color: #2c2c2c;
+  opacity: 32%;
+  top: 35%;
+  // text-align: center;
+  ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
+  ${(props) => (props.visible ? 'visibility: visible' : 'visibility: hidden')};
+  // ${props => props.direction === 'right' ? 'align-self: flex-end' : 'align-self: flex-start'};
+  .svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &:hover {
+    background-color: yellow;
+  }
 `;
 
 // const AlbumPhotoCountContainer = styled.div`
@@ -61,7 +77,7 @@ class Carousel extends React.Component {
   }
 
   nextPhoto() {
-    console.log('next photo');
+    console.log('next photo', 'currentIndex', this.state.currentPhotoIndex);
     const lastIndex = this.props.preview.length - 1;
     const currentPhotoIndex = this.state.currentPhotoIndex;
     const index = currentPhotoIndex !== lastIndex ? currentPhotoIndex + 1 : null;
@@ -84,7 +100,42 @@ class Carousel extends React.Component {
       <div>
         <PhotoContainer>
 
-          {(this.state.currentPhotoIndex - 1 >= 0) && (
+          <ArrowButton
+            direction="left"
+            photoIndex={this.state.currentPhotoIndex}
+            visible={this.state.currentPhotoIndex - 1 >= 0 ? true : false}
+            onClick={this.previousPhoto}
+          >
+            <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M14.19 16.005l7.869 7.868-2.129 2.129-9.996-9.997L19.937 6.002l2.127 2.129z"/></svg>
+            {/* <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg> */}
+          </ArrowButton>
+
+          <ArrowButton
+            direction="right"
+            photoIndex={this.state.currentPhotoIndex}
+            visible={(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) ? true : false}
+            onClick={this.nextPhoto}
+          >
+            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </ArrowButton>
+
+          {/* <ArrowButton
+            // direction="left"
+            // symbol="&#60;"
+            onClick={this.previousPhoto}>
+          </ArrowButton>
+
+          <ArrowButton
+            // direction="right"
+            // symbol="&#62;"
+            onClick={this.nextPhoto}>
+          </ArrowButton> */}
+
+          {/* {(this.state.currentPhotoIndex - 1 >= 0) && (
             <Arrow className="arrow"
               direction="left"
               symbol="&#60;"
@@ -98,7 +149,7 @@ class Carousel extends React.Component {
               symbol="&#62;"
               onClick={this.nextPhoto}
             />
-          )}
+          )} */}
 
           {/* {
             this.props.preview.length &&
@@ -126,7 +177,7 @@ class Carousel extends React.Component {
               className="photostrip"
               key={one[0]._id}
               index={index}
-              onDisplayPhotoIndex={this.state.currentPhotoIndex}
+              displayedPhotoIndex={this.state.currentPhotoIndex}
               photo={one[0].imageUrl}
               caption={one[0].caption}
               onClick={this.photostripClick}

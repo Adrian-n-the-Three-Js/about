@@ -27,7 +27,7 @@ const Image = styled.img`
   overflow: hidden;
   object-fit: cover;
   cursor: pointer;
-  opacity: ${(props) => (props.index === props.onDisplayPhotoIndex ? '1.0' : '50%')};
+  opacity: ${(props) => (props.index === props.displayedPhotoIndex ? '1.0' : '50%')};
   &:hover {
     opacity: 1.0;
   }
@@ -40,7 +40,7 @@ const CarouselPhotostrip = (props) => {
     <Image
       className="photostrip"
       index={props.index}
-      onDisplayPhotoIndex={props.onDisplayPhotoIndex}
+      displayedPhotoIndex={props.displayedPhotoIndex}
       alt={props.caption}
       src={props.photo}
       onClick={() => props.onClick(props.index)}

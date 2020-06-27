@@ -23,23 +23,16 @@ const H2 = styled.h2`
   font-family: ${props => props.theme.font};
 `;
 
-// const TestTitle = styled.h1`
-//   font-size: 2em;
-//   text-align: center;
-//   color: palevioletred;
-// `;
-
 const CarouselWrapper = styled.div`
   position: relative;
-  display: flex;
-  flex-flow: column;
   cursor: pointer;
   height: 340px;
   width: 370px;
   background-color: #f5dcdc;
-  justify-content: center;
-  align-items: center;
-  // flex-direction: column;
+  // display: flex;
+  // flex-flow: column;
+  // justify-content: center;
+  // align-items: center;
   // display: block;
   // margin: 0 auto;
   // overflow: hidden;
