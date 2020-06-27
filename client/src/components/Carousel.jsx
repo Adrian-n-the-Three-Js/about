@@ -23,7 +23,7 @@ const PhotostripWrapper = styled.div`
   // justify-content: space-evenly;
   height: 50px;
   width: 370px;
-
+  padding: 2px 0px 2px 0px;
   // margin: 1px -1px -1px;
   // padding: 0;
   // overflow: hidden;
