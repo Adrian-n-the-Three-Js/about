@@ -35,19 +35,33 @@ const ArrowButton = styled.button`
   width: 60px;
   height: 60px;
   cursor: pointer;
-  background-color: #2c2c2c;
-  opacity: 32%;
+  // background-color: #2c2c2c;
+  background-color: rgba(0,0,0, .32);
+  border: 0;
+  // opacity: 50%;
   top: 35%;
   // text-align: center;
   ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
   ${(props) => (props.visible ? 'visibility: visible' : 'visibility: hidden')};
   // ${props => props.direction === 'right' ? 'align-self: flex-end' : 'align-self: flex-start'};
-  .svg {
+  .icon {
     display: inline-block;
     vertical-align: middle;
+    margin-top: -0.2em;
+    width: 2.5em;
+    height: 2.5em;
+    font-weight: bold;
+    overflow: hidden;
+  }
+  .icon-chevron-left {
+    transform: rotate(180deg);
+  }
+  &:focus {
+    outline: none;
   }
   &:hover {
-    background-color: yellow;
+    // background-color: yellow;
+    background-color: rgba(44,44,44, .50);
   }
 `;
 
@@ -106,10 +120,9 @@ class Carousel extends React.Component {
             visible={this.state.currentPhotoIndex - 1 >= 0 ? true : false}
             onClick={this.previousPhoto}
           >
-            <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M14.19 16.005l7.869 7.868-2.129 2.129-9.996-9.997L19.937 6.002l2.127 2.129z"/></svg>
-            {/* <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-            </svg> */}
+            <svg viewBox="0 0 32 32" class="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+            {/* <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M14.19 16.005l7.869 7.868-2.129 2.129-9.996-9.997L19.937 6.002l2.127 2.129z"/></svg> */}
+
           </ArrowButton>
 
           <ArrowButton
@@ -118,9 +131,8 @@ class Carousel extends React.Component {
             visible={(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) ? true : false}
             onClick={this.nextPhoto}
           >
-            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-chevron-right" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
+            <svg viewBox="0 0 32 32" class="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+
           </ArrowButton>
 
           {/* <ArrowButton
