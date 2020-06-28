@@ -128,7 +128,6 @@ const ArrowButton = styled.button`
   ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
   pointer-events: ${props => (props.clickable ? 'auto' : 'none')}
   cursor: ${props => (props.clickable ? 'pointer' : 'default')}
-  // ${(props) => (props.clickable ? 'pointer-events: auto' : 'pointer-events: none')};
   .icon {
     display: inline-block;
     vertical-align: middle;

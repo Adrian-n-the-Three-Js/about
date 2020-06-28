@@ -15,6 +15,8 @@ const AppWrapper = styled.div`
   margin: 12px;
   padding: 24px;
   position: relative;
+  font-family: ${props => props.theme.font};
+  color: ${props => props.theme.charcoal};
 `;
 
 const H2 = styled.h2`
