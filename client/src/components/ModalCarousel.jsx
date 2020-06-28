@@ -78,7 +78,7 @@ const Avatar = styled.div`
   height: 40px;
   width: 40px;
   padding: 2px 4px 0 0;
-  background-image: url('https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1=w288-h288-n-rw');
+  background-image: ${(props) => `url( ${props.avatar} )`};
   background-size: cover;
 `;
 
@@ -183,7 +183,7 @@ class ModalCarousel extends React.Component {
         {/* </ModalArrowWrapper> */}
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
-          userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
+          userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
           caption={this.props.album[this.state.currentPhotoIndex].caption}
           url={this.props.album[this.state.currentPhotoIndex].imageUrl}
           helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
@@ -191,25 +191,33 @@ class ModalCarousel extends React.Component {
         />
 
         <PhotoDetailsSection>
-          <Avatar avatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}></Avatar>
+          <Avatar
+            avatar={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
+            // src={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
+          />
+
           <PhotoDetails>
             <div className="block">
               {this.props.album[this.state.currentPhotoIndex].user}
-              &nbsp; &#8226; &nbsp;
+              &nbsp;&#8226;&nbsp;
               {this.props.album[this.state.currentPhotoIndex].datePosted}
             </div>
             <div className="block">
               {this.props.album[this.state.currentPhotoIndex].location}
-              &nbsp; &#8226; &nbsp;
-              {this.props.album[this.state.currentPhotoIndex].contributions} contributions
+              &nbsp;&#8226;&nbsp;
+              {this.props.album[this.state.currentPhotoIndex].contributions}
+              &nbsp;contributions
               </div>
           </PhotoDetails>
         </PhotoDetailsSection>
+
         <ReviewWrapper>
           <div>{this.props.album[this.state.currentPhotoIndex].caption}</div>
           <div>Read review</div>
         </ReviewWrapper>
+
         <div></div>
+
         <ActionButtonsContainer>
           <div className="helpful-button">
             <span>
@@ -220,15 +228,15 @@ class ModalCarousel extends React.Component {
 
           <div>
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
             </svg>
           </div>
 
           <div>
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
-            <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
-            <path fill-rule="evenodd" d="M2.5 14A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 12 5.5h-1.5a.5.5 0 0 0 0 1H12a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 0 0-1H4A1.5 1.5 0 0 0 2.5 7v7z"/>
+            <path fillRule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+            <path fillRule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
+            <path fillRule="evenodd" d="M2.5 14A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 12 5.5h-1.5a.5.5 0 0 0 0 1H12a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 0 0-1H4A1.5 1.5 0 0 0 2.5 7v7z"/>
             </svg>
           </div>
 

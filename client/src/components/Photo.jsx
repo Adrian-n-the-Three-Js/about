@@ -11,7 +11,7 @@ const Image = styled.img`
 `;
 
 const Photo = (props) => {
-  console.log('photo props', props);
+  // console.log('photo props', props);
   return (
     <Image
       className="photo"

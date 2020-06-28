@@ -102,8 +102,6 @@ class App extends React.Component {
 
   render() {
 
-    console.log('test', this.state.hotel);
-
     // refactor to switch statement later? ...
     const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : this.state.modalAlbum === 'Gym' ? 'gymAlbum' : this.state.modalAlbum === 'Bathroom' ? 'bathroomAlbum' : this.state.modalAlbum === 'Business Center & Event Rooms' ? 'eventRoomAlbum' : 'roomViewAlbum';
 

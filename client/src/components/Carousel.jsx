@@ -107,8 +107,8 @@ class Carousel extends React.Component {
 
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
-    console.log('props', this.props.preview);
-    console.log('props0', this.props.preview[0][0]);
+    // console.log('props', this.props.preview);
+    // console.log('props0', this.props.preview[0][0]);
 
     return (
       <div>
