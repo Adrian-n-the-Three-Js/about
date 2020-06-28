@@ -90,6 +90,7 @@ const HeaderRight = styled.div`
   border-radius: 2px;
   > ul li {
     display: inline;
+    vertical-align: middle;
     list-style: none;
     padding: 5px;
   }
@@ -139,7 +140,6 @@ const HeaderDealButton = styled.button`
 `;
 
 const HeaderCloseButton = styled.button`
-  // align-items: flex-start;
   cursor: pointer;
   padding: 0 12px;
   height: 44px;
@@ -150,6 +150,7 @@ const HeaderCloseButton = styled.button`
   margin: 0em;
   box-sizing: border-box;
   background-color: #FFFFFF;
+  text-align: center;
   flex: 0 0 auto;
   > span {
     font-weight: 300;
@@ -181,19 +182,23 @@ class Modal extends React.Component {
           <HeaderLeft><span>Photos of {this.props.hotel.hotelName}</span></HeaderLeft>
           <HeaderRight>
             <ul>
-              <li><HeaderItemLink href="#">{this.props.hotel.hotelName.split(" ").join("")}.com</HeaderItemLink></li>
+              <li>
+                <HeaderItemLink href="#">
+                  {this.props.hotel.hotelName.split(" ").join("")}.com
+                    <svg width="1.5em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-up-right" font-weight="bold" fill="#4A4A4A" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
+                    <path fill-rule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                </HeaderItemLink></li>
               <li><HeaderItem className="price">{this.props.hotel.hotelPrice}</HeaderItem></li>
               <li><HeaderDealButton className="view-deal" href="#">View Deal</HeaderDealButton></li>
+              <li>
+                <HeaderCloseButton onClick={() => {this.props.toggleModal()}}>
+                <span>&#215;</span>
+                </HeaderCloseButton>
+              </li>
             </ul>
-            {/* <HeaderItem href="#">{this.props.hotel.hotelName.split(" ").join("")}.com</HeaderItem>
-            <HeaderItem href="#">{this.props.hotel.hotelPrice}</HeaderItem> */}
           </HeaderRight>
-          <HeaderCloseButton onClick={() => {this.props.toggleModal()}}>
-            <span>&#215;</span>
-          </HeaderCloseButton>
-          {/* <HeaderItem></HeaderItem> */}
-          {/* <div className="nav">
-          </div> */}
         </Header>
         <ModalCarouselWrapper>
           {/* <ModalCarousel
