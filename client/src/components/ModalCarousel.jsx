@@ -42,7 +42,7 @@ class ModalCarousel extends React.Component {
       <div>
         {/* <ModalArrowWrapper> */}
 
-        <ModalArrow
+        {/* <ModalArrow
           className="arrow"
           direction="left"
           symbol="&#60;"
@@ -67,7 +67,7 @@ class ModalCarousel extends React.Component {
           url={this.props.album[this.state.currentPhotoIndex].imageUrl}
           helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
           date={this.props.album[this.state.currentPhotoIndex].datePosted}
-        />
+        /> */}
 
       </div>
     );

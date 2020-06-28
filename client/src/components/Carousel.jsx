@@ -120,7 +120,7 @@ class Carousel extends React.Component {
             visible={this.state.currentPhotoIndex - 1 >= 0 ? true : false}
             onClick={this.previousPhoto}
           >
-            <svg viewBox="0 0 32 32" class="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+            <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
             {/* <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M14.19 16.005l7.869 7.868-2.129 2.129-9.996-9.997L19.937 6.002l2.127 2.129z"/></svg> */}
 
           </ArrowButton>
@@ -131,7 +131,7 @@ class Carousel extends React.Component {
             visible={(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) ? true : false}
             onClick={this.nextPhoto}
           >
-            <svg viewBox="0 0 32 32" class="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+            <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
 
           </ArrowButton>
 
@@ -171,7 +171,7 @@ class Carousel extends React.Component {
           <Photo
             index={this.state.currentPhotoIndex}
             url={this.props.preview[this.state.currentPhotoIndex][0].imageUrl}
-            album={this.props.preview[this.state.currentPhotoIndex].category}
+            album={this.props.preview[this.state.currentPhotoIndex][0].category}
             toggleModal={this.props.toggleModal}
           />
 

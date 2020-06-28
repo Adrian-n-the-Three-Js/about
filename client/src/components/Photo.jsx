@@ -11,12 +11,12 @@ const Image = styled.img`
 `;
 
 const Photo = (props) => {
-  // console.log('photo url', props.url)
+  console.log('photo props', props);
   return (
     <Image
       className="photo"
       src={props.url}
-      onClick={() => { props.toggleModal(props.album) }}
+      onClick={ () => props.toggleModal(props.album) }
     />
   );
 };

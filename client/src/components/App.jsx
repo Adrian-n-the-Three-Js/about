@@ -65,7 +65,7 @@ class App extends React.Component {
     axios.get('/api/photos')
       .then((response) => {
         // test which hotel we are looking at here
-        const hotel = response.data[1];
+        const hotel = response.data[2];
         const preview = [
           hotel.roomAlbum,
           hotel.diningAlbum,
@@ -102,7 +102,10 @@ class App extends React.Component {
 
   render() {
 
-    const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : 'gymAlbum';
+    console.log('test', this.state.hotel);
+
+    // refactor to switch statement later? ...
+    const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : this.state.modalAlbum === 'Gym' ? 'gymAlbum' : this.state.modalAlbum === 'Bathroom' ? 'bathroomAlbum' : this.state.modalAlbum === 'Business Center & Event Rooms' ? 'eventRoomAlbum' : 'roomViewAlbum';
 
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
@@ -186,7 +189,8 @@ class App extends React.Component {
           {
           this.state.showModal && (
             <Modal
-              album={this.state.hotel[0][modalAlbum]}
+              hotel={this.state.hotel}
+              album={this.state.hotel[modalAlbum]}
               toggleModal={this.toggleModal}
               showModal={this.state.showModal}
             />
@@ -197,6 +201,6 @@ class App extends React.Component {
       </AppWrapper>
     );
   }
-};
+}
 
 export default App;
