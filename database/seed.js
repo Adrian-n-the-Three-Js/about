@@ -187,7 +187,7 @@ const extractPhotoData = (arr, searchTerm) => {
     const photoDetails = {};
     // photoDetails.id = arr[i].id;
     photoDetails.user = arr[i].user.name;
-    photoDetails.userAvatarURL = arr[i].user['profile_image']['large'];
+    photoDetails.userAvatarUrl = arr[i].user['profile_image']['large'];
     photoDetails.location = arr[i].user.location;
     photoDetails.contributions = arr[i].user.total_photos;
     photoDetails.imageUrl = arr[i].urls.regular;
@@ -232,7 +232,8 @@ const generateHotelName = () => {
 const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
   const hotelObj = {};
   hotelObj.hotelName = generateHotelName();
-  hotelObj.hotelPrice = `$${Math.floor(Math.random() * (350 - 100) + 100)}`;
+  hotelObj.hotelPrice = `${Math.floor(Math.random() * (350 - 100) + 100)}`;
+  hotelObj.numReviews = `${Math.floor(Math.random() * (999 - 100) + 100)}`;
   hotelObj.roomAlbum = generateRandomPhotoAlbum(roomAlbum);
   hotelObj.diningAlbum = generateRandomPhotoAlbum(diningAlbum);
   hotelObj.poolAlbum = generateRandomPhotoAlbum(poolAlbum);
