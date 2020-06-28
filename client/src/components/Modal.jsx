@@ -8,6 +8,8 @@ console.log('modal');
 
 const ModalWrapper = styled.div`
   position: fixed;
+  // display: flex;
+  // flex-direction: column;
   top: 0;
   left: 0;
   right: 0;
@@ -17,41 +19,11 @@ const ModalWrapper = styled.div`
   height: 90.49%;
   width: 93.36%;
   margin: auto;
-
-  // .header-container {
-  //   // display: flex;
-  //   flex-direction: row;
-  //   // flex: 1;
-  //   // box-sizing: border-box;
-  //   // position: absolute;
-  // }
-
-  // .title {
-  //   margin-left: 5%;
-  // }
-
-  // .nav {
-  // // display: flex;
-  // // flex-flow: row wrap;
-  // // justify-content: flex-end;
-  // // list-style: none;
-  // // align-self: center;
-  // // margin: 0 0.8em 0 0;
-  // // background: sky-blue;
-  // }
-
-  // .closeButton {
-  //   display: flex;
-  // }
-  // .carousel {
-  //   height: 200px;
-  //   width: 200px;
-  // }
 `;
 
 const Header = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -65,11 +37,12 @@ const Header = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
 const HeaderLeft = styled.div`
   text-align: left;
+  box-sizing: border-box;
   > span {
     font-family: ${props => props.theme.font};
     font-size: 18px;
@@ -149,7 +122,7 @@ const HeaderCloseButton = styled.button`
   border-left: 1px solid #e5e5e5;
   margin: 0em;
   box-sizing: border-box;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   text-align: center;
   flex: 0 0 auto;
   > span {
@@ -160,12 +133,6 @@ const HeaderCloseButton = styled.button`
   &:focus {
     outline: none;
   }
-`;
-
-const ModalCarouselWrapper = styled.div`
-  height: 90%;
-  width: 100%;
-  background-color: #000000;
 `;
 
 const modalRoot = document.getElementById('modal');
@@ -185,9 +152,9 @@ class Modal extends React.Component {
               <li>
                 <HeaderItemLink href="#">
                   {this.props.hotel.hotelName.split(" ").join("")}.com
-                    <svg width="1.5em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-up-right" font-weight="bold" fill="#4A4A4A" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
-                    <path fill-rule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
+                    <svg width="1.5em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-up-right" fontWeight="bold" fill="#4A4A4A" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
+                    <path fillRule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </HeaderItemLink></li>
               <li><HeaderItem className="price">{this.props.hotel.hotelPrice}</HeaderItem></li>
@@ -200,12 +167,11 @@ class Modal extends React.Component {
             </ul>
           </HeaderRight>
         </Header>
-        <ModalCarouselWrapper>
-          {/* <ModalCarousel
-            // className={this.className}
+        <div>
+          <ModalCarousel
             album={this.props.album}
-          /> */}
-        </ModalCarouselWrapper>
+          />
+        </div>
       </ModalWrapper>,
 
       modalRoot,
