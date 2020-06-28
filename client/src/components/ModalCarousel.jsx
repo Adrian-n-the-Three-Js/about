@@ -117,6 +117,38 @@ const ReviewWrapper = styled.div`
   font-size: 14px;
 `;
 
+const ArrowButton = styled.button`
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0,0,0, .40);
+  border: 0;
+  top: 50%;
+  // text-align: center;
+  ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
+  pointer-events: ${props => (props.clickable ? 'auto' : 'none')}
+  cursor: ${props => (props.clickable ? 'pointer' : 'default')}
+  // ${(props) => (props.clickable ? 'pointer-events: auto' : 'pointer-events: none')};
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -0.2em;
+    width: 2.5em;
+    height: 2.5em;
+    font-weight: bold;
+    overflow: hidden;
+  }
+  .icon-chevron-left {
+    transform: rotate(180deg);
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: rgba(44,44,44, .50);
+  }
+`;
+
 class ModalCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -162,6 +194,25 @@ class ModalCarousel extends React.Component {
           </span>
           <IndexCount>{this.state.currentPhotoIndex + 1} of {this.props.album.length}</IndexCount>
         </IndexInfo>
+
+        <ArrowButton
+          direction="left"
+          photoIndex={this.state.currentPhotoIndex}
+          clickable={this.state.currentPhotoIndex - 1 >= 0 ? true : false}
+          onClick={this.previousPhoto}
+        >
+          <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+        </ArrowButton>
+
+        <ArrowButton
+          direction="right"
+          photoIndex={this.state.currentPhotoIndex}
+          clickable={(this.state.currentPhotoIndex + 1 <= this.props.album.length - 1) ? true : false}
+          onClick={this.nextPhoto}
+        >
+          <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+        </ArrowButton>
+
         {/* <ModalArrowWrapper> */}
 
         {/* <ModalArrow
@@ -181,6 +232,8 @@ class ModalCarousel extends React.Component {
           onClick={this.nextPhoto}
         /> */}
         {/* </ModalArrowWrapper> */}
+
+
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
           userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
@@ -221,7 +274,7 @@ class ModalCarousel extends React.Component {
         <ActionButtonsContainer>
           <div className="helpful-button">
             <span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
               &nbsp; Helpful ({this.props.album[this.state.currentPhotoIndex].helpfulVotes})
             </span>
           </div>

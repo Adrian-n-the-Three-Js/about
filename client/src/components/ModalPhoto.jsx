@@ -14,9 +14,7 @@ const Image = styled.img`
 `;
 
 const ModalPhoto = (props) => {
-  console.log('props', props);
-  console.log('props', props.caption);
-  console.log('props', props.helpfulVotes);
+  // console.log('props', props);
   return (
     <div>
       <Image
