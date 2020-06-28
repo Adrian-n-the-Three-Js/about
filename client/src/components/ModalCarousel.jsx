@@ -22,24 +22,32 @@ const ModalCarouselWrapper = styled.div`
 `;
 
 const IndexInfo = styled.div`
-  display: block;
+  display: flex;
+  justify-content: space-between;
   font-family: ${props => props.theme.font};
   color: #ffffff;
-  position: absolute;
+  // position: absolute;
   height: 56px;
   width: 100%;
   // top: 0;
-  span:last-child {
-    position: absolute;
-    font-size: 12px;
-    top: 1em;
-    right: 16px;
-  }
+  // span:last-child {
+  //   // position: absolute;
+  //   font-size: 12px;
+  //   top: 1em;
+  //   right: 16px;
+  // }
+`;
+
+const IndexCount = styled.span`
+  font-size: 12px;
+  // top: 1em;
+  margin: 15px;
+  // right: 16px;
 `;
 
 const GalleryButton = styled.button`
   z-index: 2000;
-  align-items: center;
+  // align-items: center;
   top: 1em;
   background-color: #ffffff;
   font-family: ${props => props.theme.font};
@@ -55,6 +63,58 @@ const GalleryButton = styled.button`
     display: inline-block;
     vertical-align: middle;
   }
+`;
+
+const PhotoDetailsSection = styled.div`
+  display: flex;
+  font-family: ${props => props.theme.font};
+  // border-radius: 0 0 2px 2px;
+  // padding: 16px 16px 16px 0px;
+`;
+
+const Avatar = styled.div`
+  border: 2px solid #ffffff;
+  border-radius: 42px;
+  height: 40px;
+  width: 40px;
+  padding: 2px 4px 0 0;
+  background-image: url('https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1=w288-h288-n-rw');
+  background-size: cover;
+`;
+
+const PhotoDetails = styled.div`
+  display: table;
+  font-family: ${props => props.theme.font};
+  min-height: 50px;
+  // height: 100%;
+  font-size: 12px;
+  color: #ffffff;
+  > div {
+    display: table-row;
+    vertical-align: middle;
+    color: #ffffff;
+  }
+  .block {
+    margin: 0;
+    padding: 0;
+    // display: table-cell;
+    // width: 50%;
+    // padding-right: 3em;
+  }
+`;
+
+const ActionButtonsContainer = styled.div`
+  font-family: ${props => props.theme.font};
+  color: #ffffff;
+  font-size: 12px;
+  border-top: 1px solid #ffffff;
+  margin-right: 32px;
+`;
+
+const ReviewWrapper = styled.div`
+  font-family: ${props => props.theme.font};
+  color: #ffffff;
+  font-size: 14px;
 `;
 
 class ModalCarousel extends React.Component {
@@ -100,7 +160,7 @@ class ModalCarousel extends React.Component {
               &nbsp;Gallery
             </GalleryButton>
           </span>
-          <span>{this.state.currentPhotoIndex + 1} of {this.props.album.length}</span>
+          <IndexCount>{this.state.currentPhotoIndex + 1} of {this.props.album.length}</IndexCount>
         </IndexInfo>
         {/* <ModalArrowWrapper> */}
 
@@ -121,16 +181,61 @@ class ModalCarousel extends React.Component {
           onClick={this.nextPhoto}
         /> */}
         {/* </ModalArrowWrapper> */}
-
-        {/* <ModalPhoto
+        <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
           userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
           caption={this.props.album[this.state.currentPhotoIndex].caption}
           url={this.props.album[this.state.currentPhotoIndex].imageUrl}
           helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
           date={this.props.album[this.state.currentPhotoIndex].datePosted}
-        /> */}
+        />
 
+        <PhotoDetailsSection>
+          <Avatar avatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}></Avatar>
+          <PhotoDetails>
+            <div className="block">
+              {this.props.album[this.state.currentPhotoIndex].user}
+              &nbsp; &#8226; &nbsp;
+              {this.props.album[this.state.currentPhotoIndex].datePosted}
+            </div>
+            <div className="block">
+              {this.props.album[this.state.currentPhotoIndex].location}
+              &nbsp; &#8226; &nbsp;
+              {this.props.album[this.state.currentPhotoIndex].contributions} contributions
+              </div>
+          </PhotoDetails>
+        </PhotoDetailsSection>
+        <ReviewWrapper>
+          <div>{this.props.album[this.state.currentPhotoIndex].caption}</div>
+          <div>Read review</div>
+        </ReviewWrapper>
+        <div></div>
+        <ActionButtonsContainer>
+          <div className="helpful-button">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+              &nbsp; Helpful ({this.props.album[this.state.currentPhotoIndex].helpfulVotes})
+            </span>
+          </div>
+
+          <div>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+          </div>
+
+          <div>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+            <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
+            <path fill-rule="evenodd" d="M2.5 14A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 12 5.5h-1.5a.5.5 0 0 0 0 1H12a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 0 0-1H4A1.5 1.5 0 0 0 2.5 7v7z"/>
+            </svg>
+          </div>
+
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+          </div>
+        </ActionButtonsContainer>
       </ModalCarouselWrapper>
     );
   }

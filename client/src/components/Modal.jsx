@@ -16,8 +16,8 @@ const ModalWrapper = styled.div`
   bottom: 0;
   transition: opacity .2s linear;
   z-index: 1;
-  height: 90.49%;
-  width: 93.36%;
+  max-height: 90.49%;
+  max-width: 93.36%;
   margin: auto;
 `;
 
@@ -152,10 +152,11 @@ class Modal extends React.Component {
               <li>
                 <HeaderItemLink href="#">
                   {this.props.hotel.hotelName.split(" ").join("")}.com
-                    <svg width="1.5em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-up-right" fontWeight="bold" fill="#4A4A4A" xmlns="http://www.w3.org/2000/svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    {/* <svg width="1.5em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-up-right" fontWeight="bold" fill="#4A4A4A" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
                     <path fillRule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
-                    </svg>
+                    </svg> */}
                 </HeaderItemLink></li>
               <li><HeaderItem className="price">{this.props.hotel.hotelPrice}</HeaderItem></li>
               <li><HeaderDealButton className="view-deal" href="#">View Deal</HeaderDealButton></li>
