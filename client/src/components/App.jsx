@@ -8,8 +8,13 @@ import styled from 'styled-components';
 
 console.log('hello app');
 
-const AppWrapper = styled.div`
+const PageWrapper = styled.div`
   background-color: ${props => props.theme.whiteSmoke};
+`;
+
+const AppWrapper = styled.div`
+  background-color: white;
+  border: 1px solid #e0e0e0;
   height: 1030px;
   width: 765px;
   margin: 12px;
@@ -17,6 +22,23 @@ const AppWrapper = styled.div`
   position: relative;
   font-family: ${props => props.theme.font};
   color: ${props => props.theme.charcoal};
+  .rank-index {
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 12px;
+  }
+  .subrating {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .description {
+    margin-top: 20px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
 `;
 
 const H2 = styled.h2`
@@ -24,7 +46,8 @@ const H2 = styled.h2`
   line-height: 30px;
   color: black;
   font-family: ${props => props.theme.font};
-  font-weight: 600;
+  font-weight: 500;
+  border: 0 solid #e0e0e0;
   border-bottom: 1px solid rgb(224, 224, 224);
   padding: 0 0 18px;
 `;
@@ -35,13 +58,6 @@ const CarouselWrapper = styled.div`
   height: 340px;
   width: 370px;
   background-color: #f5dcdc;
-  // display: flex;
-  // flex-flow: column;
-  // justify-content: center;
-  // align-items: center;
-  // display: block;
-  // margin: 0 auto;
-  // overflow: hidden;
 `;
 
 const ReviewsWrapper = styled.div`
@@ -76,15 +92,6 @@ const ReviewsWrapper = styled.div`
     box-sizing: border-box;
     font-weight: 400;
   }
-`;
-
-const DescriptionWrapper = styled.p`
-  color: ${(props) => props.theme.charcoal};
-  margin-top: 20px;
-  margin-bottom: 16px;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22px;
 `;
 
 class App extends React.Component {
@@ -159,13 +166,14 @@ class App extends React.Component {
     }
 
     return (
+      <PageWrapper>
       <AppWrapper>
         {/* <TestTitle>Hello App!</TestTitle> */}
         <H2>About</H2>
-        {/* <hr /> */}
-        <p>This property matches all of your filters.</p>
+
+        {/* <p>This property matches all of your filters.</p>
         <p>Matches: &#10004; Hotels</p>
-        <hr />
+        <hr /> */}
 
         <ReviewsWrapper>
           <span className="overall-rating">4.5</span>
@@ -190,31 +198,30 @@ class App extends React.Component {
             <span className="all-reviews">{this.state.hotel.numReviews} reviews</span>
           </a>
         </ReviewsWrapper>
-        <span>#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
+        <span className="rank-index">#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
 
         <table>
           <tbody>
             <tr>
               <td>...dots...</td>
-              <td>Location</td>
+              <td className="subrating">Location</td>
             </tr>
             <tr>
               <td>...dots...</td>
-              <td>Cleanliness</td>
+              <td className="subrating">Cleanliness</td>
             </tr>
             <tr>
               <td>...dots...</td>
-              <td>Service</td>
+              <td className="subrating">Service</td>
             </tr>
             <tr>
               <td>...dots...</td>
-              <td>Value</td>
+              <td className="subrating">Value</td>
             </tr>
           </tbody>
         </table>
 
-        <hr />
-        <DescriptionWrapper>{Description}</DescriptionWrapper>
+        <p className="description">{Description}</p>
 
         <CarouselWrapper>
           <Carousel
@@ -239,6 +246,7 @@ class App extends React.Component {
         </div>
 
       </AppWrapper>
+      </PageWrapper>
     );
   }
 }

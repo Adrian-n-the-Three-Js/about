@@ -6,6 +6,20 @@ import styled from 'styled-components';
 
 console.log('modal');
 
+const ModalContainer = styled.div`
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.6);
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: #777;
+  z-index: 10000;
+`;
+
 const ModalWrapper = styled.div`
   position: fixed;
   // display: flex;
@@ -144,6 +158,7 @@ class Modal extends React.Component {
 
   render () {
     return (ReactDOM.createPortal(
+      <ModalContainer>
       <ModalWrapper>
         <Header>
           <HeaderLeft><span>Photos of {this.props.hotel.hotelName}</span></HeaderLeft>
@@ -174,7 +189,8 @@ class Modal extends React.Component {
             album={this.props.album}
           />
         </div>
-      </ModalWrapper>,
+      </ModalWrapper>
+      </ModalContainer>,
 
       modalRoot,
     ));
