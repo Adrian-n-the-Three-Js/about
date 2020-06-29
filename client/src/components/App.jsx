@@ -27,14 +27,16 @@ const H2 = styled.h2`
 `;
 
 const CarouselWrapper = styled.div`
-  display: block;
-  // position: relative;
+  position: relative;
   cursor: pointer;
   height: 340px;
   width: 370px;
   background-color: #f5dcdc;
+  // display: flex;
+  // flex-flow: column;
   // justify-content: center;
   // align-items: center;
+  // display: block;
   // margin: 0 auto;
   // overflow: hidden;
 `;
