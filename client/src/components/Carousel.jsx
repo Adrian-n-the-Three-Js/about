@@ -60,11 +60,10 @@ const PhotostripWrapper = styled.div`
 `;
 
 const AlbumPhotoCount = styled.div`
-  align-self: flex-end;
   padding: 16px;
   background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.8) 100%);
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   text-align: left;
   position: absolute;
   bottom: 0;
@@ -150,7 +149,11 @@ class Carousel extends React.Component {
             hotel={this.props.hotel}
             currentAlbumIndex={this.state.currentPhotoIndex}
           >
-            10 photos
+            <div>
+              <span>{this.props.preview[this.state.currentPhotoIndex][0].category}</span>
+              &nbsp;&nbsp;
+              <span>({this.props.preview[this.state.currentPhotoIndex].length})</span>
+            </div>
           </AlbumPhotoCount>
 
         </PhotoContainer>
