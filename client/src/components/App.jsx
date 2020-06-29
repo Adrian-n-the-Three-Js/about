@@ -4,6 +4,7 @@ import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx';
 import Description from '../hotelDescription.js';
 import styled from 'styled-components';
+// import {createGlobalStyle} from 'styled-components';
 // import circleFill from '../icons.js';
 
 console.log('hello app');
@@ -57,7 +58,7 @@ const CarouselWrapper = styled.div`
   cursor: pointer;
   height: 340px;
   width: 370px;
-  background-color: #f5dcdc;
+  // background-color: #f5dcdc;
 `;
 
 const ReviewsWrapper = styled.div`
@@ -93,6 +94,12 @@ const ReviewsWrapper = styled.div`
     font-weight: 400;
   }
 `;
+
+// const GlobalStyles = createGlobalStyle`
+//     overflow-y: ${({showModal}) =>
+//     showModal && hidden };
+//   }
+// `
 
 class App extends React.Component {
   constructor(props) {

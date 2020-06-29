@@ -21,18 +21,31 @@ const ModalContainer = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  position: fixed;
-  // display: flex;
-  // flex-direction: column;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: opacity .2s linear;
-  z-index: 1;
-  max-height: 90.49%;
-  max-width: 93.36%;
-  margin: auto;
+  position: absolute;
+  top: 48px;
+  bottom: 48px;
+  left: 48px;
+  right: 48px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 2px 2px 9px rgba(0,0,0,.5);
+  transition: opacity .4s ease-in-out;
+  z-index: 10;
+  border-radius: 2px;
+  min-height: 504px;
+  // position: fixed;
+  // // display: flex;
+  // // flex-direction: column;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // transition: opacity .2s linear;
+  // z-index: 1;
+  // max-height: 90.49%;
+  // max-width: 93.36%;
+  // margin: auto;
 `;
 
 const Header = styled.div`
@@ -154,6 +167,17 @@ const modalRoot = document.getElementById('modal');
 class Modal extends React.Component {
   constructor(props) {
     super(props);
+    this.el = document.createElement('div');
+  }
+
+  componentDidMount() {
+    modalRoot.appendChild(this.el);
+    document.body.style.overflow = 'hidden';
+  }
+
+  componentWillUnmount() {
+    modalRoot.removeChild(this.el);
+    document.body.style.overflow = 'unset';
   }
 
   render () {
