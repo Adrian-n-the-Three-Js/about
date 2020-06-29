@@ -27,7 +27,7 @@ const H2 = styled.h2`
 `;
 
 const CarouselWrapper = styled.div`
-  position: relative;
+  // position: relative;
   cursor: pointer;
   height: 340px;
   width: 370px;

@@ -7,42 +7,24 @@ import styled from 'styled-components';
 console.log('carousel');
 
 const PhotoContainer = styled.div`
-  display: flex;
+  // display: flex;
+  position: relative;
   height: 270px;
   width: 370px;
-  // justify-content: space-evenly;
-  // align-items: center;
-  // flex-direction: column;
-`;
-
-const PhotostripWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  // justify-content: space-evenly;
-  height: 50px;
-  width: 370px;
-  padding: 2px 0px 2px 0px;
-  // margin: 1px -1px -1px;
-  // padding: 0;
-  // overflow: hidden;
+  overflow: hidden;
 `;
 
 const ArrowButton = styled.button`
-  // display: flex;
   position: absolute;
   width: 60px;
   height: 60px;
   cursor: pointer;
-  // background-color: #2c2c2c;
   background-color: rgba(0,0,0, .32);
   border: 0;
-  // opacity: 50%;
-  top: 35%;
+  top: 40%;
   // text-align: center;
   ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
   ${(props) => (props.visible ? 'visibility: visible' : 'visibility: hidden')};
-  // ${props => props.direction === 'right' ? 'align-self: flex-end' : 'align-self: flex-start'};
   .icon {
     display: inline-block;
     vertical-align: middle;
@@ -64,18 +46,32 @@ const ArrowButton = styled.button`
   }
 `;
 
-// const AlbumPhotoCount = styled.div`
-//   padding: 16px;
-//   background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-//   color: #fff;
-//   font-size: 16px;
-//   text-align: left;
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-//   z-index: 5;
-//   box-sizing: border-box;
-// `;
+const PhotostripWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  // justify-content: space-evenly;
+  height: 50px;
+  width: 370px;
+  padding: 2px 0px 2px 0px;
+  // margin: 1px -1px -1px;
+  // padding: 0;
+  // overflow: hidden;
+`;
+
+const AlbumPhotoCount = styled.div`
+  align-self: flex-end;
+  padding: 16px;
+  background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  color: #fff;
+  font-size: 16px;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+  box-sizing: border-box;
+`;
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -150,12 +146,12 @@ class Carousel extends React.Component {
             toggleModal={this.props.toggleModal}
           />
 
-          {/* <AlbumPhotoCount
+          <AlbumPhotoCount
             hotel={this.props.hotel}
             currentAlbumIndex={this.state.currentPhotoIndex}
           >
             10 photos
-          </AlbumPhotoCount> */}
+          </AlbumPhotoCount>
 
         </PhotoContainer>
 
