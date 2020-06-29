@@ -20,10 +20,13 @@ const AppWrapper = styled.div`
 `;
 
 const H2 = styled.h2`
-  font: 28;
+  font-size: 28px;
+  line-height: 30px;
   color: black;
   font-family: ${props => props.theme.font};
   font-weight: 600;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  padding: 0 0 18px;
 `;
 
 const CarouselWrapper = styled.div`
@@ -73,6 +76,15 @@ const ReviewsWrapper = styled.div`
     box-sizing: border-box;
     font-weight: 400;
   }
+`;
+
+const DescriptionWrapper = styled.p`
+  color: ${(props) => props.theme.charcoal};
+  margin-top: 20px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
 `;
 
 class App extends React.Component {
@@ -150,7 +162,7 @@ class App extends React.Component {
       <AppWrapper>
         {/* <TestTitle>Hello App!</TestTitle> */}
         <H2>About</H2>
-        <hr />
+        {/* <hr /> */}
         <p>This property matches all of your filters.</p>
         <p>Matches: &#10004; Hotels</p>
         <hr />
@@ -202,7 +214,7 @@ class App extends React.Component {
         </table>
 
         <hr />
-        <p>{Description}</p>
+        <DescriptionWrapper>{Description}</DescriptionWrapper>
 
         <CarouselWrapper>
           <Carousel
