@@ -235,7 +235,7 @@ class ModalCarousel extends React.Component {
 
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
-          userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
+          userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
           caption={this.props.album[this.state.currentPhotoIndex].caption}
           url={this.props.album[this.state.currentPhotoIndex].imageUrl}
           helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
@@ -244,8 +244,7 @@ class ModalCarousel extends React.Component {
 
         <PhotoDetailsSection>
           <Avatar
-            avatar={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
-            // src={this.props.album[this.state.currentPhotoIndex].userAvatarURL}
+            avatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
           />
 
           <PhotoDetails>
@@ -279,13 +278,13 @@ class ModalCarousel extends React.Component {
           </div>
 
           <div>
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
             </svg>
           </div>
 
           <div>
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
             <path fillRule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
             <path fillRule="evenodd" d="M2.5 14A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 12 5.5h-1.5a.5.5 0 0 0 0 1H12a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 0 0-1H4A1.5 1.5 0 0 0 2.5 7v7z"/>
@@ -293,7 +292,7 @@ class ModalCarousel extends React.Component {
           </div>
 
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
           </div>
         </ActionButtonsContainer>
       </ModalCarouselWrapper>

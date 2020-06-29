@@ -1,6 +1,5 @@
 import React from 'react';
 import Photo from './Photo.jsx';
-import AlbumPhotoCount from './AlbumPhotoCount.jsx';
 import CarouselPhotostrip from './CarouselPhotostrip.jsx';
 import Arrow from './Arrow.jsx';
 import styled from 'styled-components';
@@ -65,8 +64,17 @@ const ArrowButton = styled.button`
   }
 `;
 
-// const AlbumPhotoCountContainer = styled.div`
-
+// const AlbumPhotoCount = styled.div`
+//   padding: 16px;
+//   background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+//   color: #fff;
+//   font-size: 16px;
+//   text-align: left;
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   z-index: 5;
+//   box-sizing: border-box;
 // `;
 
 class Carousel extends React.Component {
@@ -107,7 +115,7 @@ class Carousel extends React.Component {
 
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
-    // console.log('props', this.props.preview);
+    // console.log('props', this.props.hotel);
     // console.log('props0', this.props.preview[0][0]);
 
     return (
@@ -134,6 +142,55 @@ class Carousel extends React.Component {
             <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
 
           </ArrowButton>
+
+          <Photo
+            index={this.state.currentPhotoIndex}
+            url={this.props.preview[this.state.currentPhotoIndex][0].imageUrl}
+            album={this.props.preview[this.state.currentPhotoIndex][0].category}
+            toggleModal={this.props.toggleModal}
+          />
+
+          {/* <AlbumPhotoCount
+            hotel={this.props.hotel}
+            currentAlbumIndex={this.state.currentPhotoIndex}
+          >
+            10 photos
+          </AlbumPhotoCount> */}
+
+        </PhotoContainer>
+
+
+        <PhotostripWrapper>
+          {this.props.preview.map((one, index) => (
+            <CarouselPhotostrip
+              className="photostrip"
+              key={one[0]._id}
+              index={index}
+              displayedPhotoIndex={this.state.currentPhotoIndex}
+              photo={one[0].imageUrl}
+              caption={one[0].caption}
+              onClick={this.photostripClick}
+              toggleModal={this.props.toggleModal}
+            />
+          ))}
+        </PhotostripWrapper>
+      </div>
+    );
+  }
+}
+
+export default Carousel;
+
+// const ArrowContainer = styled.div`
+//   position: absolute;
+//   background: rgba(0,0,0,.32);
+//   width: 60px;
+//   height: 60px;
+//   text-align: center:
+//   cursor: pointer;
+//   // margin-top: -30px;
+//   // justify-content: center;
+// `;
 
           {/* <ArrowButton
             // direction="left"
@@ -167,50 +224,3 @@ class Carousel extends React.Component {
             this.props.preview.length &&
             <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
           } */}
-
-          <Photo
-            index={this.state.currentPhotoIndex}
-            url={this.props.preview[this.state.currentPhotoIndex][0].imageUrl}
-            album={this.props.preview[this.state.currentPhotoIndex][0].category}
-            toggleModal={this.props.toggleModal}
-          />
-
-          <AlbumPhotoCount
-            hotel={this.props.hotel}
-            currentAlbumIndex={this.state.currentPhotoIndex}
-          />
-
-        </PhotoContainer>
-
-
-        <PhotostripWrapper>
-          {this.props.preview.map((one, index) => (
-            <CarouselPhotostrip
-              className="photostrip"
-              key={one[0]._id}
-              index={index}
-              displayedPhotoIndex={this.state.currentPhotoIndex}
-              photo={one[0].imageUrl}
-              caption={one[0].caption}
-              onClick={this.photostripClick}
-              toggleModal={this.props.toggleModal}
-            />
-          ))}
-        </PhotostripWrapper>
-      </div>
-    );
-  }
-}
-
-// const ArrowContainer = styled.div`
-//   position: absolute;
-//   background: rgba(0,0,0,.32);
-//   width: 60px;
-//   height: 60px;
-//   text-align: center:
-//   cursor: pointer;
-//   // margin-top: -30px;
-//   // justify-content: center;
-// `;
-
-export default Carousel;

@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx';
-import Description from './HotelDescription.jsx';
+import Description from '../hotelDescription.js';
 import styled from 'styled-components';
-import circleFill from '../icons.js';
+// import circleFill from '../icons.js';
 
 console.log('hello app');
 
@@ -23,6 +23,7 @@ const H2 = styled.h2`
   font: 28;
   color: black;
   font-family: ${props => props.theme.font};
+  font-weight: 600;
 `;
 
 const CarouselWrapper = styled.div`
@@ -38,6 +39,40 @@ const CarouselWrapper = styled.div`
   // display: block;
   // margin: 0 auto;
   // overflow: hidden;
+`;
+
+const ReviewsWrapper = styled.div`
+  font-size: 18px;
+  line-height: 22px;
+  // font-weight: 700;
+  margin: 14px 0;
+  height: auto;
+  color: #000;
+  display: flex;
+  align-self: center;
+  .overall-rating {
+    align-self: center;
+    font-size: 48px;
+    font-weight: 500;
+    margin-right: 8px;
+  }
+  a:link, a:visited {
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .all-reviews {
+    color: ${(props) => props.theme.charcoal};
+    font-size: 14px;
+    border-bottom: 1px dotted #d6d6d6;
+    max-width: 124px;
+    white-space: nowrap;
+    text-align: right;
+    margin-left: 5px;
+    box-sizing: border-box;
+    font-weight: 400;
+  }
 `;
 
 class App extends React.Component {
@@ -120,37 +155,30 @@ class App extends React.Component {
         <p>Matches: &#10004; Hotels</p>
         <hr />
 
-        <table>
-          <tbody>
-            <tr>
-              <th rowSpan="2">4.5</th>
-              <th>Excellent</th>
-            </tr>
-            <tr>
-              <th>
-                {/* {circleFill} */}
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-                </svg>
-              </th>
-              <th>2,929 reviews</th>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>#10 of 174 hotels in Denver</p>
+        <ReviewsWrapper>
+          <span className="overall-rating">4.5</span>
+          <a className="reviews-bubble-rating" href="#">
+            <div className="rating-label">Excellent</div>
+            <span className="bubbles">
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+              </svg>
+            </span>
+            <span className="all-reviews">{this.state.hotel.numReviews} reviews</span>
+          </a>
+        </ReviewsWrapper>
+        <span>#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
 
         <table>
           <tbody>
@@ -204,3 +232,35 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+ {/* <table>
+          <tbody>
+            <tr>
+              <th rowSpan="2">4.5</th>
+              <th>Excellent</th>
+            </tr>
+            <tr>
+              <th>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+              </th>
+              <th>2,929 reviews</th>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>#10 of 174 hotels in Denver</p> */}

@@ -13,11 +13,13 @@ db.once('open', () => {
 // native mongo object id will represent hotel id
 const photoSchema = new mongoose.Schema({
   hotelName: String,
+  hotelCity: String,
   hotelPrice: String,
+  numReviews: String,
   roomAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -30,7 +32,7 @@ const photoSchema = new mongoose.Schema({
   diningAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -43,7 +45,7 @@ const photoSchema = new mongoose.Schema({
   poolAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -56,7 +58,7 @@ const photoSchema = new mongoose.Schema({
   gymAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -69,7 +71,7 @@ const photoSchema = new mongoose.Schema({
   amenitiesAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -82,7 +84,7 @@ const photoSchema = new mongoose.Schema({
   bathroomAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -95,7 +97,7 @@ const photoSchema = new mongoose.Schema({
   eventRoomAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -108,7 +110,7 @@ const photoSchema = new mongoose.Schema({
   roomViewAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,

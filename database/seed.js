@@ -187,13 +187,13 @@ const extractPhotoData = (arr, searchTerm) => {
     const photoDetails = {};
     // photoDetails.id = arr[i].id;
     photoDetails.user = arr[i].user.name;
-    photoDetails.userAvatarUrl = arr[i].user['profile_image']['large'];
+    photoDetails.userAvatarUrl = arr[i].user.profile_image.medium;
     photoDetails.location = arr[i].user.location;
     photoDetails.contributions = arr[i].user.total_photos;
     photoDetails.imageUrl = arr[i].urls.regular;
     photoDetails.caption = arr[i].description;
     photoDetails.category = addCategory(arr[i], searchTerm);
-    photoDetails.datePosted = moment(arr[i].created_at).format('MMM YY');
+    photoDetails.datePosted = moment(arr[i].created_at).format('MMM YYYY');
     photoDetails.helpfulVotes = Math.floor(Math.random() * 10);
     photoAlbumSelection.push(photoDetails);
   }
@@ -223,15 +223,15 @@ const generateRandomPhotoAlbum = (photoAlbum) => {
   return result;
 };
 
-const generateHotelName = () => {
-  const randomCity = faker.address.city();
-  return `${randomCity} Hotel`;
+const generateHotelCity = () => {
+  return faker.address.city();
 };
 
 // generate one hotel object
 const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
   const hotelObj = {};
-  hotelObj.hotelName = generateHotelName();
+  hotelObj.hotelCity = generateHotelCity();
+  hotelObj.hotelName = `${hotelObj.hotelCity} Hotel`;
   hotelObj.hotelPrice = `${Math.floor(Math.random() * (350 - 100) + 100)}`;
   hotelObj.numReviews = `${Math.floor(Math.random() * (999 - 100) + 100)}`;
   hotelObj.roomAlbum = generateRandomPhotoAlbum(roomAlbum);
