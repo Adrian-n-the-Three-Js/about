@@ -101,7 +101,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('state before mount', this.state);
+    // console.log('state before mount', this.state);
     return (
       this.getData()
     );
@@ -110,14 +110,13 @@ class App extends React.Component {
   // GET
   getData() {
     // return (
-    const hotelId = hotelId || '5ef93c54a4f2ab25650b9c33';
+    const hotelId = hotelId || '1';
     axios({
       method: 'get',
       url: `/api/photos/${hotelId}`,
       params: {hotelId}
     })
       .then((response) => {
-        // test which hotel we are looking at here
         const hotel = response.data[0];
         const preview = [
           hotel.roomAlbum[0],
@@ -128,7 +127,7 @@ class App extends React.Component {
           hotel.eventRoomAlbum[0],
           hotel.roomViewAlbum[0],
         ];
-        console.log('all hotel records', response.data);
+        console.log('current hotel res data', response.data);
         console.log('1st hotel record', hotel);
         this.setState({
           hotel,
@@ -139,14 +138,14 @@ class App extends React.Component {
           this.setState({ isLoaded: true });
           console.log(error);
         };
-        console.log('hotel data', this.state);
+        console.log('state data', this.state);
         console.log('preview data', this.state.preview);
       })
     // );
   }
 
   toggleModal(modalAlbum) {
-    console.log('toggle modal', modalAlbum);
+    // console.log('toggle modal', modalAlbum);
     this.setState({
       showModal: !this.state.showModal,
       modalAlbum,

@@ -82,7 +82,7 @@ class Carousel extends React.Component {
   }
 
   previousPhoto() {
-    console.log('previous photo');
+    // console.log('previous photo');
     const lastIndex = this.props.preview.length - 1;
     const currentPhotoIndex = this.state.currentPhotoIndex;
     const index = currentPhotoIndex !== 0 ? currentPhotoIndex - 1 : null;
@@ -107,9 +107,13 @@ class Carousel extends React.Component {
   }
 
   render() {
+    // refactor to switch statement later ...
+    const modalAlbum = this.state.currentPhotoIndex === 0 ? 'roomAlbum' : this.state.currentPhotoIndex === 1 ? 'diningAlbum' : this.state.currentPhotoIndex === 2 ? 'poolAlbum' : this.state.currentPhotoIndex === 3 ? 'gymAlbum' : this.state.currentPhotoIndex === 4 ? 'bathroomAlbum' : this.state.currentPhotoIndex === 5 ? 'eventRoomAlbum' : 'roomViewAlbum';
+
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
     // console.log('props', this.props.hotel);
-    console.log('preview', this.props.preview);
+    // console.log('preview', this.props.preview);
+    // console.log('hotel', this.props.hotel);
 
     return (
       <div>
@@ -146,8 +150,8 @@ class Carousel extends React.Component {
           >
             <div>
               <span>{this.props.preview[this.state.currentPhotoIndex].category}</span>
-              &nbsp;&nbsp;
-              <span>({this.props.preview[this.state.currentPhotoIndex].length})</span>
+              &nbsp;
+              <span>({this.props.hotel[modalAlbum].length})</span>
             </div>
           </AlbumPhotoCount>
 

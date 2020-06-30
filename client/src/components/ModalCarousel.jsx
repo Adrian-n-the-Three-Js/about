@@ -2,7 +2,7 @@ import React from 'react';
 import ModalPhoto from './ModalPhoto.jsx';
 import styled from 'styled-components';
 
-console.log('modal carousel');
+// console.log('modal carousel');
 
 const ModalCarouselWrapper = styled.div`
   display: block;
@@ -16,13 +16,6 @@ const ModalCarouselWrapper = styled.div`
   overflow: hidden;
   top: 0;
   left: 0;
-  // box-sizing: border-box;
-  // left: 184px;
-  // width: calc(100% - 184px);
-  // top: 48px;
-  // bottom: 0;
-  // right: 0;
-  // position: absolute;
   max-height: 100%;
   max-width: 100%;
   min-height: 200px;
@@ -285,27 +278,6 @@ class ModalCarousel extends React.Component {
           <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
         </ArrowButton>
 
-        {/* <ModalArrowWrapper> */}
-
-        {/* <ModalArrow
-          className="arrow"
-          direction="left"
-          symbol="&#60;"
-          onClick={this.previousPhoto}
-        />
-        {/* </ModalArrowWrapper> */}
-
-        {/* <ModalArrowWrapper> */}
-
-        {/* <ModalArrow
-          className="arrow"
-          direction="right"
-          symbol="&#62;"
-          onClick={this.nextPhoto}
-        /> */}
-        {/* </ModalArrowWrapper> */}
-
-
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
           userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
@@ -369,7 +341,7 @@ class ModalCarousel extends React.Component {
           </div>
 
           <div className="report-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
           </div>
         </ActionButtonsContainer>
         </DetailsWrapper>
@@ -379,25 +351,3 @@ class ModalCarousel extends React.Component {
 }
 
 export default ModalCarousel;
-
-// const ModalArrowWrapper = styled.div`
-//   position: absolute;
-//   width: 60px;
-//   height: 60px;
-//   // background: yellow;
-//   ${props => props.direction === 'right' ? 'background: yellow' : 'background: blue'}
-//   // ${props => props.direction === 'right' ? 'right: 25px' : 'left: 25px'}
-// `;
-
-// const ModalArrowContainer = styled.div`
-//   flex: 1;
-//   background: rgba(0,0,0,.32);
-//   width: 60px;
-//   height: 60px;
-//   text-align: right:
-//   cursor: pointer;
-//   // margin-top: -30px;
-//   // justify-content: start-end;
-// `;
-
-

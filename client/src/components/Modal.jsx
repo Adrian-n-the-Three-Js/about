@@ -26,8 +26,8 @@ const ModalWrapper = styled.div`
   // // display: block;
   top: 48px;
   bottom: 48px;
-  // left: 48px;
-  // right: 48px;
+  left: 48px;
+  right: 48px;
   box-sizing: border-box;
   overflow: hidden;
   // background-color: #fff;
@@ -36,10 +36,10 @@ const ModalWrapper = styled.div`
   // z-index: 10;
   border-radius: 2px;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
   transition: opacity .2s linear;
   z-index: 1;
   min-height: 504px;
@@ -193,10 +193,7 @@ class Modal extends React.Component {
                 <HeaderItemLink href="#">
                   {this.props.hotel.hotelName.split(" ").join("")}.com
                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    {/* <svg width="1.5em" height="1em" viewBox="0 0 16 16" className="bi bi-arrow-up-right" fontWeight="bold" fill="#4A4A4A" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M6.5 4a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V4.5H7a.5.5 0 0 1-.5-.5z"/>
-                    <path fillRule="evenodd" d="M12.354 3.646a.5.5 0 0 1 0 .708l-9 9a.5.5 0 0 1-.708-.708l9-9a.5.5 0 0 1 .708 0z"/>
-                    </svg> */}
+
                   </HeaderItemLink>
                 </li>
               <li><HeaderItem className="price">${this.props.hotel.hotelPrice}</HeaderItem></li>

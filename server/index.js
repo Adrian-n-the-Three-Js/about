@@ -8,7 +8,7 @@ const controller = require('./controller.js');
 // app.get('/', (req, res) => res.send('Hello World!'));
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
-console.log('path', path.join(__dirname, '../client/dist'));
+// console.log('path', path.join(__dirname, '../client/dist'));
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
