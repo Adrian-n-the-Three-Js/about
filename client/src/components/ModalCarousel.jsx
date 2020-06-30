@@ -1,6 +1,5 @@
 import React from 'react';
 import ModalPhoto from './ModalPhoto.jsx';
-import ModalArrow from './ModalArrow.jsx';
 import styled from 'styled-components';
 
 console.log('modal carousel');

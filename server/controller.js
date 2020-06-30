@@ -2,7 +2,7 @@ const Model = require('./model.js')
 
 const getPhotos = (req, res) => {
   console.log('controller getting.../');
-  const id = req.params.hotelId || "5ef93c54a4f2ab25650b9c33";
+  const id = req.params.hotelId || "1";
   console.log(id);
   Model.getPhotos(id, (err, data) => {
     if (err) {

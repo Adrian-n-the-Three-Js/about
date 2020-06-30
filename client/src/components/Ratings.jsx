@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// not implemented yet
 class Ratings extends React.Component {
   constructor(props) {
     super(props);

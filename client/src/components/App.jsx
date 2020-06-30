@@ -4,11 +4,6 @@ import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx';
 import Description from '../hotelDescription.js';
 import styled from 'styled-components';
-// import bubble from '../../dist/icons.svg';
-// import {createGlobalStyle} from 'styled-components';
-// import { getIcon } from '../icons';
-// import { FaBeer } from 'react-icons/fa';
-// import {IconUmbrella} from './Circle.js';
 
 console.log('hello app');
 
@@ -113,7 +108,6 @@ class App extends React.Component {
   }
 
   // GET
-  // testing with 1 hotel
   getData() {
     // return (
     const hotelId = hotelId || '5ef93c54a4f2ab25650b9c33';
@@ -134,7 +128,6 @@ class App extends React.Component {
           hotel.eventRoomAlbum[0],
           hotel.roomViewAlbum[0],
         ];
-        console.log('...', preview);
         console.log('all hotel records', response.data);
         console.log('1st hotel record', hotel);
         this.setState({
@@ -162,8 +155,7 @@ class App extends React.Component {
 
   render() {
 
-
-    // refactor to switch statement later? ...
+    // refactor to switch statement later ...
     const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : this.state.modalAlbum === 'Gym' ? 'gymAlbum' : this.state.modalAlbum === 'Bathroom' ? 'bathroomAlbum' : this.state.modalAlbum === 'Business Center & Event Rooms' ? 'eventRoomAlbum' : 'roomViewAlbum';
 
     if (!this.state.isLoaded) {
@@ -321,35 +313,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-{/* <table>
-          <tbody>
-            <tr>
-              <th rowSpan="2">4.5</th>
-              <th>Excellent</th>
-            </tr>
-            <tr>
-              <th>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="8" r="8"/>
-                </svg>
-                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-                </svg>
-              </th>
-              <th>2,929 reviews</th>
-            </tr>
-          </tbody>
-        </table>
-
- */}

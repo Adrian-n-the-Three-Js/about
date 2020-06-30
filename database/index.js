@@ -12,6 +12,7 @@ db.once('open', () => {
 // create schema
 // native mongo object id will represent hotel id
 const photoSchema = new mongoose.Schema({
+  hotelId: Number,
   hotelName: String,
   hotelCity: String,
   hotelPrice: String,

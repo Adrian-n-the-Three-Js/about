@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-console.log('modal photo');
+// console.log('modal photo');
 
 const Image = styled.img`
   max-height: 100%;

@@ -228,8 +228,9 @@ const generateHotelCity = () => {
 };
 
 // generate one hotel object
-const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum) => {
+const generateHotelData = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum, i) => {
   const hotelObj = {};
+  hotelObj.hotelId = i + 1;
   hotelObj.hotelCity = generateHotelCity();
   hotelObj.hotelName = `${hotelObj.hotelCity} Hotel`;
   hotelObj.hotelPrice = `${Math.floor(Math.random() * (350 - 100) + 100)}`;
@@ -251,7 +252,7 @@ const generateDataSet = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesA
   // this will contain 100 hotel records
   const hotelPhotos = [];
   for(var i = 0; i < 100; i++) {
-    var data = generateHotelData(roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum);
+    var data = generateHotelData(roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesAlbum, bathroomAlbum, eventRoomAlbum, roomViewAlbum, i);
     hotelPhotos.push(data);
   }
   return hotelPhotos;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-console.log('photo');
+// console.log('photo');
 
 const Image = styled.img`
   // display: block;
