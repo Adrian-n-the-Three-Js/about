@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-console.log('modal');
+// console.log('modal');
+
 const ModalContainer = styled.div`
   box-sizing: border-box;
   position: fixed;
