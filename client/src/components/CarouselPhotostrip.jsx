@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-console.log('album toggle');
+// console.log('album toggle');
 
 const Image = styled.img`
   flex: 1;

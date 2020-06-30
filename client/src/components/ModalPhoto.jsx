@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-console.log('modal photo');
+// console.log('modal photo');
 
 const Image = styled.img`
   max-height: 100%;
   min-height: 200px;
   max-width: 100%;
   // object-fit: cover;
-  display: inline-block;
-  margin: auto;
+  display: block;
+  // margin: 0 auto;
   border: 0;
   flex: 0 0 auto;
-  // margin-left: auto;
-  // margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const ModalPhoto = (props) => {

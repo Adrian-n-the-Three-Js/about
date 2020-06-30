@@ -1,9 +1,8 @@
 import React from 'react';
 import ModalPhoto from './ModalPhoto.jsx';
-import ModalArrow from './ModalArrow.jsx';
 import styled from 'styled-components';
 
-console.log('modal carousel');
+// console.log('modal carousel');
 
 const ModalCarouselWrapper = styled.div`
   display: block;
@@ -17,13 +16,6 @@ const ModalCarouselWrapper = styled.div`
   overflow: hidden;
   top: 0;
   left: 0;
-  // box-sizing: border-box;
-  // left: 184px;
-  // width: calc(100% - 184px);
-  // top: 48px;
-  // bottom: 0;
-  // right: 0;
-  // position: absolute;
   max-height: 100%;
   max-width: 100%;
   min-height: 200px;
@@ -136,6 +128,7 @@ const PhotoDetails = styled.div`
     padding: 0;
     display: block;
     vertical-align: middle;
+    font-size: 12px;
   }
 `;
 
@@ -251,7 +244,6 @@ class ModalCarousel extends React.Component {
   }
 
   render() {
-    console.log('modal carousel props', this.props);
 
     return (
 
@@ -262,7 +254,8 @@ class ModalCarousel extends React.Component {
               <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-grid-fill" fill="#000000" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
               </svg>
-              &nbsp;Gallery
+              &nbsp;
+              Gallery
             </GalleryButton>
           </span>
           <IndexCount>{this.state.currentPhotoIndex + 1} of {this.props.album.length}</IndexCount>
@@ -285,27 +278,6 @@ class ModalCarousel extends React.Component {
         >
           <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
         </ArrowButton>
-
-        {/* <ModalArrowWrapper> */}
-
-        {/* <ModalArrow
-          className="arrow"
-          direction="left"
-          symbol="&#60;"
-          onClick={this.previousPhoto}
-        />
-        {/* </ModalArrowWrapper> */}
-
-        {/* <ModalArrowWrapper> */}
-
-        {/* <ModalArrow
-          className="arrow"
-          direction="right"
-          symbol="&#62;"
-          onClick={this.nextPhoto}
-        /> */}
-        {/* </ModalArrowWrapper> */}
-
 
         <ModalPhoto
           user={this.props.album[this.state.currentPhotoIndex].user}
@@ -330,7 +302,9 @@ class ModalCarousel extends React.Component {
             </span>
             <span>
               {this.props.album[this.state.currentPhotoIndex].location}
-              &nbsp;&#8226;&nbsp;
+              &nbsp;
+              &#8226;
+              &nbsp;
               {this.props.album[this.state.currentPhotoIndex].contributions}
               &nbsp;
               contributions
@@ -370,7 +344,7 @@ class ModalCarousel extends React.Component {
           </div>
 
           <div className="report-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
           </div>
         </ActionButtonsContainer>
         </DetailsWrapper>
@@ -380,25 +354,3 @@ class ModalCarousel extends React.Component {
 }
 
 export default ModalCarousel;
-
-// const ModalArrowWrapper = styled.div`
-//   position: absolute;
-//   width: 60px;
-//   height: 60px;
-//   // background: yellow;
-//   ${props => props.direction === 'right' ? 'background: yellow' : 'background: blue'}
-//   // ${props => props.direction === 'right' ? 'right: 25px' : 'left: 25px'}
-// `;
-
-// const ModalArrowContainer = styled.div`
-//   flex: 1;
-//   background: rgba(0,0,0,.32);
-//   width: 60px;
-//   height: 60px;
-//   text-align: right:
-//   cursor: pointer;
-//   // margin-top: -30px;
-//   // justify-content: start-end;
-// `;
-
-
