@@ -11,4 +11,5 @@ ReactDOM.render(
 <ThemeProvider theme={theme}>
   <App />
 </ThemeProvider>,
-document.getElementById('about'));
+document.getElementById('about')
+);

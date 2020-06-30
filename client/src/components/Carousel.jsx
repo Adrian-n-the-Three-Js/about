@@ -111,7 +111,7 @@ class Carousel extends React.Component {
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
     // console.log('props', this.props.hotel);
-    // console.log('props0', this.props.preview[0][0]);
+    console.log('preview', this.props.preview);
 
     return (
       <div>
@@ -140,8 +140,8 @@ class Carousel extends React.Component {
 
           <Photo
             index={this.state.currentPhotoIndex}
-            url={this.props.preview[this.state.currentPhotoIndex][0].imageUrl}
-            album={this.props.preview[this.state.currentPhotoIndex][0].category}
+            url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
+            album={this.props.preview[this.state.currentPhotoIndex].category}
             toggleModal={this.props.toggleModal}
           />
 
@@ -150,7 +150,7 @@ class Carousel extends React.Component {
             currentAlbumIndex={this.state.currentPhotoIndex}
           >
             <div>
-              <span>{this.props.preview[this.state.currentPhotoIndex][0].category}</span>
+              <span>{this.props.preview[this.state.currentPhotoIndex].category}</span>
               &nbsp;&nbsp;
               <span>({this.props.preview[this.state.currentPhotoIndex].length})</span>
             </div>
@@ -163,11 +163,11 @@ class Carousel extends React.Component {
           {this.props.preview.map((one, index) => (
             <CarouselPhotostrip
               className="photostrip"
-              key={one[0]._id}
+              key={one._id}
               index={index}
               displayedPhotoIndex={this.state.currentPhotoIndex}
-              photo={one[0].imageUrl}
-              caption={one[0].caption}
+              photo={one.imageUrl}
+              caption={one.caption}
               onClick={this.photostripClick}
               toggleModal={this.props.toggleModal}
             />

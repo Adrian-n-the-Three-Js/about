@@ -116,19 +116,25 @@ class App extends React.Component {
   // testing with 1 hotel
   getData() {
     // return (
-    axios.get('/api/photos')
+    const hotelId = hotelId || '5ef93c54a4f2ab25650b9c33';
+    axios({
+      method: 'get',
+      url: `/api/photos/${hotelId}`,
+      params: {hotelId}
+    })
       .then((response) => {
         // test which hotel we are looking at here
-        const hotel = response.data[2];
+        const hotel = response.data[0];
         const preview = [
-          hotel.roomAlbum,
-          hotel.diningAlbum,
-          hotel.poolAlbum,
-          hotel.gymAlbum,
-          hotel.bathroomAlbum,
-          hotel.eventRoomAlbum,
-          hotel.roomViewAlbum,
+          hotel.roomAlbum[0],
+          hotel.diningAlbum[0],
+          hotel.poolAlbum[0],
+          hotel.gymAlbum[0],
+          hotel.bathroomAlbum[0],
+          hotel.eventRoomAlbum[0],
+          hotel.roomViewAlbum[0],
         ];
+        console.log('...', preview);
         console.log('all hotel records', response.data);
         console.log('1st hotel record', hotel);
         this.setState({
@@ -155,6 +161,7 @@ class App extends React.Component {
   }
 
   render() {
+
 
     // refactor to switch statement later? ...
     const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : this.state.modalAlbum === 'Gym' ? 'gymAlbum' : this.state.modalAlbum === 'Bathroom' ? 'bathroomAlbum' : this.state.modalAlbum === 'Business Center & Event Rooms' ? 'eventRoomAlbum' : 'roomViewAlbum';
