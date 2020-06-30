@@ -17,10 +17,47 @@ module.exports = {
         },
       },
       {
+        test: /\.svg$/,
+        use: [{
+          loader: 'react-svg-loader',
+        }],
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
         loader: 'file-loader',
       },
-      // { test: /\.svg$/, loader: 'svg-inline-loader' },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'url-loader'],
+      },
+      {
+        test: /\.(svg|png|jpg|gif)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]",
+            outputPath: "imgs"
+          }
+        }
+      },
+      {
+        test: /\.svg$/,
+        exclude: path.resolve(__dirname, 'node_modules', 'font-awesome'),
+        use: ['babel-loader', 'react-svg-loader'],
+      },
+      {test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=app/images/[name].[ext]"},
+
+      {
+        test: /\.svg$/,
+        include: path.resolve(__dirname, 'node_modules', 'font-awesome'),
+        use: [{
+          loader: 'file-loader',
+          options: {
+            jsx: true,
+          },
+        }],
+      },
+      { test: /\.svg$/, loader: 'svg-inline-loader' },
     ],
   },
   output: {

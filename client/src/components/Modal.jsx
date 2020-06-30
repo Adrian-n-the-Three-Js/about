@@ -22,6 +22,7 @@ const ModalContainer = styled.div`
 
 const ModalWrapper = styled.div`
   position: absolute;
+  display: block;
   top: 48px;
   bottom: 48px;
   left: 48px;
@@ -35,14 +36,13 @@ const ModalWrapper = styled.div`
   border-radius: 2px;
   min-height: 504px;
   // position: fixed;
-  // // display: flex;
-  // // flex-direction: column;
   // top: 0;
   // left: 0;
   // right: 0;
   // bottom: 0;
   // transition: opacity .2s linear;
   // z-index: 1;
+  // max-height: 50%;
   // max-height: 90.49%;
   // max-width: 93.36%;
   // margin: auto;
@@ -50,7 +50,7 @@ const ModalWrapper = styled.div`
 
 const Header = styled.div`
   box-sizing: border-box;
-  // position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -65,6 +65,8 @@ const Header = styled.div`
   padding: 0;
   width: 100%;
   background-color: #ffffff;
+  transition: opacity 333ms linear;
+  background-image: linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.53) 48%,rgba(0,0,0,0));
 `;
 
 const HeaderLeft = styled.div`

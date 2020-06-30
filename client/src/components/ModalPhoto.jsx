@@ -8,9 +8,12 @@ const Image = styled.img`
   min-height: 200px;
   max-width: 100%;
   object-fit: cover;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block;
+  margin: auto;
+  border: 0;
+  flex: 0 0 auto;
+  // margin-left: auto;
+  // margin-right: auto;
 `;
 
 const ModalPhoto = (props) => {

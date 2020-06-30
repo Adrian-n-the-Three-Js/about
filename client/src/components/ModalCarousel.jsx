@@ -7,16 +7,27 @@ console.log('modal carousel');
 
 const ModalCarouselWrapper = styled.div`
   display: block;
-  box-sizing: border-box;
+  position: relative;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   top: 0;
+  left: 0;
+  // box-sizing: border-box;
+  // left: 184px;
+  // width: calc(100% - 184px);
+  // top: 48px;
+  // bottom: 0;
+  // right: 0;
   // position: absolute;
-  // align-items: center;
-  max-height: 100%;
-  max-width: 100%;
-  min-height: 200px;
-  // margin: 0;
-  // padding: 0;
-  // flex: 0 0 auto;
+  // // align-items: center;
+  // // max-height: 100%;
+  // // max-width: 100%;
+  // // min-height: 200px;
+  // // margin: 0;
+  // // padding: 0;
+  // // flex: 0 0 auto;
   border-color: #777779;
   background-color: #000000;
 `;
@@ -63,6 +74,19 @@ const GalleryButton = styled.button`
     display: inline-block;
     vertical-align: middle;
   }
+`;
+
+const DetailsWrapper = styled.div`
+  background-image: linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.53) 10%,rgba(0,0,0,.8));
+  border-radius: 0 0 2px 2px;
+  position: absolute;
+  color: #fff;
+  bottom: 0;
+  transition: opacity 333ms linear;
+  width: calc(100% - 16px);
+  padding-left: 16px;
+  padding-top: 16px;
+  padding-bottom: 0;
 `;
 
 const PhotoDetailsSection = styled.div`
@@ -161,9 +185,13 @@ const ArrowButton = styled.button`
   height: 60px;
   background-color: rgba(0,0,0, .40);
   border: 0;
-  top: 40%;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  transition: opacity .3s linear;
+  z-index: 1;
   // text-align: center;
-  ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
+  ${(props) => (props.direction === 'right' ? 'right: 0' : 'left: 0')};
   pointer-events: ${props => (props.clickable ? 'auto' : 'none')}
   cursor: ${props => (props.clickable ? 'pointer' : 'default')}
   .icon {
@@ -259,6 +287,7 @@ class ModalCarousel extends React.Component {
           helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
           date={this.props.album[this.state.currentPhotoIndex].datePosted}
         />
+        <DetailsWrapper>
 
         <PhotoDetailsSection>
           <Avatar
@@ -314,6 +343,7 @@ class ModalCarousel extends React.Component {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
           </div>
         </ActionButtonsContainer>
+        </DetailsWrapper>
       </ModalCarouselWrapper>
     );
   }
