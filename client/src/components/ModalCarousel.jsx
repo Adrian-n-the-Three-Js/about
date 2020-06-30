@@ -9,8 +9,11 @@ const ModalCarouselWrapper = styled.div`
   display: block;
   position: relative;
   background-color: #fff;
-  height: 100%;
-  width: 100%;
+  box-shadow: 2px 2px 9px rgba(0,0,0,.5);
+  transition: opacity .4s ease-in-out;
+  z-index: 10;
+  border-radius: 2px;
+  min-height: 504px;
   overflow: hidden;
   top: 0;
   left: 0;
@@ -21,16 +24,21 @@ const ModalCarouselWrapper = styled.div`
   // bottom: 0;
   // right: 0;
   // position: absolute;
-  // // align-items: center;
-  // // max-height: 100%;
-  // // max-width: 100%;
-  // // min-height: 200px;
-  // // margin: 0;
-  // // padding: 0;
-  // // flex: 0 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+  min-height: 200px;
   border-color: #777779;
   background-color: #000000;
 `;
+
+// const ModalInnerContainer = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   overflow: auto;
+// `;
 
 const IndexInfo = styled.div`
   display: flex;
@@ -97,6 +105,7 @@ const PhotoDetailsSection = styled.div`
 `;
 
 const Avatar = styled.div`
+  display: inline-block;
   border: 2px solid #ffffff;
   border-radius: 42px;
   height: 40px;
@@ -104,26 +113,29 @@ const Avatar = styled.div`
   padding: 2px 4px 0 0;
   background-image: ${(props) => `url( ${props.avatar} )`};
   background-size: cover;
+  vertical-align: middle;
 `;
 
 const PhotoDetails = styled.div`
-  display: table;
-  font-family: ${props => props.theme.font};
-  min-height: 50px;
-  // height: 100%;
+  display: block;
   font-size: 12px;
+  line-height: 16px;
+  min-height: 50px;
+  font-family: ${props => props.theme.font};
+  // height: 100%;
   color: #ffffff;
-  > div {
-    display: table-row;
-    vertical-align: middle;
-    color: #ffffff;
-  }
-  .block {
+  border-radius: 0 0 2px 2px;
+  color: #fff;
+  bottom: 0;
+  transition: opacity 333ms linear;
+  padding-left: 16px;
+  vertical-align: middle;
+  padding-bottom: 0;
+  > span {
     margin: 0;
     padding: 0;
-    // display: table-cell;
-    // width: 50%;
-    // padding-right: 3em;
+    display: block;
+    vertical-align: middle;
   }
 `;
 
@@ -133,6 +145,39 @@ const ActionButtonsContainer = styled.div`
   font-size: 12px;
   border-top: 1px solid #ffffff;
   margin-right: 32px;
+  .helpful-button {
+    display: inline-block;
+    padding: 16px 0;
+    cursor: pointer;
+    line-height: 16px;
+    vertical-align: middle;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .like-button {
+    padding: 16px 0;
+    display: inline-block;
+    position: absolute;
+    right: 96px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .share-button {
+    padding: 16px 0;
+    right: 64px;
+    display: inline-block;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .report-button {
+    padding: 16px 0;
+    display: inline-block;
+    position: absolute;
+    right: 32px;
+    font-size: 20px;
+    cursor: pointer;
+  }
 `;
 
 const ReviewWrapper = styled.div`
@@ -209,6 +254,7 @@ class ModalCarousel extends React.Component {
     console.log('modal carousel props', this.props);
 
     return (
+
       <ModalCarouselWrapper>
         <IndexInfo>
           <span>
@@ -277,17 +323,18 @@ class ModalCarousel extends React.Component {
           />
 
           <PhotoDetails>
-            <div className="block">
+            <span>
               {this.props.album[this.state.currentPhotoIndex].user}
               &nbsp;&#8226;&nbsp;
               {this.props.album[this.state.currentPhotoIndex].datePosted}
-            </div>
-            <div className="block">
+            </span>
+            <span>
               {this.props.album[this.state.currentPhotoIndex].location}
               &nbsp;&#8226;&nbsp;
               {this.props.album[this.state.currentPhotoIndex].contributions}
-              &nbsp;contributions
-              </div>
+              &nbsp;
+              contributions
+              </span>
           </PhotoDetails>
         </PhotoDetailsSection>
 
@@ -300,19 +347,21 @@ class ModalCarousel extends React.Component {
 
         <ActionButtonsContainer>
           <div className="helpful-button">
-            <span>
+            <span className="thumb-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
-              &nbsp; Helpful ({this.props.album[this.state.currentPhotoIndex].helpfulVotes})
+              &nbsp;
+              Helpful
+              ({this.props.album[this.state.currentPhotoIndex].helpfulVotes})
             </span>
           </div>
 
-          <div>
+          <div className="like-button">
             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
             </svg>
           </div>
 
-          <div>
+          <div className="share-button">
             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
             <path fillRule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
@@ -320,7 +369,7 @@ class ModalCarousel extends React.Component {
             </svg>
           </div>
 
-          <div>
+          <div className="report-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
           </div>
         </ActionButtonsContainer>

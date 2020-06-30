@@ -7,7 +7,7 @@ const Image = styled.img`
   max-height: 100%;
   min-height: 200px;
   max-width: 100%;
-  object-fit: cover;
+  // object-fit: cover;
   display: inline-block;
   margin: auto;
   border: 0;
@@ -24,9 +24,6 @@ const ModalPhoto = (props) => {
         className="photo"
         src={props.url}
       />
-      {/* <img src={props.userAvatar}/>
-      <div>{props.caption}</div>
-      <div>{props.helpfulVotes}</div> */}
     </div>
 
   );

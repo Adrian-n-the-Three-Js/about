@@ -25,17 +25,21 @@ const AppWrapper = styled.div`
   position: relative;
   font-family: ${props => props.theme.font};
   color: ${props => props.theme.charcoal};
-  .h2 {
+  .title {
     font-size: 28px;
     line-height: 30px;
-    color: black;
+    color: rgb(0, 10, 18);
     font-family: ${props => props.theme.font};
     font-weight: 600;
     border-bottom: 1px solid rgb(224, 224, 224);
     padding: 0 0 18px;
     border: 0 solid #e0e0e0;
-    border-color: var(--ta-gray-solid-separator);
-    border-bottom: 1px solid var(--ta-gray-solid-separator);
+  }
+  .description {
+    border-top: 1px solid rgb(224, 224, 224);
+    font-size: 16px;
+    line-height: 22px;
+    padding: 10px;
   }
 `;
 
@@ -78,6 +82,13 @@ const ReviewsWrapper = styled.div`
     margin-left: 5px;
     box-sizing: border-box;
     font-weight: 400;
+  }
+  .index-rating {
+    color: #4a4a4a;
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -155,18 +166,15 @@ class App extends React.Component {
     return (
       <PageContainer>
       <AppWrapper>
-        {/* <TestTitle>Hello App!</TestTitle> */}
-        <h2>About</h2>
-        {/* <p>This property matches all of your filters.</p>
-        <p>Matches: &#10004; Hotels</p>
-        <hr /> */}
+
+        <h2 className="title">About</h2>
 
         <ReviewsWrapper>
           <span className="overall-rating">4.5</span>
           <a className="reviews-bubble-rating" href="#">
             <div className="rating-label">Excellent</div>
             <span className="bubbles">
-              {/* <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
               </svg>
               &nbsp;
               <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
@@ -179,36 +187,103 @@ class App extends React.Component {
               </svg>
               &nbsp;
               <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-              </svg> */}
+              </svg>
             </span>
             <span className="all-reviews">{this.state.hotel.numReviews} reviews</span>
           </a>
         </ReviewsWrapper>
-        <span>#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
+        <span className="index-rating">#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
 
         <table>
           <tbody>
             <tr>
-              <td>...dots...</td>
+              <td>
+                <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
               <td>Location</td>
             </tr>
             <tr>
-              <td>...dots...</td>
+              <td>
+              <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
               <td>Cleanliness</td>
             </tr>
             <tr>
-              <td>...dots...</td>
+              <td>
+              <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
               <td>Service</td>
             </tr>
             <tr>
-              <td>...dots...</td>
+              <td>
+              <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
               <td>Value</td>
             </tr>
           </tbody>
         </table>
 
-        <hr />
-        <p>{Description}</p>
+        <p className="description">{Description}</p>
 
         <CarouselWrapper>
           <Carousel

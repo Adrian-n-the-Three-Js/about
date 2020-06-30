@@ -28,13 +28,13 @@ const ModalWrapper = styled.div`
   bottom: 48px;
   // left: 48px;
   // right: 48px;
-  // box-sizing: border-box;
-  // overflow: hidden;
+  box-sizing: border-box;
+  overflow: hidden;
   // background-color: #fff;
-  // box-shadow: 2px 2px 9px rgba(0,0,0,.5);
-  // transition: opacity .4s ease-in-out;
+  box-shadow: 2px 2px 9px rgba(0,0,0,.5);
+  transition: opacity .4s ease-in-out;
   // z-index: 10;
-  // border-radius: 2px;
+  border-radius: 2px;
   position: fixed;
   top: 0;
   left: 0;
@@ -46,9 +46,6 @@ const ModalWrapper = styled.div`
   max-height: 90.49%;
   max-width: 93.36%;
   margin: auto;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
 `;
 
 const Header = styled.div`
