@@ -5,7 +5,6 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 console.log('modal');
-
 const ModalContainer = styled.div`
   box-sizing: border-box;
   position: fixed;
@@ -13,44 +12,48 @@ const ModalContainer = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,.6);
   overflow-x: hidden;
   overflow-y: auto;
   color: #777;
+  font-size: x-small;
   z-index: 10000;
+  display: block;
 `;
 
 const ModalWrapper = styled.div`
-  position: absolute;
-  display: block;
+  // position: absolute;
+  // // display: block;
   top: 48px;
   bottom: 48px;
-  left: 48px;
-  right: 48px;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 2px 2px 9px rgba(0,0,0,.5);
-  transition: opacity .4s ease-in-out;
-  z-index: 10;
-  border-radius: 2px;
+  // left: 48px;
+  // right: 48px;
+  // box-sizing: border-box;
+  // overflow: hidden;
+  // background-color: #fff;
+  // box-shadow: 2px 2px 9px rgba(0,0,0,.5);
+  // transition: opacity .4s ease-in-out;
+  // z-index: 10;
+  // border-radius: 2px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity .2s linear;
+  z-index: 1;
   min-height: 504px;
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // transition: opacity .2s linear;
-  // z-index: 1;
-  // max-height: 50%;
-  // max-height: 90.49%;
-  // max-width: 93.36%;
-  // margin: auto;
+  max-height: 90.49%;
+  max-width: 93.36%;
+  margin: auto;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
 `;
 
 const Header = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -66,7 +69,6 @@ const Header = styled.div`
   width: 100%;
   background-color: #ffffff;
   transition: opacity 333ms linear;
-  background-image: linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.53) 48%,rgba(0,0,0,0));
 `;
 
 const HeaderLeft = styled.div`

@@ -8,17 +8,16 @@ import styled from 'styled-components';
 // import {createGlobalStyle} from 'styled-components';
 // import { getIcon } from '../icons';
 // import { FaBeer } from 'react-icons/fa';
-import {IconUmbrella} from './Circle.js';
+// import {IconUmbrella} from './Circle.js';
 
 console.log('hello app');
 
-const PageWrapper = styled.div`
-  background-color: ${props => props.theme.whiteSmoke};
+const PageContainer = styled.div`
+  background-color: #f2f2f2;
 `;
 
 const AppWrapper = styled.div`
   background-color: white;
-  border: 1px solid #e0e0e0;
   height: 1030px;
   width: 765px;
   margin: 12px;
@@ -26,34 +25,18 @@ const AppWrapper = styled.div`
   position: relative;
   font-family: ${props => props.theme.font};
   color: ${props => props.theme.charcoal};
-  .rank-index {
-    display: block;
-    font-size: 14px;
-    line-height: 18px;
-    margin-bottom: 12px;
+  .h2 {
+    font-size: 28px;
+    line-height: 30px;
+    color: black;
+    font-family: ${props => props.theme.font};
+    font-weight: 600;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    padding: 0 0 18px;
+    border: 0 solid #e0e0e0;
+    border-color: var(--ta-gray-solid-separator);
+    border-bottom: 1px solid var(--ta-gray-solid-separator);
   }
-  .subrating {
-    font-size: 14px;
-    line-height: 18px;
-  }
-  .description {
-    margin-top: 20px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 22px;
-  }
-`;
-
-const H2 = styled.h2`
-  font-size: 28px;
-  line-height: 30px;
-  color: black;
-  font-family: ${props => props.theme.font};
-  font-weight: 500;
-  border: 0 solid #e0e0e0;
-  border-bottom: 1px solid rgb(224, 224, 224);
-  padding: 0 0 18px;
 `;
 
 const CarouselWrapper = styled.div`
@@ -97,12 +80,6 @@ const ReviewsWrapper = styled.div`
     font-weight: 400;
   }
 `;
-
-// const GlobalStyles = createGlobalStyle`
-//     overflow-y: ${({showModal}) =>
-//     showModal && hidden };
-//   }
-// `
 
 class App extends React.Component {
   constructor(props) {
@@ -176,17 +153,15 @@ class App extends React.Component {
     }
 
     return (
-      <PageWrapper>
+      <PageContainer>
       <AppWrapper>
         {/* <TestTitle>Hello App!</TestTitle> */}
-        <H2>About</H2>
-
+        <h2>About</h2>
         {/* <p>This property matches all of your filters.</p>
         <p>Matches: &#10004; Hotels</p>
         <hr /> */}
 
         <ReviewsWrapper>
-
           <span className="overall-rating">4.5</span>
           <a className="reviews-bubble-rating" href="#">
             <div className="rating-label">Excellent</div>
@@ -209,30 +184,31 @@ class App extends React.Component {
             <span className="all-reviews">{this.state.hotel.numReviews} reviews</span>
           </a>
         </ReviewsWrapper>
-        <span className="rank-index">#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
+        <span>#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
 
         <table>
           <tbody>
             <tr>
               <td>...dots...</td>
-              <td className="subrating">Location</td>
+              <td>Location</td>
             </tr>
             <tr>
               <td>...dots...</td>
-              <td className="subrating">Cleanliness</td>
+              <td>Cleanliness</td>
             </tr>
             <tr>
               <td>...dots...</td>
-              <td className="subrating">Service</td>
+              <td>Service</td>
             </tr>
             <tr>
               <td>...dots...</td>
-              <td className="subrating">Value</td>
+              <td>Value</td>
             </tr>
           </tbody>
         </table>
 
-        <p className="description">{Description}</p>
+        <hr />
+        <p>{Description}</p>
 
         <CarouselWrapper>
           <Carousel
@@ -257,7 +233,7 @@ class App extends React.Component {
         </div>
 
       </AppWrapper>
-      </PageWrapper>
+    </PageContainer>
     );
   }
 }
@@ -265,7 +241,7 @@ class App extends React.Component {
 export default App;
 
 
- {/* <table>
+{/* <table>
           <tbody>
             <tr>
               <th rowSpan="2">4.5</th>
@@ -294,4 +270,4 @@ export default App;
           </tbody>
         </table>
 
-        <p>#10 of 174 hotels in Denver</p> */}
+ */}
