@@ -6,6 +6,72 @@ import styled from 'styled-components';
 
 console.log('carousel');
 
+const PhotoContainer = styled.div`
+  // display: flex;
+  position: relative;
+  height: 270px;
+  width: 370px;
+  overflow: hidden;
+`;
+
+const ArrowButton = styled.button`
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  background-color: rgba(0,0,0, .32);
+  border: 0;
+  top: 40%;
+  // text-align: center;
+  ${(props) => (props.direction === 'right' ? 'right: 0%' : 'left: 0%')};
+  ${(props) => (props.visible ? 'visibility: visible' : 'visibility: hidden')};
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -0.2em;
+    width: 2.5em;
+    height: 2.5em;
+    font-weight: bold;
+    overflow: hidden;
+  }
+  .icon-chevron-left {
+    transform: rotate(180deg);
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    // background-color: yellow;
+    background-color: rgba(44,44,44, .50);
+  }
+`;
+
+const PhotostripWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  // justify-content: space-evenly;
+  height: 50px;
+  width: 370px;
+  padding: 2px 0px 2px 0px;
+  // margin: 1px -1px -1px;
+  // padding: 0;
+  // overflow: hidden;
+`;
+
+const AlbumPhotoCount = styled.div`
+  padding: 16px;
+  background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  color: #fff;
+  font-size: 15px;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  // z-index: 5;
+  box-sizing: border-box;
+`;
+
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +94,7 @@ class Carousel extends React.Component {
   }
 
   nextPhoto() {
-    console.log('next photo');
+    console.log('next photo', 'currentIndex', this.state.currentPhotoIndex);
     const lastIndex = this.props.preview.length - 1;
     const currentPhotoIndex = this.state.currentPhotoIndex;
     const index = currentPhotoIndex !== lastIndex ? currentPhotoIndex + 1 : null;
@@ -44,68 +110,75 @@ class Carousel extends React.Component {
 
   render() {
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
+    // console.log('props', this.props.hotel);
+    console.log('preview', this.props.preview);
+
     return (
       <div>
-
-        {/* <ArrowContainer> */}
-          {(this.state.currentPhotoIndex - 1 >= 0) && (
-            <Arrow className="arrow"
-              direction="left"
-              symbol="&#60;"
-              onClick={this.previousPhoto}
-            />
-          )}
-        {/* </ArrowContainer> */}
-
-        {/* <ArrowContainer> */}
-          {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
-            <Arrow className="arrow"
-              direction="right"
-              symbol="&#62;"
-              onClick={this.nextPhoto}
-            />
-          )}
-        {/* </ArrowContainer> */}
-
-        {/* {
-          this.props.preview.length &&
-          <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
-        } */}
-
         <PhotoContainer>
+
+          <ArrowButton
+            direction="left"
+            photoIndex={this.state.currentPhotoIndex}
+            visible={this.state.currentPhotoIndex - 1 >= 0 ? true : false}
+            onClick={this.previousPhoto}
+          >
+            <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+            {/* <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M14.19 16.005l7.869 7.868-2.129 2.129-9.996-9.997L19.937 6.002l2.127 2.129z"/></svg> */}
+
+          </ArrowButton>
+
+          <ArrowButton
+            direction="right"
+            photoIndex={this.state.currentPhotoIndex}
+            visible={(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) ? true : false}
+            onClick={this.nextPhoto}
+          >
+            <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+
+          </ArrowButton>
+
           <Photo
+            index={this.state.currentPhotoIndex}
             url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
-            onClick={this.props.onClick}
+            album={this.props.preview[this.state.currentPhotoIndex].category}
+            toggleModal={this.props.toggleModal}
           />
-          <AlbumPhotoCount />
+
+          <AlbumPhotoCount
+            hotel={this.props.hotel}
+            currentAlbumIndex={this.state.currentPhotoIndex}
+          >
+            <div>
+              <span>{this.props.preview[this.state.currentPhotoIndex].category}</span>
+              &nbsp;&nbsp;
+              <span>({this.props.preview[this.state.currentPhotoIndex].length})</span>
+            </div>
+          </AlbumPhotoCount>
+
         </PhotoContainer>
+
 
         <PhotostripWrapper>
           {this.props.preview.map((one, index) => (
             <CarouselPhotostrip
               className="photostrip"
-              // key={one._id}
+              key={one._id}
               index={index}
+              displayedPhotoIndex={this.state.currentPhotoIndex}
               photo={one.imageUrl}
               caption={one.caption}
               onClick={this.photostripClick}
+              toggleModal={this.props.toggleModal}
             />
           ))}
         </PhotostripWrapper>
-
       </div>
     );
   }
 }
 
-const AlbumPhotoCount = () => {
-  console.log('album photo count');
-  return (
-    <div>
-      Room & Suite
-    </div>
-  )
-};
+export default Carousel;
 
 // const ArrowContainer = styled.div`
 //   position: absolute;
@@ -118,49 +191,35 @@ const AlbumPhotoCount = () => {
 //   // justify-content: center;
 // `;
 
-const PhotoContainer = styled.div`
-  height: 270px;
-  width: 370px;
-  display: flex;
-  // align-items: left;
-`;
+          {/* <ArrowButton
+            // direction="left"
+            // symbol="&#60;"
+            onClick={this.previousPhoto}>
+          </ArrowButton>
 
-const AlbumPhotoCountContainer = styled.div`
-  align-self: center;
-`;
+          <ArrowButton
+            // direction="right"
+            // symbol="&#62;"
+            onClick={this.nextPhoto}>
+          </ArrowButton> */}
 
-const PhotostripWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 50px;
-  width: 370px;
+          {/* {(this.state.currentPhotoIndex - 1 >= 0) && (
+            <Arrow className="arrow"
+              direction="left"
+              symbol="&#60;"
+              onClick={this.previousPhoto}
+            />
+          )}
 
-  // flex-wrap: wrap;
-  // border: 1px solid blue;
-  // max-width: 50px;
-  // max-height: 50px;
-  // margin: 1px -1px -1px;
-  // padding: 0;
-  // cursor: pointer;
-  // // height: 5px;
-  // // width: 5px
-  // overflow: hidden;
-`;
+          {(this.state.currentPhotoIndex + 1 <= this.props.preview.length - 1) && (
+            <Arrow className="arrow"
+              direction="right"
+              symbol="&#62;"
+              onClick={this.nextPhoto}
+            />
+          )} */}
 
-const PhotoStrip = styled(PhotostripWrapper)`
-  position: relataive:
-  width: 100px;
-  height: 100px;
-
-  // margin: 0 auto;
-  // &:after {
-  //   content: '';
-  //   display: block;
-  //   outline: 5px solid #fc2003;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  }
-`;
-
-export default Carousel;
+          {/* {
+            this.props.preview.length &&
+            <img src={this.props.preview[this.state.currentPhotoIndex]['imageUrl']}/>
+          } */}

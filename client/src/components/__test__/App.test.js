@@ -15,7 +15,7 @@ describe('App', () => {
     expect(AppComponent).toMatchSnapshot();
   });
 
-  xit('should test axios call', async () => {
+  it('should test axios call', async () => {
     const res = {data: sampleData};
     axios.get.mockImplementationOnce( () => Promise.resolve(res));
     const AppComponent = shallow(<App />);

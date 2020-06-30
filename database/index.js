@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/hotel', {useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connect('mongodb://localhost/hotel', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // test connection
 const db = mongoose.connection;
@@ -12,11 +13,13 @@ db.once('open', () => {
 // native mongo object id will represent hotel id
 const photoSchema = new mongoose.Schema({
   hotelName: String,
+  hotelCity: String,
   hotelPrice: String,
+  numReviews: String,
   roomAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -29,7 +32,7 @@ const photoSchema = new mongoose.Schema({
   diningAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -42,7 +45,7 @@ const photoSchema = new mongoose.Schema({
   poolAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -55,7 +58,7 @@ const photoSchema = new mongoose.Schema({
   gymAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -68,7 +71,7 @@ const photoSchema = new mongoose.Schema({
   amenitiesAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -81,7 +84,7 @@ const photoSchema = new mongoose.Schema({
   bathroomAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -94,7 +97,7 @@ const photoSchema = new mongoose.Schema({
   eventRoomAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -107,7 +110,7 @@ const photoSchema = new mongoose.Schema({
   roomViewAlbum: [
     {
       user: String,
-      userAvatarURL: String,
+      userAvatarUrl: String,
       imageUrl: String,
       caption: String,
       category: String,
@@ -123,6 +126,6 @@ const photoSchema = new mongoose.Schema({
 const Photo = mongoose.model('Photo', photoSchema);
 
 module.exports = {
-  db: db,
-  Photo: Photo
+  db,
+  Photo,
 };

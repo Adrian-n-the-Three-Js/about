@@ -3,7 +3,7 @@ import { mount, shallow, render } from 'enzyme';
 import Carousel from '../Carousel.jsx';
 
 describe ('Carousel', () => {
-  it('should render correctly', () => {
+  xit('should render correctly', () => {
     const propsData = { preview: [{id: 1}] };
     const CarouselComponent = shallow(<Carousel {...propsData}/>);
     expect(CarouselComponent).toMatchSnapshot();
@@ -18,7 +18,7 @@ describe ('Carousel', () => {
   //   expect(arrow.props().currentPhotoIndex).toEqual(1);
   // });
 
-  it('should render 4 photostrip photos', () => {
+  xit('should render 4 photostrip photos', () => {
     const propsData = { preview: [{id: 1}, {id: 2}, {id: 3}, {id: 4}] };
     const CarouselComponent = shallow(<Carousel {...propsData} />);
     expect(CarouselComponent.find('.photostrip').length).toEqual(propsData.preview.length);

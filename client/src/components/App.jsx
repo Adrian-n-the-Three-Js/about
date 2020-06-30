@@ -2,17 +2,93 @@ import React from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.jsx';
 import Modal from './Modal.jsx';
-import Description from './HotelDescription.jsx';
+import Description from '../hotelDescription.js';
 import styled from 'styled-components';
-import { createGlobalStyle } from "styled-components";
+// import bubble from '../../dist/icons.svg';
+// import {createGlobalStyle} from 'styled-components';
+// import { getIcon } from '../icons';
+// import { FaBeer } from 'react-icons/fa';
+// import {IconUmbrella} from './Circle.js';
 
 console.log('hello app');
 
-const GlobalStyles = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-  body {
-    font-family: 'Open Sans', sans-serif;
+const PageContainer = styled.div`
+  background-color: #f2f2f2;
+`;
+
+const AppWrapper = styled.div`
+  background-color: white;
+  height: 1030px;
+  width: 765px;
+  margin: 12px;
+  padding: 24px;
+  position: relative;
+  font-family: ${props => props.theme.font};
+  color: ${props => props.theme.charcoal};
+  .title {
+    font-size: 28px;
+    line-height: 30px;
+    color: rgb(0, 10, 18);
+    font-family: ${props => props.theme.font};
+    font-weight: 600;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    padding: 0 0 18px;
+    border: 0 solid #e0e0e0;
+  }
+  .description {
+    border-top: 1px solid rgb(224, 224, 224);
+    font-size: 16px;
+    line-height: 22px;
+    padding: 10px;
+  }
+`;
+
+const CarouselWrapper = styled.div`
+  // position: relative;
+  cursor: pointer;
+  height: 340px;
+  width: 370px;
+  // background-color: #f5dcdc;
+`;
+
+const ReviewsWrapper = styled.div`
+  font-size: 18px;
+  line-height: 22px;
+  // font-weight: 700;
+  margin: 14px 0;
+  height: auto;
+  color: #000;
+  display: flex;
+  align-self: center;
+  .overall-rating {
+    align-self: center;
+    font-size: 48px;
+    font-weight: 500;
+    margin-right: 8px;
+  }
+  a:link, a:visited {
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .all-reviews {
+    color: ${(props) => props.theme.charcoal};
+    font-size: 14px;
+    border-bottom: 1px dotted #d6d6d6;
+    max-width: 124px;
+    white-space: nowrap;
+    text-align: right;
+    margin-left: 5px;
+    box-sizing: border-box;
+    font-weight: 400;
+  }
+  .index-rating {
     color: #4a4a4a;
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -24,151 +100,256 @@ class App extends React.Component {
       preview: [],
       isLoaded: false,
       showModal: false,
+      modalAlbum: '',
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
-    return(
+    console.log('state before mount', this.state);
+    return (
       this.getData()
-    )
+    );
   }
 
   // GET
   // testing with 1 hotel
   getData() {
     // return (
-    // const hotel = [...this.state.hotel];
-     axios.get('/api/photos')
+    const hotelId = hotelId || '5ef93c54a4f2ab25650b9c33';
+    axios({
+      method: 'get',
+      url: `/api/photos/${hotelId}`,
+      params: {hotelId}
+    })
       .then((response) => {
-        const data = response.data;
+        // test which hotel we are looking at here
+        const hotel = response.data[0];
+        const preview = [
+          hotel.roomAlbum[0],
+          hotel.diningAlbum[0],
+          hotel.poolAlbum[0],
+          hotel.gymAlbum[0],
+          hotel.bathroomAlbum[0],
+          hotel.eventRoomAlbum[0],
+          hotel.roomViewAlbum[0],
+        ];
+        console.log('...', preview);
+        console.log('all hotel records', response.data);
+        console.log('1st hotel record', hotel);
         this.setState({
-          hotel: data,
-          preview: [data[0].roomAlbum[0], data[0].diningAlbum[0], data[0].poolAlbum[0], data[0].gymAlbum[0]],
+          hotel,
+          preview,
           isLoaded: true,
         });
         (error) => {
-          this.setState({ isLoaded: true});
+          this.setState({ isLoaded: true });
           console.log(error);
         };
-        console.log('hotel data', this.state.hotel);
+        console.log('hotel data', this.state);
         console.log('preview data', this.state.preview);
       })
     // );
   }
 
-  toggleModal() {
-    console.log('toggle modal');
+  toggleModal(modalAlbum) {
+    console.log('toggle modal', modalAlbum);
     this.setState({
       showModal: !this.state.showModal,
+      modalAlbum,
     });
   }
 
   render() {
 
+
+    // refactor to switch statement later? ...
+    const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : this.state.modalAlbum === 'Gym' ? 'gymAlbum' : this.state.modalAlbum === 'Bathroom' ? 'bathroomAlbum' : this.state.modalAlbum === 'Business Center & Event Rooms' ? 'eventRoomAlbum' : 'roomViewAlbum';
+
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
-    return (
 
+    return (
+      <PageContainer>
       <AppWrapper>
 
-        <GlobalStyles />
+        <h2 className="title">About</h2>
 
-        <TestTitle>Hello App!</TestTitle>
-        <h2>About</h2>
-        <hr />
-        <p>This property matches all of your filters.</p>
-        <p>Matches: &#10004; Hotels</p>
-        <hr />
+        <ReviewsWrapper>
+          <span className="overall-rating">4.5</span>
+          <a className="reviews-bubble-rating" href="#">
+            <div className="rating-label">Excellent</div>
+            <span className="bubbles">
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+              </svg>
+              &nbsp;
+              <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+              </svg>
+            </span>
+            <span className="all-reviews">{this.state.hotel.numReviews} reviews</span>
+          </a>
+        </ReviewsWrapper>
+        <span className="index-rating">#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
 
         <table>
-          <tr>
-            <th rowSpan="2">4.5</th>
-            <th>Excellent</th>
-          </tr>
-          <tr>
-            <th>...dots...</th>
-            <th>2,929 reviews</th>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
+              <td>Location</td>
+            </tr>
+            <tr>
+              <td>
+              <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
+              <td>Cleanliness</td>
+            </tr>
+            <tr>
+              <td>
+              <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
+              <td>Service</td>
+            </tr>
+            <tr>
+              <td>
+              <span className="bubbles">
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8"/>
+                </svg>
+                &nbsp;
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+                </span>
+              </td>
+              <td>Value</td>
+            </tr>
+          </tbody>
         </table>
 
-        <p>#10 of 174 hotels in Denver</p>
-
-        <table>
-          <tr>
-            <td>...dots...</td>
-            <td>Location</td>
-          </tr>
-          <tr>
-            <td>...dots...</td>
-            <td>Cleanliness</td>
-          </tr>
-          <tr>
-            <td>...dots...</td>
-            <td>Service</td>
-          </tr>
-          <tr>
-            <td>...dots...</td>
-            <td>Value</td>
-          </tr>
-        </table>
-
-        <hr />
-        <p>{Description}</p>
+        <p className="description">{Description}</p>
 
         <CarouselWrapper>
           <Carousel
             hotel={this.state.hotel}
             preview={this.state.preview}
-            onClick={this.toggleModal}
+            toggleModal={this.toggleModal}
           />
         </CarouselWrapper>
 
         <div className="modal">
-          <Modal
-            hotel={this.state.hotel}
-            onClick={this.toggleModal}
-          />
+
+          {
+          this.state.showModal && (
+            <Modal
+              hotel={this.state.hotel}
+              album={this.state.hotel[modalAlbum]}
+              toggleModal={this.toggleModal}
+              showModal={this.state.showModal}
+            />
+          )
+          }
         </div>
 
       </AppWrapper>
+    </PageContainer>
     );
   }
 }
 
-const AppWrapper = styled.div`
-  background-color: papayawhip;
-  height: 1030px;
-  width: 765px;
-  padding: 24px;
-  margin: 12px;
-`;
-
-const TestTitle = styled.h1`
-  font-size: 2em;
-  text-align: center;
-  color: palevioletred;
-`;
-
-const CarouselWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  // position:: relative;
-  background-color: #f5dcdc;
-  cursor: pointer;
-  height: 340px;
-  width: 370px;
-  // display: block;
-  // flex-direction: column;
-  // padding-top: 50px;
-  // padding-right: 80px;
-  // padding-bottom: 50px;
-  // padding-left: 80px;
-  // margin: 0 auto;
-  // overflow: hidden;
-`;
-
 export default App;
+
+
+{/* <table>
+          <tbody>
+            <tr>
+              <th rowSpan="2">4.5</th>
+              <th>Excellent</th>
+            </tr>
+            <tr>
+              <th>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8"/>
+                </svg>
+                <svg className="bi bi-circle-half" width="1em" height="1em" viewBox="0 0 16 16" fill="#00aa6c" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M8 15V1a7 7 0 1 1 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                </svg>
+              </th>
+              <th>2,929 reviews</th>
+            </tr>
+          </tbody>
+        </table>
+
+ */}

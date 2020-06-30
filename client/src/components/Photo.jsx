@@ -3,28 +3,29 @@ import styled from 'styled-components';
 
 console.log('photo');
 
+const Image = styled.img`
+  // display: block;
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  // overflow: hidden;
+`;
+
 const Photo = (props) => {
+  // console.log('photo props', props);
   return (
     <Image
       className="photo"
       src={props.url}
-      onClick={ () => {props.onClick} }
+      onClick={ () => props.toggleModal(props.album) }
     />
   );
 };
-
-const Image = styled.img`
-  height: 270px;
-  width: 370px;
-  // padding: 5px;
-  // flex: 1;
-  // position: relative;
-  // margin: 1px;
-  // flex-shrink: 1;
-  // padding: 0;
-  // // width: 100%;
-  // height: 50px;
-  // display: block;
-`;
 
 export default Photo;
