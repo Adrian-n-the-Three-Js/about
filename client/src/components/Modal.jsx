@@ -3,6 +3,7 @@ import ModalCarousel from './ModalCarousel.jsx';
 import ReactDOM from 'react-dom';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+import DiagonalUpArrow from '../icons/DiagonalUpArrow.jsx';
 
 // console.log('modal');
 
@@ -16,8 +17,6 @@ const ModalContainer = styled.div`
   background-color: rgba(0,0,0,.6);
   overflow-x: hidden;
   overflow-y: auto;
-  color: #777;
-  font-size: x-small;
   z-index: 10000;
   display: block;
 `;
@@ -189,8 +188,7 @@ class Modal extends React.Component {
               <li>
                 <HeaderItemLink href="#">
                   {this.props.hotel.hotelName.split(" ").join("")}.com
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-
+                   <DiagonalUpArrow />
                   </HeaderItemLink>
                 </li>
               <li><HeaderItem className="price">${this.props.hotel.hotelPrice}</HeaderItem></li>

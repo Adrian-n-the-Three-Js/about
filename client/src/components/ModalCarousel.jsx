@@ -9,6 +9,8 @@ import Report from '../icons/Report.jsx';
 import Pin from '../icons/Pin.jsx';
 import LeftArrow from '../icons/LeftArrow.jsx';
 import RightArrow from '../icons/RightArrow.jsx';
+import Bubble from '../icons/Bubble.jsx';
+import HalfBubble from '../icons/HalfBubble.jsx';
 
 // console.log('modal carousel');
 
@@ -91,11 +93,13 @@ const DetailsWrapper = styled.div`
   position: absolute;
   color: #fff;
   bottom: 0;
+  font-size: 12px
   transition: opacity 333ms linear;
   width: calc(100% - 16px);
   padding-left: 16px;
   padding-top: 16px;
-  padding-bottom: 0;
+  // padding-right: 32px;
+  padding-bottom: 16px;
 `;
 
 const PhotoDetailsSection = styled.div`
@@ -103,6 +107,7 @@ const PhotoDetailsSection = styled.div`
   font-family: ${props => props.theme.font};
   // border-radius: 0 0 2px 2px;
   // padding: 16px 16px 16px 0px;
+  .
 `;
 
 const Avatar = styled.div`
@@ -118,27 +123,28 @@ const Avatar = styled.div`
 `;
 
 const PhotoDetails = styled.div`
-  display: block;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   font-size: 12px;
   line-height: 16px;
   min-height: 50px;
   font-family: ${props => props.theme.font};
-  // height: 100%;
   color: #ffffff;
   border-radius: 0 0 2px 2px;
   color: #fff;
   bottom: 0;
   transition: opacity 333ms linear;
-  padding-left: 16px;
+  padding-left: 13px;
   vertical-align: middle;
   padding-bottom: 0;
-  > span {
-    margin: 0;
-    padding: 0;
-    display: block;
-    vertical-align: middle;
-    font-size: 12px;
-  }
+  // > span {
+  //   margin: 0;
+  //   padding: 0;
+  //   display: block;
+  //   vertical-align: middle;
+  //   font-size: 12px;
+  // }
 `;
 
 const ActionButtonsContainer = styled.div`
@@ -147,6 +153,7 @@ const ActionButtonsContainer = styled.div`
   font-size: 12px;
   border-top: 1px solid #ffffff;
   margin-right: 32px;
+  border-radius: 0 0 2px 2px;
   .helpful-button {
     display: inline-block;
     padding: 16px 0;
@@ -185,7 +192,10 @@ const ActionButtonsContainer = styled.div`
 const ReviewWrapper = styled.div`
   font-family: ${props => props.theme.font};
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
+  padding-top: 12px;
+  padding-bottom: 16px;
+  padding-right: 32px;
 `;
 
 const ArrowButton = styled.button`
@@ -298,6 +308,7 @@ class ModalCarousel extends React.Component {
 
         <PhotoDetailsSection>
           <Avatar
+            className="avatar"
             avatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
           />
 
@@ -322,7 +333,22 @@ class ModalCarousel extends React.Component {
         </PhotoDetailsSection>
 
         <ReviewWrapper>
-          <div>{this.props.album[this.state.currentPhotoIndex].caption}</div>
+          <div>
+            <span>
+              <Bubble/>
+              &nbsp;
+              <Bubble/>
+              &nbsp;
+              <Bubble/>
+              &nbsp;
+              <Bubble/>
+              &nbsp;
+              <HalfBubble/>
+              &nbsp;
+              &nbsp;
+            </span>
+            {this.props.album[this.state.currentPhotoIndex].caption}
+          </div>
           <div>Read review</div>
         </ReviewWrapper>
 
