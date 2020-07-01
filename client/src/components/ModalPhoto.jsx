@@ -5,9 +5,11 @@ import styled from 'styled-components';
 
 const Image = styled.img`
   max-height: 100%;
+  height: auto;
+  // max-height: 930px;
   min-height: 200px;
   max-width: 100%;
-  // object-fit: cover;
+  object-fit: contain;
   display: block;
   // margin: 0 auto;
   border: 0;

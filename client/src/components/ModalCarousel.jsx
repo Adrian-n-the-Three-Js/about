@@ -12,13 +12,15 @@ const ModalCarouselWrapper = styled.div`
   transition: opacity .4s ease-in-out;
   z-index: 10;
   border-radius: 2px;
-  min-height: 504px;
+  // min-height: 504px;
+  // object-fit: contain;
   overflow: hidden;
   top: 0;
   left: 0;
-  max-height: 100%;
+  width: auto !important;
+  height: 100%;
   max-width: 100%;
-  min-height: 200px;
+  // min-height: 200px;
   border-color: #777779;
   background-color: #000000;
 `;
