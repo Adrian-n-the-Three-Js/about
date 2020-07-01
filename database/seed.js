@@ -3,6 +3,16 @@ const axios = require('axios');
 const faker = require('faker');
 const db = require('./index.js');
 
+// drop current existing collection from the database
+const clearPhotos = () => {
+  db.Photo.deleteMany({})
+    .then(() => {
+      console.log('SUCCESS: cleared existing photo data');
+    })
+    .catch((error) => console.log('FAILED clear photos:', error));
+};
+clearPhotos();
+
 // grab array of photo options by search term
 const getImages = () => {
   const YOUR_ACCESS_KEY = 'SvcCVERRXFolrMNWbuzHKE26VoBPgO-LHBp9mTb3gyE';
@@ -14,6 +24,7 @@ const getImages = () => {
       query: 'hotel-room',
       order_by: 'popular',
       per_page: 20,
+      orientation: 'landscape',
     },
     headers: {
       Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -30,6 +41,7 @@ const getImages = () => {
         query: 'restaurant',
         order_by: 'popular',
         per_page: 20,
+        orientation: 'landscape',
       },
       headers: {
         Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -45,6 +57,7 @@ const getImages = () => {
           query: 'pool',
           order_by: 'popular',
           per_page: 20,
+          orientation: 'landscape',
         },
         headers: {
           Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -60,6 +73,7 @@ const getImages = () => {
           query: 'gym',
           order_by: 'popular',
           per_page: 20,
+          orientation: 'landscape',
         },
         headers: {
           Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -75,6 +89,7 @@ const getImages = () => {
             query: 'room-service',
             order_by: 'popular',
             per_page: 20,
+            orientation: 'landscape',
           },
           headers: {
             Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -90,6 +105,7 @@ const getImages = () => {
               query: 'bathroom',
               order_by: 'popular',
               per_page: 20,
+              orientation: 'landscape',
             },
             headers: {
               Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -105,6 +121,7 @@ const getImages = () => {
                 query: 'event-room',
                 order_by: 'popular',
                 per_page: 20,
+                orientation: 'landscape',
               },
               headers: {
                 Authorization: 'Client-ID ' + YOUR_ACCESS_KEY,
@@ -119,6 +136,7 @@ const getImages = () => {
               params: {
                 query: 'hotel-view',
                 order_by: 'popular',
+                orientation: 'landscape',
                 per_page: 20,
               },
               headers: {
@@ -260,7 +278,7 @@ const generateDataSet = (roomAlbum, diningAlbum, poolAlbum, gymAlbum, amenitiesA
 const insertphotoData = (allHotels) => {
   db.Photo.insertMany(allHotels)
     .then(() => {
-      console.log('SUCCESS: inserted photo data');
+      console.log('SUCCESS: inserted new photo data');
       db.db.close();
     })
     .catch((error) => console.log('FAILED:', error));
