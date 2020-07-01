@@ -3,6 +3,7 @@ import ModalCarousel from './ModalCarousel.jsx';
 import ReactDOM from 'react-dom';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+import DiagonalUpArrow from '../icons/DiagonalUpArrow.jsx';
 
 // console.log('modal');
 
@@ -16,8 +17,6 @@ const ModalContainer = styled.div`
   background-color: rgba(0,0,0,.6);
   overflow-x: hidden;
   overflow-y: auto;
-  color: #777;
-  font-size: x-small;
   z-index: 10000;
   display: block;
 `;
@@ -31,16 +30,12 @@ const ModalWrapper = styled.div`
   right: 48px;
   box-sizing: border-box;
   overflow: hidden;
-  // background-color: #fff;
   box-shadow: 2px 2px 9px rgba(0,0,0,.5);
   transition: opacity .4s ease-in-out;
-  // z-index: 10;
   border-radius: 2px;
   position: fixed;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
+  // display: flexbox;
+  // flex-direction: column;
   transition: opacity .2s linear;
   z-index: 1;
   min-height: 504px;
@@ -193,8 +188,7 @@ class Modal extends React.Component {
               <li>
                 <HeaderItemLink href="#">
                   {this.props.hotel.hotelName.split(" ").join("")}.com
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-
+                   <DiagonalUpArrow />
                   </HeaderItemLink>
                 </li>
               <li><HeaderItem className="price">${this.props.hotel.hotelPrice}</HeaderItem></li>
