@@ -28,9 +28,8 @@ const AppWrapper = styled.div`
     color: rgb(0, 10, 18);
     font-family: ${props => props.theme.font};
     font-weight: 600;
-    border-bottom: 1px solid rgb(224, 224, 224);
     padding: 0 0 18px;
-    border: 0 solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
   }
   .description {
     border-top: 1px solid rgb(224, 224, 224);
@@ -162,7 +161,9 @@ class App extends React.Component {
       <PageContainer>
       <AppWrapper>
 
-        <h2 className="title">About</h2>
+        <div className="about-header">
+          <h2 className="title">About</h2>
+        </div>
 
         <ReviewsWrapper>
           <span className="overall-rating">4.5</span>
