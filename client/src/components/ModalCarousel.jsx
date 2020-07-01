@@ -6,21 +6,20 @@ import styled from 'styled-components';
 
 const ModalCarouselWrapper = styled.div`
   display: block;
-  position: relative;
+  // position: relative;
   background-color: #fff;
   box-shadow: 2px 2px 9px rgba(0,0,0,.5);
   transition: opacity .4s ease-in-out;
   z-index: 10;
   border-radius: 2px;
   // min-height: 504px;
-  // object-fit: contain;
-  overflow: hidden;
+  box-sizing: border-box;
+  // overflow: auto;
   top: 0;
   left: 0;
-  width: auto !important;
-  height: 100%;
-  max-width: 100%;
-  // min-height: 200px;
+  // width: auto !important;
+  // height: inherit;
+  // width: inherit;
   border-color: #777779;
   background-color: #000000;
 `;
