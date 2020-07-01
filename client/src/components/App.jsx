@@ -32,10 +32,24 @@ const AppWrapper = styled.div`
     border-bottom: 1px solid #e0e0e0;
   }
   .description {
-    border-top: 1px solid rgb(224, 224, 224);
-    font-size: 16px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 14px;
     line-height: 22px;
-    padding: 10px;
+    padding-top: 20px;
+    color: ${props => props.theme.charcoal};
+    // font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 16px;
+  }
+  .index-rating {
+    color: #4a4a4a;
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 12px;
+  }
+  > table {
+    font-size: 14px;
   }
 `;
 
@@ -78,13 +92,6 @@ const ReviewsWrapper = styled.div`
     margin-left: 5px;
     box-sizing: border-box;
     font-weight: 400;
-  }
-  .index-rating {
-    color: #4a4a4a;
-    display: block;
-    font-size: 14px;
-    line-height: 18px;
-    margin-bottom: 12px;
   }
 `;
 
@@ -183,7 +190,7 @@ class App extends React.Component {
             <span className="all-reviews">{this.state.hotel.numReviews} reviews</span>
           </a>
         </ReviewsWrapper>
-        <span className="index-rating">#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
+          <span className="index-rating">#20 of 500 hotels in {this.state.hotel.hotelCity}</span>
 
         <table>
           <tbody>
@@ -201,7 +208,7 @@ class App extends React.Component {
                   <HalfBubble/>
                 </span>
               </td>
-              <td>Location</td>
+              <td>&nbsp;&nbsp;Location</td>
             </tr>
             <tr>
               <td>
@@ -217,7 +224,7 @@ class App extends React.Component {
                   <Bubble/>
                 </span>
               </td>
-              <td>Cleanliness</td>
+              <td>&nbsp;&nbsp;Cleanliness</td>
             </tr>
             <tr>
               <td>
@@ -233,7 +240,7 @@ class App extends React.Component {
                   <HalfBubble/>
                 </span>
               </td>
-              <td>Service</td>
+              <td>&nbsp;&nbsp;Service</td>
             </tr>
             <tr>
               <td>
@@ -249,7 +256,7 @@ class App extends React.Component {
                 <HalfBubble/>
                 </span>
               </td>
-              <td>Value</td>
+              <td>&nbsp;&nbsp;Value</td>
             </tr>
           </tbody>
         </table>

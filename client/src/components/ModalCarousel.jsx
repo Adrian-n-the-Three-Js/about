@@ -1,6 +1,14 @@
 import React from 'react';
 import ModalPhoto from './ModalPhoto.jsx';
 import styled from 'styled-components';
+import Gallery from '../icons/Gallery.jsx';
+import Thumb from '../icons/Thumb.jsx';
+import Like from '../icons/Like.jsx';
+import Share from '../icons/Share.jsx';
+import Report from '../icons/Report.jsx';
+import Pin from '../icons/Pin.jsx';
+import LeftArrow from '../icons/LeftArrow.jsx';
+import RightArrow from '../icons/RightArrow.jsx';
 
 // console.log('modal carousel');
 
@@ -252,9 +260,7 @@ class ModalCarousel extends React.Component {
         <IndexInfo>
           <span>
             <GalleryButton>
-              <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-grid-fill" fill="#000000" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
-              </svg>
+              <Gallery/>
               &nbsp;
               Gallery
             </GalleryButton>
@@ -268,7 +274,7 @@ class ModalCarousel extends React.Component {
           clickable={this.state.currentPhotoIndex - 1 >= 0 ? true : false}
           onClick={this.previousPhoto}
         >
-          <svg viewBox="0 0 32 32" className="icon icon-chevron-left" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+          <LeftArrow />
         </ArrowButton>
 
         <ArrowButton
@@ -277,7 +283,7 @@ class ModalCarousel extends React.Component {
           clickable={(this.state.currentPhotoIndex + 1 <= this.props.album.length - 1) ? true : false}
           onClick={this.nextPhoto}
         >
-          <svg viewBox="0 0 32 32" className="icon icon-chevron-right" fill="white" viewBox="0 0 32 32" aria-hidden="true"><path d="M18.629 15.997l-7.083-7.081L13.462 7l8.997 8.997L13.457 25l-1.916-1.916z"/></svg>
+          <RightArrow />
         </ArrowButton>
 
         <ModalPhoto
@@ -302,6 +308,8 @@ class ModalCarousel extends React.Component {
               {this.props.album[this.state.currentPhotoIndex].datePosted}
             </span>
             <span>
+              <Pin />
+              &nbsp;
               {this.props.album[this.state.currentPhotoIndex].location}
               &nbsp;
               &#8226;
@@ -323,7 +331,7 @@ class ModalCarousel extends React.Component {
         <ActionButtonsContainer>
           <div className="helpful-button">
             <span className="thumb-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+              <Thumb />
               &nbsp;
               Helpful
               ({this.props.album[this.state.currentPhotoIndex].helpfulVotes})
@@ -331,21 +339,15 @@ class ModalCarousel extends React.Component {
           </div>
 
           <div className="like-button">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-            </svg>
+            <Like />
           </div>
 
           <div className="share-button">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-box-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" d="M4.646 4.354a.5.5 0 0 0 .708 0L8 1.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
-            <path fillRule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-1 0v9a.5.5 0 0 0 .5.5z"/>
-            <path fillRule="evenodd" d="M2.5 14A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 12 5.5h-1.5a.5.5 0 0 0 0 1H12a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V7a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 0 0-1H4A1.5 1.5 0 0 0 2.5 7v7z"/>
-            </svg>
+            <Share />
           </div>
 
           <div className="report-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            <Report />
           </div>
         </ActionButtonsContainer>
         </DetailsWrapper>
