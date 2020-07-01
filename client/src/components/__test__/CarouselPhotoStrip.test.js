@@ -13,7 +13,7 @@ describe ('CarouselPhotostrip', () => {
     expect(PhotostripComponent.find('.photostrip').exists()).toBe(true);
   })
 
-  xit('should trigger onClick prop when clicked', () => {
+  it('should trigger onClick prop when clicked', () => {
     const mock = jest.fn();
     const PhotostripComponent = shallow(<CarouselPhotostrip onClick={mock} />);
     PhotostripComponent.find('.photostrip').simulate('click');
