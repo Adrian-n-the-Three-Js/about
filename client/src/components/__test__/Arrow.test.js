@@ -1,17 +1,17 @@
 import React from 'react';
 import { mount, shallow, render } from 'enzyme';
-import Arrow from '../Arrow.jsx';
+import ArrowButton from '../Carousel.jsx';
 
 describe ('Arrow', () => {
   xit('should render correctly', () => {
-    const ArrowComponent = shallow(<Arrow />);
-    expect(ArrowComponent).toMatchSnapshot();
+    const ArrowButton = shallow(<ArrowButton />);
+    expect(ArrowButton).toMatchSnapshot();
   });
 
   xit('should trigger onClick prop when clicked', () => {
     const mock = jest.fn();
-    const ArrowComponent = shallow(<Arrow onClick={mock} />);
-    ArrowComponent.find('.arrow').simulate('click');
+    const ArrowButton = shallow(<ArrowButton onClick={mock} />);
+    ArrowButton.find('.arrow').simulate('click');
     expect(mock).toHaveBeenCalledTimes(1);
   });
 });
