@@ -1,9 +1,8 @@
 const Model = require('./model.js');
 
 const getPhotos = (req, res) => {
-  console.log('controller get req.../');
   const id = req.params.hotelId || '1';
-  console.log('req.params.hotelId', id);
+  // console.log('req.params.hotelId', id);
 
   Model.getPhotos(id, (err, data) => {
     if (err) {
@@ -16,4 +15,4 @@ const getPhotos = (req, res) => {
 
 module.exports = {
   getPhotos,
-}
+};
