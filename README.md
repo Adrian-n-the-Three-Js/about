@@ -1,13 +1,13 @@
-# Project Name
+# Hoteloooo
 
 > Project description
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Adrian-n-the-Three-Js/reviews
+  - https://github.com/Adrian-n-the-Three-Js/about
+  - https://github.com/Adrian-n-the-Three-Js/photo-carousel
+  - https://github.com/Adrian-n-the-Three-Js/calendar
 
 ## Table of Contents
 
@@ -36,4 +36,67 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
+
+## REST API
+
+### GET /api/photos/:hotelId
+Ex: app.get('/api/photos/:hotelId', (req, res) => {
+  const _id = req.params.hotelId || '1';
+  const getPhotos = (id, callback) => {
+    db.Photo.find({ hotelId: id }, callback);
+  };
+  getPhotos(_id, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+### POST /api/photos
+Ex: app.post('/api/photos', (req, res) => {
+  const addPhotos = (body, callback) => {
+    let photos = new db.Photo(body)
+    photos.save(callback);
+  }
+  addPhotos(req.body, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+
+### PATCH /api/photos/:hotelId
+Ex: app.put('/api/photos/:hotelId', (req, res) => {
+  let id = req.params.hotelId
+  const updatePhotos = (id, body, callback) => {
+    db.Photo.update({ hotelId : id}, body, callback)
+  }
+  updatePhotos(id, req.body, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+});
+
+### DELETE /api/photos/:hotelId
+Ex: app.delete('/api/photos/:hotelId', (req, res) => {
+  let _id = req.params.hotelId
+  const deletePhotos = (id, callback) => {
+    db.Photo.deleteOne({ hotelId : id }, callback)
+  }
+  deletePhotos(_id, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  })
+});
 
