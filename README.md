@@ -43,7 +43,7 @@ npm install
 * GET ```/api/photos/:hotelId```
 #### Path Parameters: 
 * ```hotelId``` hotel id
-#### Success Status Code: ```200```
+**Success Status Code**: ```200```
 **Returns**: JSON
 ```
 {
@@ -163,7 +163,7 @@ npm install
 * POST ```/api/photos ```
 #### Path Parameters: 
 * ```hotelId``` hotel id
-#### Success Status Code: ```201```
+**Success Status Code**: ```201```
 **Request Body**: Expects JSON with the following keys.
 ```
 {
@@ -282,7 +282,7 @@ npm install
 * PATCH ```/api/photos/:hotelId```
 #### Path Parameters: 
 * ```hotelId``` hotel id
-#### Success Status Code: ```204```
+**Success Status Code**: ```204```
 **Request Body**: Expects JSON with any of the following keys (include only keys to be updated)
 ```
 {
@@ -400,5 +400,5 @@ npm install
 * DELETE ```/api/photos/:hotelId```
 #### Path Parameters: 
 * ```hotelId``` hotel id
-#### Success Status Code: ```204```
+**Success Status Code**: ```204```
 
