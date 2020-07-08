@@ -44,7 +44,7 @@ npm install
 #### Path Parameters: 
 * ```hotelId``` hotel id
 #### Success Status Code: ```200```
-#### Returns: JSON
+#### Returns: `JSON`
 ```
 {
   hotelId: Number,
