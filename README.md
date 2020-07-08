@@ -40,7 +40,7 @@ npm install
 ## REST API
 
 ### GET /api/photos/:hotelId
-Ex: app.get('/api/photos/:hotelId', (req, res) => {
+app.get('/api/photos/:hotelId', (req, res) => {
   const _id = req.params.hotelId || '1';
   const getPhotos = (id, callback) => {
     db.Photo.find({ hotelId: id }, callback);
@@ -55,7 +55,7 @@ Ex: app.get('/api/photos/:hotelId', (req, res) => {
 });
 
 ### POST /api/photos
-Ex: app.post('/api/photos', (req, res) => {
+app.post('/api/photos', (req, res) => {
   const addPhotos = (body, callback) => {
     let photos = new db.Photo(body)
     photos.save(callback);
@@ -71,7 +71,7 @@ Ex: app.post('/api/photos', (req, res) => {
 
 
 ### PATCH /api/photos/:hotelId
-Ex: app.put('/api/photos/:hotelId', (req, res) => {
+app.put('/api/photos/:hotelId', (req, res) => {
   let id = req.params.hotelId
   const updatePhotos = (id, body, callback) => {
     db.Photo.update({ hotelId : id}, body, callback)
@@ -86,7 +86,7 @@ Ex: app.put('/api/photos/:hotelId', (req, res) => {
 });
 
 ### DELETE /api/photos/:hotelId
-Ex: app.delete('/api/photos/:hotelId', (req, res) => {
+app.delete('/api/photos/:hotelId', (req, res) => {
   let _id = req.params.hotelId
   const deletePhotos = (id, callback) => {
     db.Photo.deleteOne({ hotelId : id }, callback)
