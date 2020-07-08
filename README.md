@@ -40,6 +40,7 @@ npm install
 ## REST API
 
 ### GET /api/photos/:hotelId
+```
 app.get('/api/photos/:hotelId', (req, res) => {
   const _id = req.params.hotelId || '1';
   const getPhotos = (id, callback) => {
@@ -53,8 +54,10 @@ app.get('/api/photos/:hotelId', (req, res) => {
     }
   });
 });
+```
 
 ### POST /api/photos
+```
 app.post('/api/photos', (req, res) => {
   const addPhotos = (body, callback) => {
     let photos = new db.Photo(body)
@@ -68,9 +71,11 @@ app.post('/api/photos', (req, res) => {
     }
   });
 });
+```
 
 
 ### PATCH /api/photos/:hotelId
+```
 app.put('/api/photos/:hotelId', (req, res) => {
   let id = req.params.hotelId
   const updatePhotos = (id, body, callback) => {
@@ -84,8 +89,10 @@ app.put('/api/photos/:hotelId', (req, res) => {
     }
   })
 });
+```
 
 ### DELETE /api/photos/:hotelId
+```
 app.delete('/api/photos/:hotelId', (req, res) => {
   let _id = req.params.hotelId
   const deletePhotos = (id, callback) => {
@@ -99,4 +106,5 @@ app.delete('/api/photos/:hotelId', (req, res) => {
     }
   })
 });
+```
 
