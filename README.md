@@ -49,7 +49,7 @@ npm install
 
 **Returns:** JSON
 
-```json
+```
 {
   hotelId: Number,
   hotelName: String,
@@ -173,7 +173,7 @@ npm install
 
 **Request Body:** Expects JSON with the following keys.
 
-```json
+```
 {
   hotelName: String,
   hotelCity: String,
@@ -296,7 +296,7 @@ npm install
 
 **Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
 
-```json
+```
 {
   hotelName: String,
   hotelCity: String,
