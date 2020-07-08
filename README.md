@@ -45,9 +45,9 @@ npm install
 **Path Parameters:**
   * `hotelId` hotel id
   
-**Success Status Code**: `200`
+**Success Status Code:** `200`
 
-**Returns**: JSON
+**Returns:** JSON
 
 ```json
 {
@@ -169,9 +169,10 @@ npm install
 **Path Parameters:** 
   * `hotelId` hotel id
 
-**Success Status Code**: `201`
+**Success Status Code:** `201`
 
-**Request Body**: Expects JSON with the following keys.
+**Request Body:** Expects JSON with the following keys.
+
 ```json
 {
   hotelName: String,
@@ -291,9 +292,10 @@ npm install
 **Path Parameters:**
   * `hotelId` hotel id
   
-**Success Status Code**: `204`
+**Success Status Code:** `204`
 
-**Request Body**: Expects JSON with any of the following keys (include only keys to be updated)
+**Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
+
 ```json
 {
   hotelName: String,
@@ -412,5 +414,5 @@ npm install
 **Path Parameters:** 
   * `hotelId` hotel id
 
-**Success Status Code**: `204`
+**Success Status Code:** `204`
 
