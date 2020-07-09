@@ -40,7 +40,7 @@ npm install
 ## Server API
 
 ### Get hotel
-  * GET `/api/photos/:hotelId`
+  * GET `/api/hotel/:hotelId`
   
 **Path Parameters:**
   * `hotelId` hotel id
@@ -164,7 +164,7 @@ npm install
 ```
 
 ### Add hotel
-  * POST `/api/photos `
+  * POST `/api/hotel`
   
 **Path Parameters:** 
   * `hotelId` hotel id
@@ -173,9 +173,18 @@ npm install
 
 **Request Body:** Expects JSON with the following keys.
 
+```json
+  {
+  "hotelId": "Number",
+  "hotelName": "String",
+  "hotelCity": "String",
+  "hotelPrice": "Number",
+  "numReviews": "Number"
+  }
+```
 
 ### Update hotel info
-  * PATCH `/api/photos/:hotelId`
+  * PATCH `/api/hotel/:hotelId`
   
 **Path Parameters:**
   * `hotelId` hotel id
@@ -184,12 +193,96 @@ npm install
 
 **Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
 
+```json
+  {
+  "numReviews": "Number"
+  }
+```
 
 ### Delete hotel
-  * DELETE `/api/photos/:hotelId`
+  * DELETE `/api/hotel/:hotelId`
 
 **Path Parameters:** 
   * `hotelId` hotel id
 
 **Success Status Code:** `204`
 
+### Get photos
+  * GET `/api/hotel/:hotelId/album/:albumId`
+  
+**Path Parameters:**
+  * `hotelId` hotel id
+  * `albumId`album id
+  * `album` album
+  
+**Success Status Code:** `200`
+
+**Returns:** JSON
+
+```json
+{
+      "id": "Number",
+      "user": "String",
+      "userAvatarUrl": "String",
+      "imageUrl": "String",
+      "caption": "String",
+      "category": "String",
+      "datePosted": "String",
+      "helpfulVotes": "Number",
+      "location": "String",
+      "contributions": "Number",
+    },
+```
+
+### Add photo album
+  * POST `/api/hotel/:hotelId/album
+  
+**Path Parameters:**
+  * `hotelId` hotel id
+  * `album` album name
+  
+**Success Status Code:** `201`
+
+**Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
+
+```json
+    {
+      "user": "String",
+      "userAvatarUrl": "String",
+      "imageUrl": "String",
+      "caption": "String",
+      "category": "String",
+      "datePosted": "String",
+      "helpfulVotes": "Number",
+      "location": "String",
+      "contributions": "Number",
+    }
+```
+
+### Update hotel info
+  * PATCH `/api/hotel/:hotelId/album/:albumId`
+  
+**Path Parameters:**
+  * `hotelId` hotel id
+  * `albumId` album id
+  * `album` album name
+  
+**Success Status Code:** `204`
+
+**Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
+
+```json
+  {
+  "imageUrl": "String
+  }
+```
+
+### Delete album
+  * DELETE `/api/hotel/:hotelId/album/:albumId`
+
+**Path Parameters:** 
+  * `hotelId` hotel id
+  * `albumId` album id
+  * `album` album name
+
+**Success Status Code:** `204`
