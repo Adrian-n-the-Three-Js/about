@@ -273,7 +273,7 @@ npm install
 
 ```json
   {
-  "imageUrl": "String
+  "helpfulVotes": "Number
   }
 ```
 
