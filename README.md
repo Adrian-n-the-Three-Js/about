@@ -207,7 +207,7 @@ npm install
 
 **Success Status Code:** `204`
 
-### Get photos
+### Get album
   * GET `/api/hotel/:hotelId/album/:albumId`
   
 **Path Parameters:**
@@ -234,7 +234,7 @@ npm install
     },
 ```
 
-### Add photo album
+### Add album
   * POST `/api/hotel/:hotelId/album
   
 **Path Parameters:**
@@ -259,7 +259,7 @@ npm install
     }
 ```
 
-### Update hotel info
+### Update album
   * PATCH `/api/hotel/:hotelId/album/:albumId`
   
 **Path Parameters:**
