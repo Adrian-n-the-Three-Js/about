@@ -207,21 +207,22 @@ npm install
 
 **Success Status Code:** `204`
 
-### Get album
-  * GET `/api/hotel/:hotelId/album/:albumId`
+### Get photo
+  * GET `/api/hotel/:hotelId/photo/:photoId`
   
 **Path Parameters:**
   * `hotelId` hotel id
-  * `albumId`album id
-  * `album` album
+  * `photoId` photo id
+  * `photo` photo
   
 **Success Status Code:** `200`
 
 **Returns:** JSON
 
 ```json
-{
-      "id": "Number",
+  {
+      "photo_id": "Number",
+      "hotel_id": "Number",
       "user": "String",
       "userAvatarUrl": "String",
       "imageUrl": "String",
@@ -234,12 +235,12 @@ npm install
     },
 ```
 
-### Add album
-  * POST `/api/hotel/:hotelId/album
+### Add photo
+  * POST `/api/hotel/:hotelId/photo
   
 **Path Parameters:**
   * `hotelId` hotel id
-  * `album` album name
+  * `photo` photo name
   
 **Success Status Code:** `201`
 
@@ -259,13 +260,13 @@ npm install
     }
 ```
 
-### Update album
-  * PATCH `/api/hotel/:hotelId/album/:albumId`
+### Update photo
+  * PATCH `/api/hotel/:hotelId/photo/:photoId`
   
 **Path Parameters:**
   * `hotelId` hotel id
-  * `albumId` album id
-  * `album` album name
+  * `photoId` photo id
+  * `photo` photo name
   
 **Success Status Code:** `204`
 
@@ -277,12 +278,12 @@ npm install
   }
 ```
 
-### Delete album
-  * DELETE `/api/hotel/:hotelId/album/:albumId`
+### Delete photos
+  * DELETE `/api/hotel/:hotelId/photos/:photoId`
 
 **Path Parameters:** 
   * `hotelId` hotel id
-  * `albumId` album id
-  * `album` album name
+  * `photoId` photo id
+  * `photo` photo name
 
 **Success Status Code:** `204`
