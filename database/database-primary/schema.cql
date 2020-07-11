@@ -3,13 +3,14 @@ CREATE KEYSPACE hotel WITH replication =
 
 USE hotel;
 
+COPY
 CREATE TABLE hotel.info (
   hotel_id int,
   city text,
   name text,
   price smallint,
   reviews int,
-  PRIMARY KEY ((hotel_id))
+  PRIMARY KEY (hotel_id)
   )
 
 
