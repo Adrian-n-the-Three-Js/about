@@ -5,9 +5,9 @@ let writer = csvWriter();
 let faker = require('faker');
 
 let albums = ['Room', 'Pool', 'Gym', 'Dining', 'Amenities', 'Bathroom', 'Eventroom', 'Roomview'];
-const generatePhotos = () => {
+const generatePhotos = (start, end) => {
   writer.pipe(fs.createWriteStream('./data/photos.csv'))
-  for (let id = 1; id <= 10; id++) {
+  for (let id = start ; id <= end; id++) {
     let randomAlbum = Math.floor(Math.random() * (albums.length - 0));
     let date = moment(faker.date.past()).format('MMM D');
     writer.write({
@@ -27,4 +27,13 @@ const generatePhotos = () => {
   writer.end()
 };
 
-generatePhotos();
+generatePhotos(1, 1000000);
+// generatePhotos(1000001, 2000000);
+// generatePhotos(2000001, 3000000);
+// generatePhotos(3000001, 4000000);
+// generatePhotos(4000001, 5000000);
+// generatePhotos(5000001, 6000000);
+// generatePhotos(6000001, 7000000);
+// generatePhotos(7000001, 8000000);
+// generatePhotos(8000001, 9000000);
+// generatePhotos(9000001, 10000000);
