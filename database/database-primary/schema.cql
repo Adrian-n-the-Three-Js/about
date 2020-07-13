@@ -1,31 +1,31 @@
-CREATE KEYSPACE hotel WITH replication =
-  {‘class’: ‘SimpleStrategy’, ‘replication_factor’ : 3};
+DROP KEYSPACE IF EXISTS hotel;
+
+CREATE KEYSPACE hotel
+  WITH REPLICATION = { 'class':'SimpleStrategy', 'replication_factor' : 3 };
 
 USE hotel;
 
-COPY
 CREATE TABLE hotel.info (
   hotel_id int,
-  city text,
   name text,
-  price smallint,
+  city text,
+  price text,
   reviews int,
   PRIMARY KEY (hotel_id)
-  )
-
+);
 
 CREATE TABLE hotel.photos_by_hotel (
-  photo_id int,
   hotel_id int,
-  user text,
-  photoUrl text,
+  category text,
+  photo_id int,
   avatar_url text,
-  date_posted date,
-  caption: text,
-  category: text,
-  location text,
+  caption text,
   contributions smallint,
+  date_posted text,
   helpful_votes smallint,
-  PRIMARY KEY (hotel_id, category, photo_id)
+  location text,
+  photo_url text,
+  user text,
+  PRIMARY KEY ((hotel_id), category, photo_id)
 );
 
