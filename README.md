@@ -37,7 +37,6 @@ npm install -g webpack
 npm install
 ```
 
-<<<<<<< HEAD
 ## REST API
 
 ### GET /api/photos/:hotelId
@@ -63,7 +62,6 @@ app.post('/api/photos', (req, res) => {
     }
     })
     
-=======
 
 ## Server API
 
@@ -221,7 +219,6 @@ app.post('/api/photos', (req, res) => {
 
 **Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
 
-<<<<<<< HEAD
 ### PATCH /api/photos/:hotelId
 app.put('/api/photos/:hotelId', (req, res) => {
   let id = req.params.hotelId
@@ -230,7 +227,6 @@ app.put('/api/photos/:hotelId', (req, res) => {
     }
     })
     
-=======
 ```json
   {
   "numReviews": "Number"
@@ -296,17 +292,17 @@ app.put('/api/photos/:hotelId', (req, res) => {
       "location": "String",
       "contributions": "Number",
     }
-<<<<<<< HEAD
   })
 });
+```
 
 ### DELETE /api/photos/:hotelId
 app.delete('/api/photos/:hotelId', (req, res) => {
   let _id = req.params.hotelId
   const deletePhotos = (id, callback) => {
     db.Photo.deleteOne({ hotelId : id }, callback)
-=======
-```
+    }
+})
 
 ### Update photo
   * PATCH `/api/hotel/:hotelId/photo/:photoId`
