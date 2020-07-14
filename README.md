@@ -60,7 +60,11 @@ app.post('/api/photos', (req, res) => {
   const addPhotos = (body, callback) => {
     let photos = new db.Photo(body)
     photos.save(callback);
+    }
+    })
+    
 =======
+
 ## Server API
 
 ### Get hotel
@@ -204,7 +208,6 @@ app.post('/api/photos', (req, res) => {
   "hotelCity": "String",
   "hotelPrice": "Number",
   "numReviews": "Number"
->>>>>>> 19a325bb284990c6b1cc6f74666bea77fdf354ef
   }
 ```
 
@@ -224,11 +227,13 @@ app.put('/api/photos/:hotelId', (req, res) => {
   let id = req.params.hotelId
   const updatePhotos = (id, body, callback) => {
     db.Photo.update({ hotelId : id}, body, callback)
+    }
+    })
+    
 =======
 ```json
   {
   "numReviews": "Number"
->>>>>>> 19a325bb284990c6b1cc6f74666bea77fdf354ef
   }
 ```
 
@@ -318,7 +323,6 @@ app.delete('/api/photos/:hotelId', (req, res) => {
 ```json
   {
   "helpfulVotes": "Number
->>>>>>> 19a325bb284990c6b1cc6f74666bea77fdf354ef
   }
 ```
 
