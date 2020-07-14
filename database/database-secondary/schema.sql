@@ -19,10 +19,10 @@ CREATE TABLE photos (
   hotel_id integer NOT NULL,
   category text NOT NULL,
   caption text,
-  image_url varchar(255),
-  user_id integer NOT NULL,
   date_posted date NOT NULL,
   helpful_votes integer,
+  image_url varchar(255),
+  user_id integer NOT NULL,
   PRIMARY KEY (photo_id),
   FOREIGN KEY photos(hotel_id) references hotel(hotel_id),
   FOREIGN KEY photos(user_id) references users(user_id)

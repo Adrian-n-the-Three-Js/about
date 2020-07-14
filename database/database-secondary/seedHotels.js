@@ -21,13 +21,5 @@ const generateHotels = (start, end) => {
   console.log('done')
 };
 
-generateHotels(1, 1000000);
-// generateHotels(1000001, 2000000);
-// generateHotels(2000001, 3000000);
-// generateHotels(3000001, 4000000);
-// generateHotels(4000001, 5000000);
-// generateHotels(5000001, 6000000);
-// generateHotels(6000001, 7000000);
-// generateHotels(7000001, 8000000);
-// generateHotels(8000001, 9000000);
-// generateHotels(9000001, 10000000);
+generateHotels(1, 10000000);
+

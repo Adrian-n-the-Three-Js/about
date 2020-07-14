@@ -4,9 +4,9 @@ const moment = require('moment');
 let writer = csvWriter();
 let faker = require('faker');
 
-let albums = ['Room', 'Pool', 'Gym', 'Dining', 'Amenities', 'Bathroom', 'Eventroom', 'Roomview'];
-const generatePhotos = (start, end) => {
-  writer.pipe(fs.createWriteStream('./data/photos.csv'))
+let albums = ['Room & Suite', 'Pool & Beach', 'Gym', 'Dining', 'Amenities', 'Bathroom', 'Business Center & Event Room', 'View from Room'];
+const generatePhotos = (start, end, filenumber) => {
+  writer.pipe(fs.createWriteStream(`./data/photos${filenumber}.csv`))
   for (let id = start ; id <= end; id++) {
     let randomAlbum = Math.floor(Math.random() * (albums.length - 0));
     let date = moment(faker.date.past()).format('MMM D');
@@ -19,21 +19,22 @@ const generatePhotos = (start, end) => {
       contributions: faker.random.number({min: 0, max: 100}),
       date_posted: date,
       helpful_votes: faker.random.number({min: 0, max: 30}),
-      location: faker.address.city(),
+      location: faker.address.city() + ', ' + faker.address.stateAbbr(),
       photo_url: faker.image.imageUrl(),
       user: faker.name.findName()
-    })
+    }, 'utf8');
+    if (id % 100000 === 0) {
+      console.log(id)
+    }
   }
   writer.end()
 };
 
-generatePhotos(1, 1000000);
-// generatePhotos(1000001, 2000000);
-// generatePhotos(2000001, 3000000);
-// generatePhotos(3000001, 4000000);
-// generatePhotos(4000001, 5000000);
-// generatePhotos(5000001, 6000000);
-// generatePhotos(6000001, 7000000);
-// generatePhotos(7000001, 8000000);
-// generatePhotos(8000001, 9000000);
-// generatePhotos(9000001, 10000000);
+// generatePhotos(1, 5000000, 1);
+// generatePhotos(5000001, 10000000, 2);
+// generatePhotos(10000001, 15000000, 3);
+// generatePhotos(15000001, 20000000, 4);
+// generatePhotos(20000001, 25000000, 5);
+// generatePhotos(25000001, 30000000, 6);
+// generatePhotos(30000001, 35000000, 7);
+// generatePhotos(35000001, 40000000, 8);

@@ -13,12 +13,15 @@ const generateHotels = (start, end) => {
       price: faker.finance.amount(50, 400),
       reviews: faker.random.number({ min: 0, max: 1000})
     })
+    if (id % 100000 === 0) {
+      console.log(id)
+    }
   }
   writer.end()
 };
 
 
-generateHotels(1, 1000000);
+// generateHotels(1, 1000000);
 // generateHotels(1000001, 2000000);
 // generateHotels(2000001, 3000000);
 // generateHotels(3000001, 4000000);
@@ -28,3 +31,4 @@ generateHotels(1, 1000000);
 // generateHotels(7000001, 8000000);
 // generateHotels(8000001, 9000000);
 // generateHotels(9000001, 10000000);
+generateHotels(1, 10000000);
