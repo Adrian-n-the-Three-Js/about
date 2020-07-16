@@ -37,7 +37,6 @@ npm install -g webpack
 npm install
 ```
 
-<<<<<<< HEAD
 ## REST API
 
 ### GET /api/photos/:hotelId
@@ -60,7 +59,10 @@ app.post('/api/photos', (req, res) => {
   const addPhotos = (body, callback) => {
     let photos = new db.Photo(body)
     photos.save(callback);
-=======
+    }
+    })
+    
+
 ## Server API
 
 ### Get hotel
@@ -204,7 +206,6 @@ app.post('/api/photos', (req, res) => {
   "hotelCity": "String",
   "hotelPrice": "Number",
   "numReviews": "Number"
->>>>>>> 19a325bb284990c6b1cc6f74666bea77fdf354ef
   }
 ```
 
@@ -218,17 +219,17 @@ app.post('/api/photos', (req, res) => {
 
 **Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
 
-<<<<<<< HEAD
 ### PATCH /api/photos/:hotelId
 app.put('/api/photos/:hotelId', (req, res) => {
   let id = req.params.hotelId
   const updatePhotos = (id, body, callback) => {
     db.Photo.update({ hotelId : id}, body, callback)
-=======
+    }
+    })
+    
 ```json
   {
   "numReviews": "Number"
->>>>>>> 19a325bb284990c6b1cc6f74666bea77fdf354ef
   }
 ```
 
@@ -291,17 +292,17 @@ app.put('/api/photos/:hotelId', (req, res) => {
       "location": "String",
       "contributions": "Number",
     }
-<<<<<<< HEAD
   })
 });
+```
 
 ### DELETE /api/photos/:hotelId
 app.delete('/api/photos/:hotelId', (req, res) => {
   let _id = req.params.hotelId
   const deletePhotos = (id, callback) => {
     db.Photo.deleteOne({ hotelId : id }, callback)
-=======
-```
+    }
+})
 
 ### Update photo
   * PATCH `/api/hotel/:hotelId/photo/:photoId`
@@ -318,7 +319,6 @@ app.delete('/api/photos/:hotelId', (req, res) => {
 ```json
   {
   "helpfulVotes": "Number
->>>>>>> 19a325bb284990c6b1cc6f74666bea77fdf354ef
   }
 ```
 
