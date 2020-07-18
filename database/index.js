@@ -1,132 +1,28 @@
-const mongoose = require('mongoose');
+const { Client } = require('pg')
+const client = new Client({
+  user: 'postgres',
+  password: 'justinkwan',
+  host: '172.17.0.2',
+  database: 'hotels',
+  port: 3000,
+})
 
-mongoose.connect('mongodb://localhost/hotel', { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//   if (err) {
+//     console.log('connection error', err.stack)
+//   } else {
+//     console.log('connected to PostgreSQL')
+//   }
+// })
+client.connect()
+console.log('connected')
 
-// test connection
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('DATABASE Connected!');
-});
 
-// create schema
-// native mongo object id will represent hotel id
-const photoSchema = new mongoose.Schema({
-  hotelId: Number,
-  hotelName: String,
-  hotelCity: String,
-  hotelPrice: String,
-  numReviews: String,
-  roomAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  diningAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  poolAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  gymAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  amenitiesAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  bathroomAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  eventRoomAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-  roomViewAlbum: [
-    {
-      user: String,
-      userAvatarUrl: String,
-      imageUrl: String,
-      caption: String,
-      category: String,
-      datePosted: String,
-      helpfulVotes: Number,
-      location: String,
-      contributions: Number,
-    },
-  ],
-});
+// ;(async () => {
+//   await client.connect()
+//   const res = await client.query('SELECT $1::text as message', ['Hello world!'])
+//   console.log(res.rows[0].message) // Hello world!
+//   await client.end()
+// })()
 
-// compile schema into a model
-const Photo = mongoose.model('Photo', photoSchema);
-
-module.exports = {
-  db,
-  Photo,
-};
+module.exports = client
