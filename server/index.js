@@ -21,14 +21,14 @@ app.get('/:hotelId', (req, res) => {
 });
 app.get('/api/photos/:hotelId', controller.getPhotos);
 
-// // POST request
-// app.post('/api/photos', controller.addPhotos);
+// POST request
+app.post('/api/photos', controller.addPhotos);
 
-// // PATCH request
-// app.put('/api/photos/:hotelId', controller.updatePhotos);
+// PATCH request
+app.put('/api/photos/:hotelId', controller.updatePhotos);
 
-// // DELETE request
-// app.delete('/api/photos/:hotelId', controller.deletePhotos);
+// DELETE request
+app.delete('/api/photos/:hotelId', controller.deletePhotos);
 
 /* PHOTOS INFO */
 

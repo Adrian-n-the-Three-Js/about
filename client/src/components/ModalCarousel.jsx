@@ -297,26 +297,26 @@ class ModalCarousel extends React.Component {
         </ArrowButton>
 
         <ModalPhoto
-          user={this.props.album[this.state.currentPhotoIndex].user}
-          userAvatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
+          user={this.props.album[this.state.currentPhotoIndex].username}
+          userAvatar={this.props.album[this.state.currentPhotoIndex].avatar_url}
           caption={this.props.album[this.state.currentPhotoIndex].caption}
-          url={this.props.album[this.state.currentPhotoIndex].imageUrl}
-          helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpfulVotes}
-          date={this.props.album[this.state.currentPhotoIndex].datePosted}
+          url={this.props.album[this.state.currentPhotoIndex].image_url}
+          helpfulVotes={this.props.album[this.state.currentPhotoIndex].helpful_votes}
+          date={this.props.album[this.state.currentPhotoIndex].date_posted}
         />
         <DetailsWrapper>
 
         <PhotoDetailsSection>
           <Avatar
             className="avatar"
-            avatar={this.props.album[this.state.currentPhotoIndex].userAvatarUrl}
+            avatar={this.props.album[this.state.currentPhotoIndex].avatar_url}
           />
 
           <PhotoDetails>
             <span>
-              {this.props.album[this.state.currentPhotoIndex].user}
+              {this.props.album[this.state.currentPhotoIndex].username}
               &nbsp;&#8226;&nbsp;
-              {this.props.album[this.state.currentPhotoIndex].datePosted}
+              {this.props.album[this.state.currentPhotoIndex].date_posted}
             </span>
             <span>
               <Pin />
@@ -360,7 +360,7 @@ class ModalCarousel extends React.Component {
               <Thumb />
               &nbsp;
               Helpful
-              ({this.props.album[this.state.currentPhotoIndex].helpfulVotes})
+              ({this.props.album[this.state.currentPhotoIndex].helpful_votes})
             </span>
           </div>
 

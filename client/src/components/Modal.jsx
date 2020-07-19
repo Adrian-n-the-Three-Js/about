@@ -191,7 +191,7 @@ class Modal extends React.Component {
                    <DiagonalUpArrow />
                   </HeaderItemLink>
                 </li>
-              <li><HeaderItem className="price">${this.props.hotel.hotelPrice}</HeaderItem></li>
+              <li><HeaderItem className="price">{this.props.hotel.hotelPrice}</HeaderItem></li>
               <li><HeaderDealButton className="view-deal" href="#">View Deal</HeaderDealButton></li>
               <li>
                 <HeaderCloseButton onClick={() => {this.props.toggleModal()}}>

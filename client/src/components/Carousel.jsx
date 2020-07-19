@@ -107,8 +107,8 @@ class Carousel extends React.Component {
 
   render() {
     // refactor ...
-    const modalAlbum = this.state.currentPhotoIndex === 0 ? 'roomAlbum' : this.state.currentPhotoIndex === 1 ? 'diningAlbum' : this.state.currentPhotoIndex === 2 ? 'poolAlbum' : this.state.currentPhotoIndex === 3 ? 'gymAlbum' : this.state.currentPhotoIndex === 4 ? 'bathroomAlbum' : this.state.currentPhotoIndex === 5 ? 'eventRoomAlbum' : 'roomViewAlbum';
-
+    const modalAlbum = this.state.currentPhotoIndex === 3 ? 'roomAlbum' : this.state.currentPhotoIndex === 4 ? 'diningAlbum' : this.state.currentPhotoIndex === 5 ? 'poolAlbum' : this.state.currentPhotoIndex === 0 ? 'gymAlbum' : this.state.currentPhotoIndex === 1 ? 'bathroomAlbum' : this.state.currentPhotoIndex === 2 ? 'eventRoomAlbum' : 'roomViewAlbum';
+    console.log(modalAlbum, 'carousel album')
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
 
     return (
@@ -135,7 +135,7 @@ class Carousel extends React.Component {
 
           <Photo
             index={this.state.currentPhotoIndex}
-            url={this.props.preview[this.state.currentPhotoIndex].imageUrl}
+            url={this.props.preview[this.state.currentPhotoIndex].image_url}
             album={this.props.preview[this.state.currentPhotoIndex].category}
             toggleModal={this.props.toggleModal}
           />
@@ -161,7 +161,7 @@ class Carousel extends React.Component {
               key={one._id}
               index={index}
               displayedPhotoIndex={this.state.currentPhotoIndex}
-              photo={one.imageUrl}
+              photo={one.image_url}
               caption={one.caption}
               onClick={this.photostripClick}
               toggleModal={this.props.toggleModal}

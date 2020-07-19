@@ -123,28 +123,52 @@ class App extends React.Component {
     })
       .then((response) => {
         const hotel = response.data[0];
-        const preview = [
-          hotel.roomAlbum[0],
-          hotel.diningAlbum[0],
-          hotel.poolAlbum[0],
-          hotel.gymAlbum[0],
-          hotel.bathroomAlbum[0],
-          hotel.eventRoomAlbum[0],
-          hotel.roomViewAlbum[0],
-        ];
-        // console.log('res data', response.data);
-        // console.log('1st hotel record', hotel);
+        let room = hotel.roomAlbum;
+        let dining = hotel.diningAlbum;
+        let pool = hotel.poolAlbum;
+        let gym = hotel.gymAlbum;
+        let bathroom = hotel.bathroomAlbum;
+        let eventRoom = hotel.eventRoomAlbum;
+        let roomView = hotel.roomViewAlbum;
+        const preview = [];
+        if (room.length > 0) {
+          preview.push(room[0])
+        };
+        if (dining.length > 0) {
+          preview.push(dining[0])
+        };
+        if (pool.length > 0) {
+          preview.push(pool[0])
+        };
+        if (gym.length > 0) {
+          preview.push(gym[0])
+        };
+        if (bathroom.length > 0) {
+          preview.push(bathroom[0])
+        };
+        if (eventRoom.length > 0) {
+          preview.push(eventRoom[0])
+        };
+        if (roomView.length > 0) {
+          preview.push(roomView[0])
+        };
+
         this.setState({
           hotel,
           preview,
           isLoaded: true,
         });
-        (error) => {
-          this.setState({ isLoaded: true });
-          console.log(error);
-        };
+        console.log(this.state.preview, 'after preview items')
+        // (error) => {
+        //   this.setState({ isLoaded: true });
+        //   console.log(error);
+        // };
         // console.log('current state', this.state);
     })
+    .catch(err => {
+      this.setState({ isLoaded: true });
+      console.log(error)
+    });
   }
 
   toggleModal(modalAlbum) {
@@ -156,10 +180,8 @@ class App extends React.Component {
   }
 
   render() {
-
     // refactor later ...
     const modalAlbum = this.state.modalAlbum === 'Room & Suite' ? 'roomAlbum' : this.state.modalAlbum === 'Dining' ? 'diningAlbum' : this.state.modalAlbum === 'Pool & Beach' ? 'poolAlbum' : this.state.modalAlbum === 'Gym' ? 'gymAlbum' : this.state.modalAlbum === 'Bathroom' ? 'bathroomAlbum' : this.state.modalAlbum === 'Business Center & Event Rooms' ? 'eventRoomAlbum' : 'roomViewAlbum';
-
     if (!this.state.isLoaded) {
       return <div>Loading...</div>;
     }
