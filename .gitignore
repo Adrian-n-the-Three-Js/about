@@ -23,3 +23,11 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 # dist/
+
+# CSV's
+data/
+database-primary/
+docker-compose.yml
+newrelic.js
+Dockerfile
+

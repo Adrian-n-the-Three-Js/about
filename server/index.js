@@ -5,6 +5,9 @@ const path = require('path');
 const controller = require('./controller.js');
 const db = require('../database/index.js');
 const cors = require('cors');
+const newrelic = require('newrelic');
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
 
 app.use(cors());
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
@@ -15,24 +18,29 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 /* HOTEL INFO */
 
 // GET request
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  app.get('/:hotelId', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
+  app.get('/api/photos/:hotelId', controller.getPhotos);
 
-app.get('/:hotelId', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
-app.get('/api/photos/:hotelId', controller.getPhotos);
+  // POST request
+  app.post('/api/photos', controller.addPhotos);
 
-// POST request
-app.post('/api/photos', controller.addPhotos);
+  // PATCH request
+  app.put('/api/photos/:hotelId', controller.updatePhotos);
 
-// PATCH request
-app.put('/api/photos/:hotelId', controller.updatePhotos);
+  // DELETE request
+  app.delete('/api/photos/:hotelId', controller.deletePhotos);
 
-// DELETE request
-app.delete('/api/photos/:hotelId', controller.deletePhotos);
+  /* PHOTOS INFO */
 
-/* PHOTOS INFO */
+  // // GET request
+  // app.get('/api/photos/roomAlbum/:albumId', controller.getPhotos)
 
-// // GET request
-// app.get('/api/photos/roomAlbum/:albumId', controller.getPhotos)
-
-app.listen(port, () => console.log(`SERVER ON: listening at http://localhost:${port}`));
+  app.listen(port, () => console.log(`SERVER ON: listening at http://localhost:${port}`));
+}

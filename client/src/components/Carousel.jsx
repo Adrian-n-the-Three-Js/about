@@ -107,7 +107,7 @@ class Carousel extends React.Component {
 
   render() {
     // refactor ...
-    const modalAlbum = this.state.currentPhotoIndex === 3 ? 'roomAlbum' : this.state.currentPhotoIndex === 4 ? 'diningAlbum' : this.state.currentPhotoIndex === 5 ? 'poolAlbum' : this.state.currentPhotoIndex === 0 ? 'gymAlbum' : this.state.currentPhotoIndex === 1 ? 'bathroomAlbum' : this.state.currentPhotoIndex === 2 ? 'eventRoomAlbum' : 'roomViewAlbum';
+    const modalAlbum = this.state.currentPhotoIndex === 3 ? 'roomAlbum' : this.state.currentPhotoIndex === 4 ? 'diningAlbum' : this.state.currentPhotoIndex === 5 ? 'poolAlbum' : this.state.currentPhotoIndex === 0 ? 'gymAlbum' : this.state.currentPhotoIndex === 1 ? 'bathroomAlbum' : this.state.currentPhotoIndex === 2 ? 'roomViewAlbum' : 'eventRoomAlbum';
     console.log(modalAlbum, 'carousel album')
     // this.props.preview.length && console.log('image', this.props.hotel[0]);
 
