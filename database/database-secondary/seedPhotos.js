@@ -28,6 +28,6 @@ const generatePhotos = (start, end, filenumber) => {
   writer.end()
 };
 // generatePhotos(1, 10000000, 1)
-// generatePhotos(10000001, 20000000, 2);
+generatePhotos(10000001, 20000000, 2);
 // generatePhotos(20000001, 30000000, 3);
-generatePhotos(30000001, 40000000, 4);
+// generatePhotos(1, 40000000, 5);

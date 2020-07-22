@@ -31,10 +31,10 @@ CREATE TABLE photos (
   helpful_votes integer,
   image_url varchar(255),
   user_id integer NOT NULL,
-  PRIMARY KEY (photo_id),
-  FOREIGN KEY (hotel_id) references hotel(hotel_id),
-  FOREIGN KEY (user_id) references users(user_id)
+  PRIMARY KEY (photo_id)
 );
+  -- FOREIGN KEY (hotel_id) references hotel(hotel_id),
+  -- FOREIGN KEY (user_id) references users(user_id)
 
 
 

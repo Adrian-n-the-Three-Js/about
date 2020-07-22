@@ -5,7 +5,7 @@ const path = require('path');
 const controller = require('./controller.js');
 const db = require('../database/index.js');
 const cors = require('cors');
-const newrelic = require('newrelic');
+// const newrelic = require('newrelic');
 var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
 
