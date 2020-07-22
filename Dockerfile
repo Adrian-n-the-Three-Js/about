@@ -1,4 +1,4 @@
-FROM node:14.4.0-alpine3.12
+FROM node:latest
 
 RUN mkdir -p /src/app
 
@@ -8,6 +8,6 @@ COPY . /src/app
 
 RUN npm install
 
-EXPOSE 8212
+EXPOSE 3003
 
 CMD [ "npm", "run", "start"]

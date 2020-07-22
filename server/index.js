@@ -5,11 +5,13 @@ const path = require('path');
 const controller = require('./controller.js');
 const db = require('../database/index.js');
 const cors = require('cors');
-// const newrelic = require('newrelic');
+const newrelic = require('newrelic');
 var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
 
 app.use(cors());
+app.use('/loaderio-c83d1a7ffaf208fc7d8b219ecaee1872.txt', express.static(path.join(__dirname, '../loaderio-c83d1a7ffaf208fc7d8b219ecaee1872.txt')));
+
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
 app.use(express.json()); // for parsing application/json

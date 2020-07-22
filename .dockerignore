@@ -1,4 +1,3 @@
-data/
-#
-docker-compose.yml
-newrelic.js
+
+database/database-secondary/
+.git/
